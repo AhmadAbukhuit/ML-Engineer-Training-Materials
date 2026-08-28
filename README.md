@@ -118,3 +118,15 @@ source venv/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
+
+---
+
+## 🤝 Contributing
+
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make to this roadmap are **greatly appreciated**.
+
+Please read our [Contributing Guidelines](CONTRIBUTING.md) for details on our code of conduct, formatting rules, and the process for submitting pull requests.
+
+## 📄 License
+
+This project is distributed under the MIT License. See the [`LICENSE`](LICENSE) file for more information.
