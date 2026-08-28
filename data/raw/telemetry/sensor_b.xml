@@ -1,0 +1,13 @@
+<log>
+  <reading>
+    <timestamp>2026-08-29T10:05:00Z</timestamp>
+    <device_id>DEV-002</device_id>
+    <sensor>
+      <temperature>42.1</temperature>
+    </sensor>
+    <gps>
+      <lat>34.0530</lat>
+      <lon>-118.2450</lon>
+    </gps>
+  </reading>
+</log>

@@ -1,0 +1,28 @@
+[
+  {
+    "timestamp": "2026-08-29T10:00:00Z",
+    "device_id": "DEV-001",
+    "sensor_1": {
+      "temperature": 45.2
+    },
+    "gps": {
+      "coordinates": {
+        "lat": 34.0522,
+        "lon": -118.2437
+      }
+    }
+  },
+  {
+    "timestamp": "2026-08-29T10:01:00Z",
+    "device_id": "DEV-001",
+    "sensor_1": {
+      "temperature": 45.5
+    },
+    "gps": {
+      "coordinates": {
+        "lat": 34.0525,
+        "lon": -118.2440
+      }
+    }
+  }
+]

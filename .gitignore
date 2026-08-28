@@ -1,0 +1,33 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+venv/
+.venv/
+env/
+.env
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints
+
+# Datasets (Keep folder structure, ignore contents)
+data/processed/*
+!data/processed/.gitkeep
+
+# Model Artifacts & Weights
+*.joblib
+*.pkl
+*.pt
+*.pth
+*.h5
+*.onnx
+phase_02_core_ml/models/*
+phase_03_deep_learning/weights/*
+!phase_02_core_ml/models/.gitkeep
+!phase_03_deep_learning/weights/.gitkeep
+
+# Logs & MLflow runs
+mlruns/
+*.log
