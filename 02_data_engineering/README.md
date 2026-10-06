@@ -1,6 +1,6 @@
-# 📊 Phase 1: Data Science & Big Data Engineering
+# 📊 Phase 1: Data Science, Big Data Engineering & Feature Platforms
 
-Real-world machine learning is 70% data engineering. Before a model can be trained, raw data must be extracted, parsed, cleaned, and standardized. A production-ready ML Engineer builds pipelines that handle missing data gracefully and transform multi-modal inputs (CSV, JSON, XML, Images) into clean, model-ready tensors.
+Real-world machine learning is 70% data engineering. Before a model can be trained, raw data must be extracted, parsed, cleaned, standardized, and validated. A production-ready ML Engineer builds pipelines that handle missing data gracefully, prevent temporal leakage, enforce strict data contracts, and scale across multi-gigabyte columnar formats.
 
 ---
 
@@ -8,77 +8,77 @@ Real-world machine learning is 70% data engineering. Before a model can be train
 
 By the end of this phase, you will:
 
-1. Process massive structured datasets (CSVs) using high-performance libraries like `Polars` and `pandas`.
-2. Flatten deeply nested semi-structured data (JSON/XML telemetry logs) into relational tables.
-3. Process unstructured image data using `OpenCV`, applying automated resizing, normalization, and bounding-box label conversion (XML to YOLO TXT).
-4. Eliminate data leakage by wrapping imputation, scaling, and encoding steps into reusable `scikit-learn` pipelines.
+1. **High-Performance Ingestion:** Process multi-modal datasets (CSV, JSON, XML, Parquet) using `Polars` and `DuckDB`.
+2. **Columnar Big Data & In-Process OLAP:** Master Apache Parquet, Apache Arrow memory formats, and predicate pushdown query optimization.
+3. **Advanced SQL Feature Engineering:** Write production SQL queries utilizing window functions (`OVER PARTITION BY`), `LAG`/`LEAD`, and Common Table Expressions (CTEs).
+4. **Data Quality Contracts:** Define runtime schema contracts using `Pandera` to block corrupted data batches and catch schema drift before model training.
+5. **Point-in-Time Correctness (ASOF Joins):** Build temporal merge pipelines that join event observations with feature histories without lookahead data leakage.
+6. **Advanced Feature Transformations:** Implement Out-of-Fold (OOF) smoothed Target Encoding for high-cardinality categories and Yeo-Johnson power transforms for skewed distributions.
+7. **Computer Vision Pipelines:** Implement aspect-ratio preserving letterboxing and label format conversions (Pascal VOC to normalized YOLO TXT).
 
 ---
 
 ## 📚 Curated Study Resources
 
 ### 📖 Documentation & Guides
+* **[DuckDB Documentation](https://duckdb.org/docs/)**: Vectorized SQL query engine for fast Parquet analytics.
+* **[Polars User Guide](https://docs.pola.rs/user-guide/)**: Lazy evaluation and multithreaded Arrow execution in Rust.
+* **[Pandera Documentation](https://pandera.readthedocs.io/)**: Declarative statistical data validation for DataFrames.
+* **[Feast Feature Store Concepts](https://docs.feast.dev/)**: Point-in-time correctness, offline vs online feature serving.
+* **[Scikit-Learn: Preprocessing Data](https://scikit-learn.org/stable/modules/preprocessing.html)**: Transformers, scalers, and imputers.
 
-* **[Polars User Guide](https://docs.pola.rs/user-guide/)**: Essential for understanding lazy evaluation and multi-threaded DataFrame operations.
-* **[Pandas to Polars Cheat Sheet](https://docs.pola.rs/user-guide/migration/pandas/)**: Bridging the gap between standard pandas and high-performance rust-based execution.
-* **[Scikit-Learn: Preprocessing Data](https://scikit-learn.org/stable/modules/preprocessing.html)**: The official guide to transformers, scalers, and imputers.
-* **[OpenCV Python Tutorials](https://docs.opencv.org/4.x/d6/d00/tutorial_py_root.html)**: Core image operations, color space conversions, and geometric transformations.
-
-### 🎥 Video Lectures
-
-* **Rob Mulla - Pandas Data Science Tutorial:** Practical techniques for Exploratory Data Analysis (EDA).
-* **Sentdex - OpenCV with Python:** Practical walk-throughs on loading, analyzing, and transforming image arrays.
+### 📄 Included Deep-Dive Guides
+* [`01_columnar_storage_and_query_engines.md`](01_columnar_storage_and_query_engines.md): Parquet, Arrow, DuckDB, and Predicate Pushdown.
+* [`02_sql_for_feature_engineering.md`](02_sql_for_feature_engineering.md): Window functions, rolling spend, login intervals, and CTEs.
+* [`03_data_quality_and_feature_stores.md`](03_data_quality_and_feature_stores.md): Pandera contracts, temporal leakage, and Feature Store architecture.
 
 ---
 
 ## 🛠️ Practical Coding Tasks
 
-Complete these three implementation tasks inside `02_data_engineering/src/` and use the `notebooks/` directory for exploratory data analysis (EDA) before finalizing your scripts.
+Complete these implementation tasks inside `02_data_engineering/src/` and verify your solutions with tests in `02_data_engineering/tests/`.
 
 ---
 
 ### Task 1.1: Telemetry Parser & Aggregator (JSON/XML to CSV)
-
 * **File:** `src/telemetry_parser.py`
-* **Context:** You have a directory of raw sensor logs. Half are in nested JSON formats, and half are in XML. You need a unified tabular format for model training.
-* **Requirements:**
-  1. Write a script that iterates through a `data/raw/telemetry/` directory.
-  2. Parse nested JSON logs (e.g., extracting `sensor_1.temperature` and `gps.coordinates.lat`).
-  3. Parse XML logs (e.g., `<reading><sensor id="2"><value>45.2</value></sensor></reading>`) using Python's `xml.etree.ElementTree`.
-  4. Merge all parsed records into a single high-performance `Polars` DataFrame.
-  5. Handle missing timestamps and drop duplicate entries.
-  6. Export the final cleaned table to `data/processed/unified_telemetry.csv`.
-* **Deliverable:** A robust, type-hinted Python script that executes this pipeline in under 5 seconds for 100,000+ records.
+* **Goal:** Parse hierarchical JSON and XML IoT telemetry logs, flatten them into a unified tabular schema, and export cleaned CSV records using Polars.
 
 ---
 
 ### Task 1.2: Automated CV Preprocessing & Label Conversion
-
 * **File:** `src/image_pipeline.py`
-* **Context:** You are preparing a dataset for an object detection model (like YOLOv8). The raw dataset contains ultra-high-resolution RGB and thermal imagery, but the annotations are in Pascal VOC (XML) format.
-* **Requirements:**
-  1. Use `OpenCV` (`cv2`) to load raw images from `data/raw/images/`.
-  2. Resize all images to a standard model input resolution (e.g., 640x640). Maintain aspect ratios using letterboxing (padding with black pixels) to prevent distortion.
-  3. Normalize the pixel values to a `[0, 1]` range.
-  4. Write a parser that reads Pascal VOC XML files and converts the bounding box coordinates into the normalized YOLO TXT format: `<class_id> <center_x> <center_y> <width> <height>`.
-  5. Save the resized images to `data/processed/images/` and the converted labels to `data/processed/labels/`.
-* **Deliverable:** A pipeline script that guarantees every output image has a strictly matching label file with correctly scaled coordinates.
+* **Goal:** Resize raw images to fixed resolutions with aspect-ratio preserving letterbox padding, normalize pixels to `[0, 1]`, and convert Pascal VOC XML labels to normalized YOLO format (`class x_center y_center width height`).
 
 ---
 
 ### Task 1.3: The Zero-Leakage `scikit-learn` Pipeline
-
 * **File:** `src/feature_engineering.py`
-* **Context:** You are preparing tabular features for a regression model. If you scale or impute data *before* splitting your train and test sets, you cause data leakage. 
-* **Requirements:**
-  1. Load a tabular dataset using `pandas`.
-  2. Split the data into strictly isolated training and testing sets using `train_test_split`.
-  3. Build a `sklearn.compose.ColumnTransformer` with two distinct branches:
-     * **Numeric branch:** Apply `SimpleImputer` (strategy='median') followed by `StandardScaler`.
-     * **Categorical branch:** Apply `SimpleImputer` (strategy='most_frequent') followed by `OneHotEncoder` (drop='first').
-  4. Fit the pipeline *only* on the training data, then transform both the training and testing sets.
-  5. Save the fitted pipeline object to disk using `joblib` so it can be reloaded during the production API phase.
-* **Deliverable:** The Python script and the exported `preprocessor.joblib` artifact.
+* **Goal:** Build an isolated `ColumnTransformer` with median/most-frequent imputers, `StandardScaler`, and `OneHotEncoder`. Fit strictly on train folds and export `preprocessor.joblib`.
+
+---
+
+### Task 1.4: Columnar Big Data & DuckDB Analytics
+* **File:** `src/duckdb_parquet.py`
+* **Goal:** Export DataFrames to compressed Apache Parquet and run SQL queries directly on disk with predicate and projection pushdown, plus rolling window statistics.
+
+---
+
+### Task 1.5: Data Quality Contracts via Pandera
+* **File:** `src/data_validation.py`
+* **Goal:** Implement declarative DataFrame validation schemas checking range limits, null constraints, and required fields. Halt pipeline execution on contract violations with actionable diagnostic reports.
+
+---
+
+### Task 1.6: Advanced Feature Transforms (OOF Target Encoding)
+* **File:** `src/advanced_transforms.py`
+* **Goal:** Implement Out-of-Fold smoothed Target Encoding with m-estimate smoothing to prevent target leakage on high-cardinality features, plus Yeo-Johnson power transformations.
+
+---
+
+### Task 1.7: Point-in-Time Correct (ASOF) Feature Joins
+* **File:** `src/temporal_joins.py`
+* **Goal:** Implement temporal backward ASOF merges that join prediction events with the latest feature states strictly on or before event timestamps, guaranteeing zero future leakage.
 
 ---
 
@@ -87,12 +87,27 @@ Complete these three implementation tasks inside `02_data_engineering/src/` and 
 ```text
 02_data_engineering/
 ├── README.md
+├── 01_columnar_storage_and_query_engines.md
+├── 02_sql_for_feature_engineering.md
+├── 03_data_quality_and_feature_stores.md
 ├── notebooks/
-│   ├── 01_telemetry_eda.ipynb      # Exploring the raw JSON/XML data
-│   └── 02_image_visualization.ipynb # Plotting OpenCV bounding boxes 
-└── src/
+│   ├── 01_telemetry_eda.ipynb              # Exploring raw JSON/XML telemetry
+│   ├── 02_image_visualization.ipynb         # Visualizing letterboxing & YOLO boxes
+│   └── 03_sql_and_parquet_benchmarks.ipynb  # Parquet vs CSV benchmarks & ASOF joins
+├── src/
+│   ├── __init__.py
+│   ├── telemetry_parser.py                 # Task 1.1: Polars IoT parser
+│   ├── image_pipeline.py                   # Task 1.2: CV Letterboxing & VOC-to-YOLO
+│   ├── feature_engineering.py              # Task 1.3: Zero-leakage ColumnTransformer
+│   ├── duckdb_parquet.py                   # Task 1.4: Parquet export & DuckDB queries
+│   ├── data_validation.py                  # Task 1.5: Pandera data contracts
+│   ├── advanced_transforms.py              # Task 1.6: OOF Target Encoding & Yeo-Johnson
+│   └── temporal_joins.py                   # Task 1.7: Point-in-time ASOF merges
+└── tests/
     ├── __init__.py
-    ├── telemetry_parser.py         # Task 1.1 implementation
-    ├── image_pipeline.py           # Task 1.2 implementation
-    └── feature_engineering.py      # Task 1.3 implementation
+    ├── test_data_engineering.py
+    ├── test_duckdb_parquet.py
+    ├── test_data_validation.py
+    ├── test_advanced_transforms.py
+    └── test_temporal_joins.py
 ```

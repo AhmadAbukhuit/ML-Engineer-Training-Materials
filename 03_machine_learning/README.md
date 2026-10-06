@@ -24,6 +24,7 @@ By the end of this phase, you will:
 * **[Scikit-Learn User Guide](https://scikit-learn.org/stable/user_guide.html)** — Comprehensive engineering documentation covering loss formulations, solvers, and pipeline best practices.
 
 ### 🎥 Video Lectures
+
 * **StatQuest with Josh Starmer:** Step-by-step visual breakdowns of Logistic Regression, Decision Trees, Random Forests, XGBoost, and ROC/AUC.
 * **Andrew Ng - Machine Learning Specialization (Coursera/YouTube):** Intuitive explanations of cost functions, gradient descent, and regularization.
 
@@ -69,6 +70,7 @@ Complete these implementation tasks in `03_machine_learning/src/` and verify you
 ---
 
 ### Task 2.1: Parametric Linear Models from Scratch
+
 * **File:** `src/linear_models.py`
 * **Requirements:**
   1. Implement `LinearRegression` supporting both the analytical closed-form solution (`fit_normal_equation`) and mini-batch gradient descent (`fit_gradient_descent`) with L2 regularization ($\lambda$).
@@ -79,6 +81,7 @@ Complete these implementation tasks in `03_machine_learning/src/` and verify you
 ---
 
 ### Task 2.2: Recursive Decision Tree Classifier
+
 * **File:** `src/decision_tree.py`
 * **Requirements:**
   1. Implement a binary `DecisionTreeClassifier` from scratch using pure NumPy.
@@ -90,6 +93,7 @@ Complete these implementation tasks in `03_machine_learning/src/` and verify you
 ---
 
 ### Task 2.3: K-Means Clustering & Silhouette Validation
+
 * **File:** `src/kmeans.py`
 * **Requirements:**
   1. Implement `KMeans` with K-Means++ initialization to prevent poor local minima.
