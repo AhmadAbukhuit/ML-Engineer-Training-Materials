@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ml-engineer-training-materials"
+version = "0.1.0"
+description = "End-to-End Machine Learning Engineering Curriculum & Practice"
+readme = "README.md"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = [
+    "01_math_foundations/tests",
+    "02_data_engineering/tests",
+    "03_machine_learning/tests",
+    "04_deep_learning/tests",
+    "05_mlops_production/tests",
+]
+pythonpath = ["."]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+ignore = ["B008", "BLE001", "I001"]

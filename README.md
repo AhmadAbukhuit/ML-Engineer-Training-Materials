@@ -1,5 +1,10 @@
 # 🚀 Machine Learning Engineer Roadmap
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.12+](https://img.shields.io/badge/Python-3.12%2B-blue.svg)](https://www.python.org/)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=flat&logo=TensorFlow&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=flat&logo=PyTorch&logoColor=white)
+
 An end-to-end engineering roadmap and practice repository covering mathematical foundations, big data engineering, classical machine learning, deep learning architectures, and production MLOps deployments.
 
 ---
@@ -60,40 +65,51 @@ Building real-world AI systems requires more than importing high-level framework
 ## 📂 Repository Structure
 
 ```text
-ml-engineer-roadmap/
+ML-Engineer-Training-Materials/
 ├── .gitignore                   # Ignore heavy datasets, checkpoints, and weights
 ├── README.md                    # Root syllabus & progress tracker
 ├── requirements.txt             # Core dependencies
 │
-├── data/                        # Local data directory (Ignored by Git)
+├── data/                        # Local data directory
 │   ├── raw/                     # Original CSVs, JSON, XML, images
 │   └── processed/               # Pipeline outputs ready for training
 │
-├── phase_0_math_foundations/
-│   ├── README.md                # Mathematical derivations & study notes
-│   ├── notebooks/               # Vectorized math implementations in NumPy
-│   └── src/                     # Manual backprop & gradient descent implementations
+├── 00_Introduction/             # ML Engineering career overview, scope, and industry roles
+│   └── README.md
 │
-├── phase_1_data_engineering/
-│   ├── README.md                # Data pipeline documentation & tasks
-│   ├── notebooks/               # Exploratory Data Analysis (EDA)
-│   └── src/                     # Data ingestion, parsing, and cleaning scripts
+├── 01_math_foundations/         # Vectorized math, autograd engine, custom optimizers & PCA
+│   ├── README.md
+│   ├── 01_linear_algebra.md
+│   ├── 02_multivariate_calculus.md
+│   ├── 03_probability_statistics.md
+│   ├── notebooks/
+│   ├── src/
+│   └── tests/
 │
-├── phase_2_core_ml/
-│   ├── README.md                # Classical algorithm benchmarks
-│   ├── notebooks/               # Supervised & unsupervised workflows
-│   └── models/                  # Serialized .joblib baseline models
+├── 02_data_engineering/         # High-performance ETL, Polars, CV image pipelines, Scikit-Learn
+│   ├── README.md
+│   ├── notebooks/
+│   ├── src/
+│   └── tests/
 │
-├── phase_3_deep_learning/
-│   ├── README.md                # Neural network architectures & training setups
-│   ├── src/                     # Training loops for CNNs, YOLO, and Transformers
-│   └── weights/                 # Saved checkpoints (.pt / .safetensors)
+├── 03_machine_learning/         # Classical ML from scratch & benchmarks (Trees, Ensembles, Clustering)
+│   ├── README.md
+│   ├── notebooks/
+│   ├── src/
+│   └── tests/
 │
-└── phase_4_mlops_production/
-    ├── README.md                # API documentation & deployment runbooks
-    ├── app/                     # FastAPI service source code
-    ├── Dockerfile               # Production container definition
-    └── docker-compose.yml       # Multi-service local orchestration
+├── 04_deep_learning/            # PyTorch architectures, CNNs, YOLO, and Hugging Face Transformers
+│   ├── README.md
+│   ├── notebooks/
+│   ├── src/
+│   └── tests/
+│
+└── 05_mlops_production/         # REST API inference microservices, Docker, Docker Compose & CI/CD
+    ├── README.md
+    ├── app/
+    ├── tests/
+    ├── Dockerfile
+    └── docker-compose.yml
 ```
 
 ## 🛠️ Environment Setup

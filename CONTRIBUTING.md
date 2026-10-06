@@ -45,12 +45,12 @@ To submit a contribution, please follow the standard GitHub Pull Request (PR) wo
     git checkout -b add-yolo-deployment-module
     ```
 
-4. **Make Your Changes:** Add or edit the Markdown, Jupyter Notebook (`.ipynb`), or Python (`.py`) files in the appropriate phase directory (e.g., `phase_3_deep_learning/src/`).
+4. **Make Your Changes:** Add or edit the Markdown, Jupyter Notebook (`.ipynb`), or Python (`.py`) files in the appropriate phase directory (e.g., `04_deep_learning/src/`).
 
 5. **Commit Your Changes:** Write a clear, concise commit message.
 
     ```bash
-    git commit -m "docs: add practice module for YOLO object detection in phase 3"
+    git commit -m "docs: add practice module for YOLO object detection in phase 4"
     ```
 
 6. **Push to Your Fork:**
@@ -92,7 +92,7 @@ To keep the repository clean and easily scannable for students, please adhere to
     - Bad: Run `model.zero_grad()`.
 
 5. **Categorization**
-    Place your code or note in the most relevant phase folder (`phase_0`, `phase_1`, `phase_2`, `phase_3`, `phase_4`). Within the phase, separate concepts into `notebooks/` (for EDA and tutorials) and `src/` (for clean implementation code).
+    Place your code or note in the most relevant phase folder (`00_Introduction`, `01_math_foundations`, `02_data_engineering`, `03_machine_learning`, `04_deep_learning`, `05_mlops_production`). Within the phase, separate concepts into `notebooks/` (for EDA and tutorials) and `src/` (for clean implementation code).
 
 ## 🔄 Keeping Your Fork Synced
 

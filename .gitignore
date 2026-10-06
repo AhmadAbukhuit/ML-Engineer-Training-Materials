@@ -23,10 +23,10 @@ data/processed/*
 *.pth
 *.h5
 *.onnx
-phase_02_core_ml/models/*
-phase_03_deep_learning/weights/*
-!phase_02_core_ml/models/.gitkeep
-!phase_03_deep_learning/weights/.gitkeep
+03_machine_learning/models/*
+04_deep_learning/weights/*
+!03_machine_learning/models/.gitkeep
+!04_deep_learning/weights/.gitkeep
 
 # Logs & MLflow runs
 mlruns/
