@@ -9,6 +9,12 @@ venv/
 env/
 .env
 
+# Ruff
+.ruff_cache
+
+# Pytest
+.pytest_cache
+
 # Jupyter Notebook Checkpoints
 .ipynb_checkpoints
 
