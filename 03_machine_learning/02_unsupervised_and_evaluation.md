@@ -14,14 +14,17 @@ K-Means partitions data into $k$ non-overlapping clusters $S = \{S_1, S_2, \dots
 
 $$\mathcal{J} = \sum_{j=1}^k \sum_{\mathbf{x} \in S_j} \Vert{}\mathbf{x} - \boldsymbol{\mu}_j\Vert{}_2^2$$
 
-#### The Two-Step Iteration:
+#### The Two-Step Iteration
+
 1. **Assignment Step (E-step):** Assign each sample to the nearest centroid:
    $$S_j^{(t)} = \left\{ \mathbf{x}_i : \Vert{}\mathbf{x}_i - \boldsymbol{\mu}_j^{(t)}\Vert{}^2 \le \Vert{}\mathbf{x}_i - \boldsymbol{\mu}_l^{(t)}\Vert{}^2 \quad \forall l \right\}$$
 2. **Update Step (M-step):** Recompute centroids as the center of mass of their assigned points:
    $$\boldsymbol{\mu}_j^{(t+1)} = \frac{1}{|S_j^{(t)}|} \sum_{\mathbf{x} \in S_j^{(t)}} \mathbf{x}$$
 
 #### The K-Means++ Initialization
+
 Standard random centroid initialization often gets trapped in catastrophic local minima. **K-Means++** solves this:
+
 1. Pick the first centroid $\boldsymbol{\mu}_1$ uniformly at random from the dataset.
 2. For each point $\mathbf{x}_i$, compute $D(\mathbf{x}_i)$, the shortest distance to any already chosen centroid.
 3. Choose the next centroid with probability proportional to $D(\mathbf{x}_i)^2$:
@@ -29,7 +32,9 @@ Standard random centroid initialization often gets trapped in catastrophic local
 4. Repeat until $k$ centroids are chosen.
 
 ### DBSCAN (Density-Based Spatial Clustering of Applications with Noise)
+
 Unlike K-Means (which assumes convex spherical clusters and requires specifying $k$), **DBSCAN** can discover arbitrary cluster shapes and automatically identify noise/outliers:
+
 * **$\epsilon$ (Eps):** Maximum neighborhood radius.
 * **MinPts:** Minimum samples within $\epsilon$-neighborhood for a point to be considered a **Core Point**.
 * **Border Points:** Within $\epsilon$ of a core point but have fewer than MinPts neighbors.

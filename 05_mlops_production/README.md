@@ -1,4 +1,4 @@
-# 🚀 Phase 4: Production APIs, Containerization & MLOps
+# 🚀 Phase 5: Production APIs, Containerization & MLOps
 
 A high-accuracy model has zero business value until it is securely deployed, versioned, monitored, and exposed through low-latency microservices that downstream applications can reliably query.
 
@@ -66,7 +66,7 @@ Complete these implementation tasks in `05_mlops_production/` and verify your AP
 
 ---
 
-### Task 4.1: Pydantic Data Contracts & Schemas
+### Task 5.1: Pydantic Data Contracts & Schemas
 * **File:** `app/schemas.py`
 * **Requirements:**
   1. Define `TelemetryFeatures` representing the 10 numerical features expected by the trained baseline model.
@@ -76,7 +76,7 @@ Complete these implementation tasks in `05_mlops_production/` and verify your AP
 
 ---
 
-### Task 4.2: Thread-Safe Model Manager
+### Task 5.2: Thread-Safe Model Manager
 * **File:** `app/model_loader.py`
 * **Requirements:**
   1. Implement a `ModelManager` singleton that caches the loaded model artifact in RAM.
@@ -85,7 +85,7 @@ Complete these implementation tasks in `05_mlops_production/` and verify your AP
 
 ---
 
-### Task 4.3: High-Performance FastAPI Service
+### Task 5.3: High-Performance FastAPI Service
 * **File:** `app/main.py`
 * **Requirements:**
   1. Endpoint `GET /health`: Liveness and readiness probe reporting status and model load state.
@@ -95,7 +95,7 @@ Complete these implementation tasks in `05_mlops_production/` and verify your AP
 
 ---
 
-### Task 4.4: Production Containerization & Orchestration
+### Task 5.4: Production Containerization & Orchestration
 * **Files:** `Dockerfile`, `docker-compose.yml`, `.dockerignore`
 * **Requirements:**
   1. Build a multi-stage or lean `Dockerfile` running Uvicorn workers.
@@ -103,7 +103,7 @@ Complete these implementation tasks in `05_mlops_production/` and verify your AP
 
 ---
 
-### Task 4.5: Integration Test Suite
+### Task 5.5: Integration Test Suite
 * **File:** `tests/test_api.py`
 * **Requirements:**
   1. Use FastAPI `TestClient` to verify `/health` returns `200 OK`.
@@ -113,7 +113,7 @@ Complete these implementation tasks in `05_mlops_production/` and verify your AP
 
 ---
 
-### Task 4.6: Model Compilation & Latency Optimization with ONNX
+### Task 5.6: Model Compilation & Latency Optimization with ONNX
 * **File:** `app/onnx_converter.py`
 * **Requirements:**
   1. Implement `export_to_onnx` converting trained models to portable ONNX graphs.
@@ -123,7 +123,7 @@ Complete these implementation tasks in `05_mlops_production/` and verify your AP
 
 ---
 
-### Task 4.7: Experiment Tracking & Governance with MLflow
+### Task 5.7: Experiment Tracking & Governance with MLflow
 * **File:** `app/mlflow_tracker.py`
 * **Requirements:**
   1. Implement `MLflowTracker` encapsulating experiment setup, parameter logging, and metric tracking.
@@ -133,7 +133,7 @@ Complete these implementation tasks in `05_mlops_production/` and verify your AP
 
 ---
 
-## 📁 Directory Structure for Phase 4
+## 📁 Directory Structure for Phase 5
 
 ```text
 05_mlops_production/

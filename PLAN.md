@@ -7,23 +7,25 @@ This curriculum provides a structured, rigorous, 20-week roadmap designed to tak
 ## 🗺️ Curriculum Overview & Phase Timeline
 
 ```text
- Weeks 1-4    │ Phase 0: Mathematical Foundations & Numerical Computing
- Weeks 5-8    │ Phase 1: Big Data Engineering & Feature Store Pipelines
- Weeks 9-12   │ Phase 2: Classical Machine Learning & Statistical Modeling
- Weeks 13-16  │ Phase 3: Deep Learning Architectures, Transformers & Foundation Models
- Weeks 17-20  │ Phase 4: Production MLOps, High-Performance APIs & Deployment
+ Weeks 1-4    │ Phase 1: Mathematical Foundations & Numerical Computing
+ Weeks 5-8    │ Phase 2: Big Data Engineering & Feature Store Pipelines
+ Weeks 9-12   │ Phase 3: Classical Machine Learning & Statistical Modeling
+ Weeks 13-16  │ Phase 4: Deep Learning Architectures, Transformers & Foundation Models
+ Weeks 17-20  │ Phase 5: Production MLOps, High-Performance APIs & Deployment
 ```
 
 ---
 
-## 📐 Phase 0: Mathematical Foundations & Numerical Computing (Weeks 1–4)
+## 📐 Phase 1: Mathematical Foundations & Numerical Computing (Weeks 1–4)
 
 ### Phase Description
-The objective of Phase 0 is to eliminate the "black box" mentality. Students master the mathematical machinery governing modern machine learning algorithms: vectorized linear algebra in NumPy, reverse-mode automatic differentiation, multivariate calculus, statistical estimation, and gradient-based optimization mechanics.
+
+The objective of Phase 1 is to eliminate the "black box" mentality. Students master the mathematical machinery governing modern machine learning algorithms: vectorized linear algebra in NumPy, reverse-mode automatic differentiation, multivariate calculus, statistical estimation, and gradient-based optimization mechanics.
 
 ---
 
 ### Week 1: Course Onboarding & Vectorized Linear Algebra
+
 * **Theory:**
   * Vector spaces, inner products, projections, matrix multiplication algorithms.
   * Matrix factorizations: Eigenvalues, Eigenvectors, and Singular Value Decomposition (SVD).
@@ -38,6 +40,7 @@ The objective of Phase 0 is to eliminate the "black box" mentality. Students mas
 ---
 
 ### Week 2: Multivariate Calculus & Reverse-Mode Autograd Engine
+
 * **Theory:**
   * Partial derivatives, gradient vectors, Jacobians, and Hessians.
   * Directed Acyclic Graphs (DAG) for mathematical operations.
@@ -51,6 +54,7 @@ The objective of Phase 0 is to eliminate the "black box" mentality. Students mas
 ---
 
 ### Week 3: Probability, Information Theory & Vectorized Metrics
+
 * **Theory:**
   * Random variables, Bayes' Theorem, Maximum Likelihood Estimation (MLE).
   * Information theory: Shannon Entropy, Cross-Entropy, Kullback-Leibler (KL) Divergence.
@@ -64,6 +68,7 @@ The objective of Phase 0 is to eliminate the "black box" mentality. Students mas
 ---
 
 ### Week 4: Optimization Mechanics & Multi-Layer Perceptrons
+
 * **Theory:**
   * Convex vs non-convex loss surfaces, saddle points, and ill-conditioned curvature.
   * Optimization algorithms: Stochastic Gradient Descent (SGD), Momentum, RMSProp, and Adam.
@@ -76,14 +81,16 @@ The objective of Phase 0 is to eliminate the "black box" mentality. Students mas
 
 ---
 
-## 🗄️ Phase 1: Big Data Engineering & Feature Store Pipelines (Weeks 5–8)
+## 🗄️ Phase 2: Big Data Engineering & Feature Store Pipelines (Weeks 5–8)
 
 ### Phase Description
-Real-world machine learning systems spend 80% of their operational lifecycle ingesting, cleaning, and validating data. Phase 1 equips students with high-throughput data processing skills: columnar storage with Parquet, in-process analytical SQL with DuckDB, lightning-fast transformations with Polars, multi-modal image pipelines, and point-in-time correctness.
+
+Real-world machine learning systems spend 80% of their operational lifecycle ingesting, cleaning, and validating data. Phase 2 equips students with high-throughput data processing skills: columnar storage with Parquet, in-process analytical SQL with DuckDB, lightning-fast transformations with Polars, multi-modal image pipelines, and point-in-time correctness.
 
 ---
 
 ### Week 5: Columnar Storage & In-Process Analytical SQL (DuckDB & Parquet)
+
 * **Theory:**
   * Columnar vs Row-oriented storage formats (Parquet vs CSV).
   * Dictionary encoding, run-length encoding (RLE), and Snappy compression.
@@ -98,6 +105,7 @@ Real-world machine learning systems spend 80% of their operational lifecycle ing
 ---
 
 ### Week 6: High-Performance Tabular & Semi-Structured ETL
+
 * **Theory:**
   * Memory layouts in Apache Arrow and Polars.
   * Lazy vs Eager execution frames and query plan optimization.
@@ -111,6 +119,7 @@ Real-world machine learning systems spend 80% of their operational lifecycle ing
 ---
 
 ### Week 7: Computer Vision Ingestion & Annotation Parsers
+
 * **Theory:**
   * 2D image matrix representation, color spaces (RGB, BGR, Grayscale).
   * Contrast stretching, histogram equalization, and spatial data augmentations.
@@ -124,6 +133,7 @@ Real-world machine learning systems spend 80% of their operational lifecycle ing
 ---
 
 ### Week 8: Advanced Feature Engineering, Leakage Prevention & Data Contracts
+
 * **Theory:**
   * Target encoding pitfalls and out-of-fold smoothed empirical Bayes regularization.
   * Non-linear variance stabilizing transforms (Yeo-Johnson power transform).
@@ -139,14 +149,16 @@ Real-world machine learning systems spend 80% of their operational lifecycle ing
 
 ---
 
-## 🤖 Phase 2: Classical Machine Learning & Statistical Modeling (Weeks 9–12)
+## 🤖 Phase 3: Classical Machine Learning & Statistical Modeling (Weeks 9–12)
 
 ### Phase Description
+
 Students master fundamental supervised and unsupervised learning algorithms, formulating objective functions, optimization mechanics, bias-variance tradeoffs, tree ensembles, and temporal cross-validation.
 
 ---
 
 ### Week 9: Supervised Linear & Maximum-Margin Classifiers
+
 * **Theory:**
   * Ordinary Least Squares (OLS) normal equations vs Gradient Descent.
   * Logistic Regression with L2 Ridge regularization and cross-entropy loss.
@@ -161,6 +173,7 @@ Students master fundamental supervised and unsupervised learning algorithms, for
 ---
 
 ### Week 10: Probabilistic & Tree-Based Classifiers
+
 * **Theory:**
   * Generative vs Discriminative modeling paradigms.
   * Gaussian Naive Bayes: Class priors, feature Gaussian likelihoods, and log-space inference.
@@ -174,6 +187,7 @@ Students master fundamental supervised and unsupervised learning algorithms, for
 ---
 
 ### Week 11: Tree Ensembles & Head-to-Head Benchmarking Harness
+
 * **Theory:**
   * Bagging vs Boosting: Variance reduction (Random Forest) vs Bias reduction (Gradient Boosting).
   * Extreme Gradient Boosting (XGBoost): Second-order Taylor expansion, shrinkage, column subsampling, and regularization.
@@ -187,6 +201,7 @@ Students master fundamental supervised and unsupervised learning algorithms, for
 ---
 
 ### Week 12: Unsupervised Pattern Mining & Time Series Forecasting
+
 * **Theory:**
   * Partitioning clustering: Lloyd's K-Means algorithm, centroid updates, inertia metric.
   * Time series dynamics: Stationarity, autocorrelation, lag features, and rolling statistical moments.
@@ -200,14 +215,16 @@ Students master fundamental supervised and unsupervised learning algorithms, for
 
 ---
 
-## 🧠 Phase 3: Deep Learning Architectures, Transformers & Foundation Models (Weeks 13–16)
+## 🧠 Phase 4: Deep Learning Architectures, Transformers & Foundation Models (Weeks 13–16)
 
 ### Phase Description
-Phase 3 transitions from classical statistical learning to deep representations. Students master deep residual networks, object detection spatial metrics, self-attention mechanisms in Transformers, transfer learning adaptation, and modern foundation model techniques (LoRA fine-tuning and RAG retrieval).
+
+Phase 4 transitions from classical statistical learning to deep representations. Students master deep residual networks, object detection spatial metrics, self-attention mechanisms in Transformers, transfer learning adaptation, and modern foundation model techniques (LoRA fine-tuning and RAG retrieval).
 
 ---
 
 ### Week 13: Deep Learning Dynamics & Residual Networks (ResNet)
+
 * **Theory:**
   * Vanishing and exploding gradients in deep networks.
   * Residual learning formulation: $\mathcal{F}(x) + x$, gradient highway preservation.
@@ -223,6 +240,7 @@ Phase 3 transitions from classical statistical learning to deep representations.
 ---
 
 ### Week 14: Computer Vision & Object Detection Mechanics (YOLO)
+
 * **Theory:**
   * Object detection formulation: Simultaneous bounding box regression and classification.
   * Spatial metrics: Intersection over Union (IoU) calculation.
@@ -236,6 +254,7 @@ Phase 3 transitions from classical statistical learning to deep representations.
 ---
 
 ### Week 15: Transformers & Attention Mechanisms
+
 * **Theory:**
   * Limitations of recurrence (RNN/LSTM) in long-range sequence modeling.
   * Scaled Dot-Product Attention: Query, Key, Value routing and $\frac{1}{\sqrt{d_k}}$ temperature scaling.
@@ -250,6 +269,7 @@ Phase 3 transitions from classical statistical learning to deep representations.
 ---
 
 ### Week 16: Foundation Model Adaptation: LoRA & Vector Search RAG
+
 * **Theory:**
   * Transfer Learning: Pretrained backbone feature extraction and classification head replacement.
   * Parameter-Efficient Fine-Tuning (PEFT): Low-Rank Adaptation (LoRA) formulation ($\Delta W = \frac{\alpha}{r} A B$), weight merging for zero-latency deployment.
@@ -264,14 +284,16 @@ Phase 3 transitions from classical statistical learning to deep representations.
 
 ---
 
-## 🚀 Phase 4: Production MLOps, High-Performance APIs & Deployment (Weeks 17–20)
+## 🚀 Phase 5: Production MLOps, High-Performance APIs & Deployment (Weeks 17–20)
 
 ### Phase Description
+
 The final phase prepares students for engineering in production environments. Students transition trained models into hardened, containerized, low-latency microservices with automated experiment tracking, hardware acceleration (ONNX), strict data contracts, and integration testing.
 
 ---
 
 ### Week 17: Production Inference Microservices with FastAPI & Pydantic
+
 * **Theory:**
   * Asynchronous request processing: ASGI, event loops, and Uvicorn workers.
   * Strict data validation contracts: Pydantic schemas, physical range limits, NaN rejection.
@@ -287,6 +309,7 @@ The final phase prepares students for engineering in production environments. St
 ---
 
 ### Week 18: Model Compilation, Optimization & ONNX Runtime Acceleration
+
 * **Theory:**
   * Model optimization bottlenecks: Python GIL contention, framework overhead.
   * Open Neural Network Exchange (ONNX) representation and protobuf graph format.
@@ -301,6 +324,7 @@ The final phase prepares students for engineering in production environments. St
 ---
 
 ### Week 19: Experiment Tracking, Model Registry & Docker Containerization
+
 * **Theory:**
   * Reproducibility crisis in ML: Hyperparameter tracking, run lineage, and artifact logging.
   * MLflow architecture: Tracking Server, Model Artifacts, and Model Registry staging.
@@ -315,6 +339,7 @@ The final phase prepares students for engineering in production environments. St
 ---
 
 ### Week 20: Capstone Project Defense & Automated Quality Gates (CI/CD)
+
 * **Theory:**
   * Continuous Integration for ML: Pre-commit hooks, linting gates (`ruff`), automated test runners (`pytest`).
   * Monitoring deployed models: Concept drift, covariate shift, latency degradation.

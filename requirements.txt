@@ -2,26 +2,34 @@
 # Machine Learning Engineer Training Materials - Core Dependencies
 # ==============================================================================
 
-# --- Numerical & Mathematical Computing (Phase 0) ---
+# --- Numerical & Mathematical Computing (Phase 1) ---
 numpy>=1.26.0
 scipy>=1.11.0
 
-# --- Data Science & High-Performance Data Engineering (Phase 1) ---
+# --- Data Science & High-Performance Data Engineering (Phase 2) ---
 polars>=1.0.0
 pandas>=2.0.0
 duckdb>=1.0.0
 pandera>=0.20.0
 
-# --- Core Machine Learning & Visualization (Phase 2 & 3) ---
+# --- Core Machine Learning, Benchmarking & Time Series (Phase 3) ---
 scikit-learn>=1.4.0
+xgboost>=2.0.0
 joblib>=1.3.0
 matplotlib>=3.8.0
 
-# --- Production APIs & MLOps Microservices (Phase 4) ---
+# --- Deep Learning Architectures, PEFT & RAG (Phase 4) ---
+# Pure NumPy & mathematical formulations
+
+# --- Production APIs & MLOps Microservices (Phase 5) ---
 fastapi>=0.110.0
 uvicorn[standard]>=0.28.0
 pydantic>=2.6.0
 httpx>=0.27.0
+onnx>=1.15.0
+onnxruntime>=1.17.0
+skl2onnx>=1.16.0
+mlflow-skinny>=2.10.0
 
 # --- Quality Assurance & Testing ---
 pytest>=8.0.0

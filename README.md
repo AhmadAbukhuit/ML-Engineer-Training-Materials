@@ -22,45 +22,45 @@ Building real-world AI systems requires more than importing high-level framework
 
 ## 📋 Curriculum Progress Tracker
 
-### Phase 0: Mathematical Foundations & Numerical Computing
+### Phase 1: Mathematical Foundations & Numerical Computing
 
-- [x] **0.1 Linear Algebra for ML:** Matrix/vector operations, dot products, matrix factorizations, eigenvalues/eigenvectors, and PCA via SVD in `NumPy`.
-- [x] **0.2 Multivariate Calculus:** Partial derivatives, chain rule for computational graphs, gradients, and custom reverse-mode Autograd engine.
-- [x] **0.3 Probability & Statistics:** Random variables, probability distributions (Gaussian, Bernoulli), Bayes' Theorem, MLE, and vectorized evaluation metrics.
-- [x] **0.4 Optimization Theory:** Convex functions, SGD, Momentum, RMSProp, and Adam optimization mechanics with modular MLP implementations.
+- [x] **1.1 Linear Algebra for ML:** Matrix/vector operations, dot products, matrix factorizations, eigenvalues/eigenvectors, and PCA via SVD in `NumPy`.
+- [x] **1.2 Multivariate Calculus:** Partial derivatives, chain rule for computational graphs, gradients, and custom reverse-mode Autograd engine.
+- [x] **1.3 Probability & Statistics:** Random variables, probability distributions (Gaussian, Bernoulli), Bayes' Theorem, MLE, and vectorized evaluation metrics.
+- [x] **1.4 Optimization Theory:** Convex functions, SGD, Momentum, RMSProp, and Adam optimization mechanics with modular MLP implementations.
 
-### Phase 1: Data Science & Big Data Engineering
+### Phase 2: Data Science & Big Data Engineering
 
-- [x] **1.1 Structured Ingestion:** Query columnar Parquet datasets and execute analytical SQL using `DuckDB` and `Polars`.
-- [x] **1.2 Semi-Structured Parsing:** Streaming JSON telemetry parser with schema normalization, nested dictionary extraction, and missing-value handling.
-- [x] **1.3 Unstructured Handling:** Image processing pipeline with contrast normalization, data augmentation, and Pascal VOC / YOLO bounding box parsers.
-- [x] **1.4 Advanced Feature Engineering:** Out-of-fold smoothed target encoding, Yeo-Johnson transformations, and Point-in-Time temporal `ASOF` joins.
-- [x] **1.5 Data Quality & Validation:** Runtime data contracts enforcing column constraints and distribution bounds using `Pandera`.
+- [x] **2.1 Structured Ingestion:** Query columnar Parquet datasets and execute analytical SQL using `DuckDB` and `Polars`.
+- [x] **2.2 Semi-Structured Parsing:** Streaming JSON telemetry parser with schema normalization, nested dictionary extraction, and missing-value handling.
+- [x] **2.3 Unstructured Handling:** Image processing pipeline with contrast normalization, data augmentation, and Pascal VOC / YOLO bounding box parsers.
+- [x] **2.4 Advanced Feature Engineering:** Out-of-fold smoothed target encoding, Yeo-Johnson transformations, and Point-in-Time temporal `ASOF` joins.
+- [x] **2.5 Data Quality & Validation:** Runtime data contracts enforcing column constraints and distribution bounds using `Pandera`.
 
-### Phase 2: Core Machine Learning
+### Phase 3: Core Machine Learning
 
-- [x] **2.1 Supervised Linear & Margin Models:** Vectorized Linear Regression, Logistic Regression with L2 regularization, and Linear SVM with soft-margin subgradient descent.
-- [x] **2.2 Probabilistic & Tree Classification:** Gaussian Naive Bayes from first principles and Decision Tree Classifier with recursive Gini Impurity splitting.
-- [x] **2.3 Ensemble Benchmarking:** Head-to-head comparison harness evaluating Random Forest, Gradient Boosting, and XGBoost across accuracy, ROC-AUC, and inference latency.
-- [x] **2.4 Unsupervised Clustering:** Vectorized K-Means algorithm with Lloyd's heuristic, inertia computation, and cluster assignment.
-- [x] **2.5 Time Series Forecasting:** Temporal lag feature generation, rolling statistical aggregates, and Walk-Forward expanding-window cross-validation.
+- [x] **3.1 Supervised Linear & Margin Models:** Vectorized Linear Regression, Logistic Regression with L2 regularization, and Linear SVM with soft-margin subgradient descent.
+- [x] **3.2 Probabilistic & Tree Classification:** Gaussian Naive Bayes from first principles and Decision Tree Classifier with recursive Gini Impurity splitting.
+- [x] **3.3 Ensemble Benchmarking:** Head-to-head comparison harness evaluating Random Forest, Gradient Boosting, and XGBoost across accuracy, ROC-AUC, and inference latency.
+- [x] **3.4 Unsupervised Clustering:** Vectorized K-Means algorithm with Lloyd's heuristic, inertia computation, and cluster assignment.
+- [x] **3.5 Time Series Forecasting:** Temporal lag feature generation, rolling statistical aggregates, and Walk-Forward expanding-window cross-validation.
 
-### Phase 3: Deep Learning & Vision/NLP Architectures
+### Phase 4: Deep Learning & Vision/NLP Architectures
 
-- [x] **3.1 Foundations & Training Loops:** Modular deep learning training harness featuring validation tracking, learning rate scheduling, and early stopping.
-- [x] **3.2 Vision Architectures & Object Detection:** Residual blocks with identity and projection skip connections (`F(x) + x`), vectorized IoU matrices, and Non-Maximum Suppression (NMS).
-- [x] **3.3 Attention Mechanisms:** Scaled Dot-Product Self-Attention and Multi-Head Attention (MHA) from scratch supporting causal decoding masks.
-- [x] **3.4 Transfer Learning:** Feature extractor backbone freezing, target classification head replacement, and two-stage fine-tuning with discriminative learning rates.
-- [x] **3.5 Vector Search & RAG:** Normalized dense embeddings, in-memory cosine vector store, semantic document chunking, and grounded prompt synthesis.
-- [x] **3.6 Parameter-Efficient Fine-Tuning (LoRA):** Low-Rank Adaptation ($\Delta W = \frac{\alpha}{r} A B$) with base weight freezing, adapter training, and zero-latency inference weight merging.
+- [x] **4.1 Foundations & Training Loops:** Modular deep learning training harness featuring validation tracking, learning rate scheduling, and early stopping.
+- [x] **4.2 Vision Architectures & Object Detection:** Residual blocks with identity and projection skip connections (`F(x) + x`), vectorized IoU matrices, and Non-Maximum Suppression (NMS).
+- [x] **4.3 Attention Mechanisms:** Scaled Dot-Product Self-Attention and Multi-Head Attention (MHA) from scratch supporting causal decoding masks.
+- [x] **4.4 Transfer Learning:** Feature extractor backbone freezing, target classification head replacement, and two-stage fine-tuning with discriminative learning rates.
+- [x] **4.5 Vector Search & RAG:** Normalized dense embeddings, in-memory cosine vector store, semantic document chunking, and grounded prompt synthesis.
+- [x] **4.6 Parameter-Efficient Fine-Tuning (LoRA):** Low-Rank Adaptation ($\Delta W = \frac{\alpha}{r} A B$) with base weight freezing, adapter training, and zero-latency inference weight merging.
 
-### Phase 4: Production APIs & MLOps
+### Phase 5: Production APIs & MLOps
 
-- [x] **4.1 REST API Serving:** Asynchronous microservice using `FastAPI` and `Uvicorn` with single-sample and batch prediction endpoints.
-- [x] **4.2 Data Contracts & Schemas:** Strict input validation and sanitization using `Pydantic` models.
-- [x] **4.3 Containerization & Orchestration:** Production multi-stage `Dockerfile` and `docker-compose.yml` service configurations.
-- [x] **4.4 Hardware Acceleration & Model Compilation:** High-performance ONNX model export and multi-threaded `ONNXRuntime` inference with p50/p95/p99 latency benchmarking.
-- [x] **4.5 Lifecycle Management & Governance:** Standardized experiment tracking, metric and parameter logging, and automated best-run model selection with `MLflow`.
+- [x] **5.1 REST API Serving:** Asynchronous microservice using `FastAPI` and `Uvicorn` with single-sample and batch prediction endpoints.
+- [x] **5.2 Data Contracts & Schemas:** Strict input validation and sanitization using `Pydantic` models.
+- [x] **5.3 Containerization & Orchestration:** Production multi-stage `Dockerfile` and `docker-compose.yml` service configurations.
+- [x] **5.4 Hardware Acceleration & Model Compilation:** High-performance ONNX model export and multi-threaded `ONNXRuntime` inference with p50/p95/p99 latency benchmarking.
+- [x] **5.5 Lifecycle Management & Governance:** Standardized experiment tracking, metric and parameter logging, and automated best-run model selection with `MLflow`.
 
 ---
 

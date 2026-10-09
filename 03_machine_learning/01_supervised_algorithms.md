@@ -30,6 +30,7 @@ Linear regression models the relationship between continuous dependent variable 
 $$\hat{y} = \mathbf{w}^T \mathbf{x} + b$$
 
 ### Closed-Form Normal Equation
+
 Minimizing the sum of squared residuals leads directly to the analytical solution:
 
 $$\mathbf{w}^* = (X^T X)^{-1} X^T \mathbf{y}$$
@@ -55,6 +56,7 @@ The log-odds (logit) is linear:
 $$\ln\left(\frac{P(Y=1 \mid \mathbf{x})}{1 - P(Y=1 \mid \mathbf{x})}\right) = \mathbf{w}^T \mathbf{x} + b$$
 
 ### Maximum Likelihood & Gradient Derivation
+
 Assuming Bernoulli-distributed labels, maximizing the log-likelihood produces the Binary Cross-Entropy loss:
 
 $$\mathcal{L}(\mathbf{w}) = -\frac{1}{N} \sum_{i=1}^N \left[ y_i \ln(\hat{y}_i) + (1 - y_i) \ln(1 - \hat{y}_i) \right]$$
@@ -89,12 +91,14 @@ $$\Delta I = I(S) - \left( \frac{|S_L|}{|S|} I(S_L) + \frac{|S_R|}{|S|} I(S_R) \
 ## 5. Modern Ensembles: Bagging vs. Boosting
 
 ### Random Forest (Bagging)
+
 * **Principle:** Reduces **variance** by training $B$ deep, unconstrained trees in parallel.
 * **Two Sources of Randomness:**
   1. **Bootstrap Aggregation:** Each tree is trained on a random sample of size $N$ drawn with replacement from the original dataset ($\sim 63.2\%$ unique samples).
   2. **Feature Subsampling:** At each split, only a random subset of $\sqrt{D}$ features is evaluated. This prevents strong predictors from dominating all trees, creating diverse, decorrelated learners.
 
 ### Gradient Boosting & XGBoost
+
 * **Principle:** Reduces **bias** (and variance) by training shallow trees sequentially.
 * **Mechanism:** Rather than training on labels directly, tree $m$ is trained to predict the **residuals** (negative gradients of the loss) of model $m-1$:
   $$\hat{y}_i^{(m)} = \hat{y}_i^{(m-1)} + \eta \cdot h_m(\mathbf{x}_i)$$

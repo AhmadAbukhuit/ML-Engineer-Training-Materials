@@ -1,4 +1,4 @@
-# 🤖 Phase 2: Core Machine Learning, Probabilistic Models & Ensembles
+# 🤖 Phase 3: Core Machine Learning, Probabilistic Models & Ensembles
 
 Before training multi-billion parameter neural networks, a production-grade ML Engineer must master classical statistical algorithms. Classical models provide fast, interpretable baselines, excel on tabular datasets, and form the statistical intuition required for diagnosing complex production issues.
 
@@ -20,11 +20,13 @@ By the end of this phase, you will:
 ## 📚 Curated Study Resources
 
 ### 📖 Textbooks & Reading
+
 * **[An Introduction to Statistical Learning (ISLR)](https://www.statlearning.com/)** (James, Witten, Hastie, Tibshirani) — Intuitive guide to regression, classification, resampling, and tree methods.
 * **[The Elements of Statistical Learning (ESL)](https://hastie.su.domains/ElemStatLearn/)** — Advanced theoretical foundations for gradient boosting and statistical learning theory.
 * **[Scikit-Learn User Guide](https://scikit-learn.org/stable/user_guide.html)** — Comprehensive engineering documentation covering loss formulations, solvers, and pipeline best practices.
 
 ### 📄 Included Deep-Dive Guides
+
 * [`01_supervised_algorithms.md`](01_supervised_algorithms.md): Linear/Logistic Regression, Bias-Variance, Decision Trees, and Ensembles.
 * [`02_unsupervised_and_evaluation.md`](02_unsupervised_and_evaluation.md): K-Means EM, DBSCAN, Confusion Matrix, Precision/Recall, ROC.
 * [`03_advanced_classical_and_time_series.md`](03_advanced_classical_and_time_series.md): Soft-Margin SVMs, Hinge Loss, Gaussian Naive Bayes, and Time Series Walk-Forward Validation.
@@ -37,49 +39,56 @@ Complete these implementation tasks in `03_machine_learning/src/` and verify you
 
 ---
 
-### Task 2.1: Parametric Linear Models from Scratch
+### Task 3.1: Parametric Linear Models from Scratch
+
 * **File:** `src/linear_models.py`
 * **Goal:** Implement `LinearRegression` supporting both the analytical closed-form solution (`fit_normal_equation`) and mini-batch gradient descent with L2 penalty ($\lambda$), plus `LogisticRegression` with Sigmoid activation.
 
 ---
 
-### Task 2.2: Recursive Decision Tree Classifier
+### Task 3.2: Recursive Decision Tree Classifier
+
 * **File:** `src/decision_tree.py`
 * **Goal:** Implement a binary `DecisionTreeClassifier` from scratch using pure NumPy and Gini Impurity split optimization.
 
 ---
 
-### Task 2.3: K-Means Clustering & Silhouette Validation
+### Task 3.3: K-Means Clustering & Silhouette Validation
+
 * **File:** `src/kmeans.py`
 * **Goal:** Implement `KMeans` with K-Means++ initialization and Expectation-Maximization centroid updates, plus `silhouette_score`.
 
 ---
 
-### Task 2.4: Production Training & Model Registry Serialization
+### Task 3.4: Production Training & Model Registry Serialization
+
 * **File:** `src/train_eval.py`
 * **Goal:** Train a production Random Forest classifier on telemetry data, run Stratified 5-Fold cross-validation, and export weights to `models/baseline_classifier.joblib`.
 
 ---
 
-### Task 2.5: Soft-Margin Support Vector Machine & Naive Bayes
+### Task 3.5: Soft-Margin Support Vector Machine & Naive Bayes
+
 * **Files:** `src/svm.py`, `src/naive_bayes.py`
 * **Goal:** Implement `LinearSVM` using subgradient descent on Hinge Loss, and `GaussianNaiveBayes` with log-space joint probability computation.
 
 ---
 
-### Task 2.6: Time Series Forecasting & Walk-Forward Validation
+### Task 3.6: Time Series Forecasting & Walk-Forward Validation
+
 * **File:** `src/time_series.py`
 * **Goal:** Build lag features, rolling statistics, and a `WalkForwardValidator` cross-validation harness ensuring test splits are strictly in the future.
 
 ---
 
-### Task 2.7: Ensemble Benchmarks (Random Forest vs XGBoost)
+### Task 3.7: Ensemble Benchmarks (Random Forest vs XGBoost)
+
 * **File:** `src/ensemble_benchmark.py`
 * **Goal:** Benchmark training and inference latency, F1-scores, and ROC-AUC between Random Forest, Gradient Boosting, and XGBoost.
 
 ---
 
-## 📁 Directory Structure for Phase 2
+## 📁 Directory Structure for Phase 3
 
 ```text
 03_machine_learning/

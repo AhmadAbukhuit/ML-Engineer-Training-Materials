@@ -1,4 +1,4 @@
-# 📊 Phase 1: Data Science, Big Data Engineering & Feature Platforms
+# 📊 Phase 2: Data Science, Big Data Engineering & Feature Platforms
 
 Real-world machine learning is 70% data engineering. Before a model can be trained, raw data must be extracted, parsed, cleaned, standardized, and validated. A production-ready ML Engineer builds pipelines that handle missing data gracefully, prevent temporal leakage, enforce strict data contracts, and scale across multi-gigabyte columnar formats.
 
@@ -40,49 +40,49 @@ Complete these implementation tasks inside `02_data_engineering/src/` and verify
 
 ---
 
-### Task 1.1: Telemetry Parser & Aggregator (JSON/XML to CSV)
+### Task 2.1: Telemetry Parser & Aggregator (JSON/XML to CSV)
 * **File:** `src/telemetry_parser.py`
 * **Goal:** Parse hierarchical JSON and XML IoT telemetry logs, flatten them into a unified tabular schema, and export cleaned CSV records using Polars.
 
 ---
 
-### Task 1.2: Automated CV Preprocessing & Label Conversion
+### Task 2.2: Automated CV Preprocessing & Label Conversion
 * **File:** `src/image_pipeline.py`
 * **Goal:** Resize raw images to fixed resolutions with aspect-ratio preserving letterbox padding, normalize pixels to `[0, 1]`, and convert Pascal VOC XML labels to normalized YOLO format (`class x_center y_center width height`).
 
 ---
 
-### Task 1.3: The Zero-Leakage `scikit-learn` Pipeline
+### Task 2.3: The Zero-Leakage `scikit-learn` Pipeline
 * **File:** `src/feature_engineering.py`
 * **Goal:** Build an isolated `ColumnTransformer` with median/most-frequent imputers, `StandardScaler`, and `OneHotEncoder`. Fit strictly on train folds and export `preprocessor.joblib`.
 
 ---
 
-### Task 1.4: Columnar Big Data & DuckDB Analytics
+### Task 2.4: Columnar Big Data & DuckDB Analytics
 * **File:** `src/duckdb_parquet.py`
 * **Goal:** Export DataFrames to compressed Apache Parquet and run SQL queries directly on disk with predicate and projection pushdown, plus rolling window statistics.
 
 ---
 
-### Task 1.5: Data Quality Contracts via Pandera
+### Task 2.5: Data Quality Contracts via Pandera
 * **File:** `src/data_validation.py`
 * **Goal:** Implement declarative DataFrame validation schemas checking range limits, null constraints, and required fields. Halt pipeline execution on contract violations with actionable diagnostic reports.
 
 ---
 
-### Task 1.6: Advanced Feature Transforms (OOF Target Encoding)
+### Task 2.6: Advanced Feature Transforms (OOF Target Encoding)
 * **File:** `src/advanced_transforms.py`
 * **Goal:** Implement Out-of-Fold smoothed Target Encoding with m-estimate smoothing to prevent target leakage on high-cardinality features, plus Yeo-Johnson power transformations.
 
 ---
 
-### Task 1.7: Point-in-Time Correct (ASOF) Feature Joins
+### Task 2.7: Point-in-Time Correct (ASOF) Feature Joins
 * **File:** `src/temporal_joins.py`
 * **Goal:** Implement temporal backward ASOF merges that join prediction events with the latest feature states strictly on or before event timestamps, guaranteeing zero future leakage.
 
 ---
 
-## 📁 Directory Structure for Phase 1
+## 📁 Directory Structure for Phase 2
 
 ```text
 02_data_engineering/

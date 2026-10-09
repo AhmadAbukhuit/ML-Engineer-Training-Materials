@@ -1,6 +1,6 @@
 # 👨‍🏫 Instructor Guide: Teaching the ML Engineering Curriculum
 
-Welcome to the instructional guide for the **Machine Learning Engineer Training Materials**. This curriculum is designed to bridge the gap between academic theory and real-world production engineering. 
+Welcome to the instructional guide for the **Machine Learning Engineer Training Materials**. This curriculum is designed to bridge the gap between academic theory and real-world production engineering.
 
 As an instructor, your mission is not merely to teach students how to call library functions, but to build engineers who understand algorithmic mechanics from first principles, write robust vectorized code, enforce data contracts, and deploy scalable inference microservices.
 
@@ -9,27 +9,34 @@ As an instructor, your mission is not merely to teach students how to call libra
 ## 🎯 Pedagogical Philosophy
 
 ### 1. First Principles First, Frameworks Second
+
 Students should **never** import a high-level abstraction (e.g., `nn.Linear`, `sklearn.tree.DecisionTreeClassifier`, or `FastAPI`) before they have built or analyzed the computational mechanics underneath:
+
 * Before using PyTorch Autograd $\longrightarrow$ Build a scalar reverse-mode computational graph and compute gradients manually.
 * Before tuning XGBoost $\longrightarrow$ Implement Gini Impurity splitting and a recursive decision tree node.
 * Before launching a vector database $\longrightarrow$ Build an in-memory cosine similarity matrix and nearest-neighbor search.
 
 ### 2. Code as the Ultimate Proof
+
 Mathematics without implementation leads to fragile understanding. Every theoretical derivation presented on the whiteboard must be grounded in an executable, vectorized Python implementation.
 
 ### 3. Test-Driven Learning (TDD)
+
 In production, machine learning code without unit tests is technical debt. Throughout this course, students utilize `pytest` not just as a testing tool, but as an **automated feedback loop**:
+
 * Tests define the contract (shapes, edge cases, numerical tolerances, mathematical invariances).
 * A green test suite gives students immediate, objective confirmation of mastery.
 
 ### 4. Zero-Loop Vectorization Policy
+
 Enforce a strict anti-pattern rule: **No explicit Python `for`-loops over multidimensional array samples** where vectorized operations (in `NumPy`, `Polars`, or `DuckDB`) apply. Explicit loops in Python run at interpreter speed; vectorized code runs at compiled SIMD/BLAS speed.
 
 ---
 
 ## 🧩 Phase-by-Phase Teaching Guide & Pitfalls
 
-### Phase 0: Mathematical Foundations & Numerical Computing
+### Phase 1: Mathematical Foundations & Numerical Computing
+
 * **Focus:** Vectorization, reverse-mode autodiff, numerical stability, loss surface geometry.
 * **Key Derivations:** 
   * Chain rule backpropagation through DAG nodes.
@@ -40,7 +47,8 @@ Enforce a strict anti-pattern rule: **No explicit Python `for`-loops over multid
   * **Numerical underflow:** Directly computing exponentiations in log-loss or softmax without max-shifting.
 * **Instructor Tip:** Have students inspect tensor shapes at every single layer (`print(tensor.shape)` or debugger breakpoints) during Autograd derivations.
 
-### Phase 1: Big Data Engineering & Feature Store Pipelines
+### Phase 2: Big Data Engineering & Feature Store Pipelines
+
 * **Focus:** High-throughput columnar formats (Parquet, Polars, DuckDB), streaming ETL, point-in-time correctness.
 * **Key Derivations:**
   * Memory layouts: Row-oriented (CSV) vs Columnar (Parquet).
@@ -51,7 +59,8 @@ Enforce a strict anti-pattern rule: **No explicit Python `for`-loops over multid
   * **Memory Exhaustion:** Trying to parse massive JSON files with `json.load()` all at once instead of line-by-line generators or streaming parsers.
 * **Instructor Tip:** Run live benchmarks comparing DuckDB against Pandas on a 500MB Parquet query to visually demonstrate the 10x–50x speedup of columnar execution.
 
-### Phase 2: Classical Machine Learning & Statistical Learning
+### Phase 3: Classical Machine Learning & Statistical Learning
+
 * **Focus:** Loss formulation, structural risk minimization, inductive biases of linear, margin, and tree models.
 * **Key Derivations:**
   * Hinge Loss subgradient descent: $\nabla_w \mathcal{L} = w - C y_i x_i \cdot \mathbb{I}(y_i (w^T x_i + b) < 1)$.
@@ -62,7 +71,8 @@ Enforce a strict anti-pattern rule: **No explicit Python `for`-loops over multid
   * **Default Hyperparameter Syndrome:** Believing tree depth should be unbounded. Show how unconstrained trees memorize training noise ($R^2 = 1.0$) while failing catastrophically on test data.
 * **Instructor Tip:** Live-code an overfitted Decision Tree vs a 100-tree Random Forest on a noisy synthetic dataset to demonstrate variance reduction via bagging.
 
-### Phase 3: Deep Learning Architectures & Modern Foundation Methods
+### Phase 4: Deep Learning Architectures & Modern Foundation Methods
+
 * **Focus:** Deep representations, gradient flow through skip connections, self-attention routing, parameter-efficient adaptation (LoRA), and retrieval grounding (RAG).
 * **Key Derivations:**
   * ResNet gradient highway: $\frac{\partial \mathcal{E}}{\partial x} = \frac{\partial \mathcal{E}}{\partial y}( \frac{\partial \mathcal{F}}{\partial x} + I )$.
@@ -73,7 +83,8 @@ Enforce a strict anti-pattern rule: **No explicit Python `for`-loops over multid
   * **Trainable vs Frozen Weights:** Confusion over which parameters accumulate gradients during transfer learning and LoRA fine-tuning.
 * **Instructor Tip:** Have students print the parameter count comparison before and after LoRA ($r=4$ vs full rank) to physically visualize why fine-tuning 7B models fits in commodity GPU VRAM.
 
-### Phase 4: Production APIs, Containerization & MLOps
+### Phase 5: Production APIs, Containerization & MLOps
+
 * **Focus:** Microservice latency, data contracts, hardware compilation (ONNX), containerization, and experiment governance (MLflow).
 * **Key Derivations:**
   * Amdahl's Law in model serving (disk I/O vs memory-resident inference).
@@ -118,16 +129,19 @@ Each weekly 3-to-4 hour class session should follow a structured rhythm:
 
 ## 💡 Instructor Checklist
 
-### Before Class:
-- [ ] Ensure `.venv` has all dependencies installed (`pip install -r requirements.txt`).
-- [ ] Run `pytest` on the relevant module to verify reference solutions are clean.
-- [ ] Prepare whiteboard diagrams for tensor dimensions and operational data flows.
+### Before Class
 
-### During Class:
-- [ ] Challenge students to predict tensor shapes before running forward passes.
-- [ ] Highlight performance bottlenecks in standard Python loops.
-- [ ] Encourage students to read error tracebacks and Pytest failure diffs carefully.
+* [ ] Ensure `.venv` has all dependencies installed (`pip install -r requirements.txt`).
+* [ ] Run `pytest` on the relevant module to verify reference solutions are clean.
+* [ ] Prepare whiteboard diagrams for tensor dimensions and operational data flows.
 
-### After Class:
-- [ ] Review student Pull Requests and check for vectorized implementations.
-- [ ] Provide constructive feedback on algorithmic efficiency and schema design.
+### During Class
+
+* [ ] Challenge students to predict tensor shapes before running forward passes.
+* [ ] Highlight performance bottlenecks in standard Python loops.
+* [ ] Encourage students to read error tracebacks and Pytest failure diffs carefully.
+
+### After Class
+
+* [ ] Review student Pull Requests and check for vectorized implementations.
+* [ ] Provide constructive feedback on algorithmic efficiency and schema design.

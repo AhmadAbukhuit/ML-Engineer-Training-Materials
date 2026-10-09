@@ -1,4 +1,4 @@
-# 🧠 Phase 3: Deep Learning & Vision/NLP Architectures
+# 🧠 Phase 4: Deep Learning & Vision/NLP Architectures
 
 Modern Machine Learning Engineering demands a rigorous understanding of deep neural network architectures—from spatial feature extraction in Convolutional Neural Networks (CNNs) and spatial bounding-box reasoning in YOLO, to sequence transduction and self-attention in Transformers.
 
@@ -72,7 +72,7 @@ Complete these implementation tasks in `04_deep_learning/src/` and verify your s
 
 ---
 
-### Task 3.1: Vectorized IoU & Non-Maximum Suppression (NMS)
+### Task 4.1: Vectorized IoU & Non-Maximum Suppression (NMS)
 * **File:** `src/detection_metrics.py`
 * **Requirements:**
   1. Implement `compute_iou_matrix(boxes_a, boxes_b)` for batch pairwise IoU calculation between $N$ and $M$ boxes in pure NumPy.
@@ -81,7 +81,7 @@ Complete these implementation tasks in `04_deep_learning/src/` and verify your s
 
 ---
 
-### Task 3.2: Scaled Dot-Product & Multi-Head Self-Attention
+### Task 4.2: Scaled Dot-Product & Multi-Head Self-Attention
 * **File:** `src/attention.py`
 * **Requirements:**
   1. Implement `scaled_dot_product_attention(Q, K, V, mask=None)` with $\frac{1}{\sqrt{d_k}}$ scaling and numerically stable softmax.
@@ -91,7 +91,7 @@ Complete these implementation tasks in `04_deep_learning/src/` and verify your s
 
 ---
 
-### Task 3.3: Residual Block Architecture
+### Task 4.3: Residual Block Architecture
 * **File:** `src/resnet.py`
 * **Requirements:**
   1. Implement `ResidualBlock` featuring two convolutional/linear transformations, batch/layer normalization, and an additive skip connection.
@@ -100,7 +100,7 @@ Complete these implementation tasks in `04_deep_learning/src/` and verify your s
 
 ---
 
-### Task 3.4: Reusable Deep Learning Training Engine
+### Task 4.4: Reusable Deep Learning Training Engine
 * **File:** `src/training_engine.py`
 * **Requirements:**
   1. Create a `TrainingEngine` class encapsulating train step, validation step, and epoch progression.
@@ -110,7 +110,7 @@ Complete these implementation tasks in `04_deep_learning/src/` and verify your s
 
 ---
 
-### Task 3.5: Transfer Learning & Backbone Freezing
+### Task 4.5: Transfer Learning & Backbone Freezing
 * **File:** `src/transfer_learning.py`
 * **Requirements:**
   1. Implement `PretrainedBackbone` feature extractor with layer-wise freezing and unfreezing mechanics.
@@ -119,7 +119,7 @@ Complete these implementation tasks in `04_deep_learning/src/` and verify your s
 
 ---
 
-### Task 3.6: Dense Vector Search & RAG Pipeline
+### Task 4.6: Dense Vector Search & RAG Pipeline
 * **File:** `src/rag_vector_search.py`
 * **Requirements:**
   1. Implement `SimpleDenseEmbedder` mapping texts to normalized latent dense vectors via deterministic hashing and random projection.
@@ -129,7 +129,7 @@ Complete these implementation tasks in `04_deep_learning/src/` and verify your s
 
 ---
 
-### Task 3.7: Parameter-Efficient Fine-Tuning (LoRA)
+### Task 4.7: Parameter-Efficient Fine-Tuning (LoRA)
 * **File:** `src/lora.py`
 * **Requirements:**
   1. Implement `LoRALinear` decomposing weight updates into $\Delta W = \frac{\alpha}{r} (A \cdot B)$ while keeping base weights $W_0$ frozen.
@@ -139,7 +139,7 @@ Complete these implementation tasks in `04_deep_learning/src/` and verify your s
 
 ---
 
-## 📁 Directory Structure for Phase 3
+## 📁 Directory Structure for Phase 4
 
 ```text
 04_deep_learning/

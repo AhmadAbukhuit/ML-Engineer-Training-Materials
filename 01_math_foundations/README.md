@@ -1,4 +1,4 @@
-# 📐 Phase 0: Mathematical Foundations & Numerical Computing
+# 📐 Phase 1: Mathematical Foundations & Numerical Computing
 
 Mastering the mathematical foundations behind machine learning is what separates engineers who merely call high-level library APIs from those who can diagnose training instabilities (exploding/vanishing gradients), optimize memory consumption, and design custom loss functions or architectures.
 
@@ -109,7 +109,7 @@ Complete these four implementation tasks inside `01_math_foundations/src/` and v
 
 ---
 
-### Task 0.1: Vectorized Loss & Metrics Engine
+### Task 1.1: Vectorized Loss & Metrics Engine
 
 * **File:** `src/metrics.py`
 * **Goal:** Implement a fully vectorized suite of metrics and loss functions without using any Python `for` loops.
@@ -123,7 +123,7 @@ Complete these four implementation tasks inside `01_math_foundations/src/` and v
 
 ---
 
-### Task 0.2: Micro-Autograd Engine & 2-Layer MLP
+### Task 1.2: Micro-Autograd Engine & 2-Layer MLP
 
 * **File:** `src/autograd.py` and `src/mlp.py`
 * **Goal:** Implement a scalar or tensor-level computational graph supporting automatic reverse-mode differentiation.
@@ -136,7 +136,7 @@ Complete these four implementation tasks inside `01_math_foundations/src/` and v
 
 ---
 
-### Task 0.3: Custom Optimizer Suite & Loss Surface Visualizer
+### Task 1.3: Custom Optimizer Suite & Loss Surface Visualizer
 
 * **File:** `src/optimizers.py`
 * **Goal:** Implement and compare 4 optimization algorithms on standard non-convex optimization benchmarks (e.g., Rosenbrock function or Rastrigin function).
@@ -150,7 +150,7 @@ Complete these four implementation tasks inside `01_math_foundations/src/` and v
 
 ---
 
-### Task 0.4: Principal Component Analysis (PCA) via SVD
+### Task 1.4: Principal Component Analysis (PCA) via SVD
 
 * **File:** `src/pca.py`
 * **Goal:** Implement Principal Component Analysis from scratch using both Covariance Eigendecomposition and SVD.
@@ -164,7 +164,7 @@ Complete these four implementation tasks inside `01_math_foundations/src/` and v
 
 ---
 
-## 📁 Directory Structure for Phase 0
+## 📁 Directory Structure for Phase 1
 
 ```text
 01_math_foundations/
