@@ -113,11 +113,32 @@ Complete these implementation tasks in `05_mlops_production/` and verify your AP
 
 ---
 
+### Task 4.6: Model Compilation & Latency Optimization with ONNX
+* **File:** `app/onnx_converter.py`
+* **Requirements:**
+  1. Implement `export_to_onnx` converting trained models to portable ONNX graphs.
+  2. Build `ONNXInferenceSession` for high-performance, multithreaded CPU scoring.
+  3. Implement `benchmark_inference` quantifying latency distributions (mean, p50, p95, p99).
+* **Deliverable:** Unit tests verifying prediction parity between Scikit-Learn and ONNX Runtime.
+
+---
+
+### Task 4.7: Experiment Tracking & Governance with MLflow
+* **File:** `app/mlflow_tracker.py`
+* **Requirements:**
+  1. Implement `MLflowTracker` encapsulating experiment setup, parameter logging, and metric tracking.
+  2. Support model artifact versioning and run tagging.
+  3. Implement `get_best_run` to automatically retrieve top candidate models for production promotion.
+* **Deliverable:** Unit tests verifying metric persistence and best candidate selection.
+
+---
+
 ## 📁 Directory Structure for Phase 4
 
 ```text
 05_mlops_production/
 ├── README.md
+├── 01_onnx_and_mlflow.md
 ├── Dockerfile
 ├── docker-compose.yml
 ├── .dockerignore
@@ -125,8 +146,13 @@ Complete these implementation tasks in `05_mlops_production/` and verify your AP
 │   ├── __init__.py
 │   ├── main.py
 │   ├── schemas.py
-│   └── model_loader.py
+│   ├── model_loader.py
+│   ├── onnx_converter.py
+│   └── mlflow_tracker.py
 └── tests/
     ├── __init__.py
-    └── test_api.py
+    ├── test_api.py
+    ├── test_onnx.py
+    └── test_mlflow.py
 ```
+
