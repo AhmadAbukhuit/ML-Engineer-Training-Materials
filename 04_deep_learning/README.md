@@ -110,6 +110,35 @@ Complete these implementation tasks in `04_deep_learning/src/` and verify your s
 
 ---
 
+### Task 3.5: Transfer Learning & Backbone Freezing
+* **File:** `src/transfer_learning.py`
+* **Requirements:**
+  1. Implement `PretrainedBackbone` feature extractor with layer-wise freezing and unfreezing mechanics.
+  2. Implement `TransferClassifier` replacing target heads and executing two-stage fine-tuning (head training followed by discriminative learning rate fine-tuning).
+* **Deliverable:** Unit tests verifying gradient non-propagation during frozen stages and loss convergence.
+
+---
+
+### Task 3.6: Dense Vector Search & RAG Pipeline
+* **File:** `src/rag_vector_search.py`
+* **Requirements:**
+  1. Implement `SimpleDenseEmbedder` mapping texts to normalized latent dense vectors via deterministic hashing and random projection.
+  2. Implement `VectorIndex` for exact cosine similarity nearest-neighbor search.
+  3. Implement `RAGPipeline` supporting text chunking, sliding-window overlap, semantic retrieval, and prompt context synthesis.
+* **Deliverable:** Unit tests validating retrieval recall and prompt grounding.
+
+---
+
+### Task 3.7: Parameter-Efficient Fine-Tuning (LoRA)
+* **File:** `src/lora.py`
+* **Requirements:**
+  1. Implement `LoRALinear` decomposing weight updates into $\Delta W = \frac{\alpha}{r} (A \cdot B)$ while keeping base weights $W_0$ frozen.
+  2. Implement backward pass updating only adapter matrices $A$ and $B$.
+  3. Implement zero-overhead inference weight merging (`merge_weights` / `unmerge_weights`).
+* **Deliverable:** Unit tests demonstrating 90%+ parameter reduction and output identity post-merging.
+
+---
+
 ## 📁 Directory Structure for Phase 3
 
 ```text
@@ -117,6 +146,7 @@ Complete these implementation tasks in `04_deep_learning/src/` and verify your s
 ├── README.md
 ├── 01_cnn_and_residual_architectures.md
 ├── 02_transformers_and_attention.md
+├── 03_lora_and_rag.md
 ├── notebooks/
 │   └── 01_deep_learning_architectures.ipynb
 ├── weights/
@@ -126,10 +156,17 @@ Complete these implementation tasks in `04_deep_learning/src/` and verify your s
 │   ├── resnet.py
 │   ├── attention.py
 │   ├── detection_metrics.py
-│   └── training_engine.py
+│   ├── training_engine.py
+│   ├── transfer_learning.py
+│   ├── rag_vector_search.py
+│   └── lora.py
 └── tests/
     ├── __init__.py
     ├── test_resnet.py
     ├── test_attention.py
-    └── test_detection_metrics.py
+    ├── test_detection_metrics.py
+    ├── test_transfer_learning.py
+    ├── test_rag.py
+    └── test_lora.py
 ```
+
