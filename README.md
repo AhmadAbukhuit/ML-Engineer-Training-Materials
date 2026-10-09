@@ -24,41 +24,43 @@ Building real-world AI systems requires more than importing high-level framework
 
 ### Phase 0: Mathematical Foundations & Numerical Computing
 
-- [ ] **0.1 Linear Algebra for ML:** Matrix/vector operations, dot products, matrix factorizations, eigenvalues/eigenvectors, and tensor representations in `NumPy`.
-- [ ] **0.2 Multivariate Calculus:** Partial derivatives, chain rule for computational graphs, gradients, Jacobians, and Hessians.
-- [ ] **0.3 Probability & Statistics:** Random variables, probability distributions (Gaussian, Bernoulli), Bayes' Theorem, Maximum Likelihood Estimation (MLE), hypothesis testing, and confidence intervals.
-- [ ] **0.4 Optimization Theory:** Convex functions, standard Gradient Descent, Stochastic Gradient Descent (SGD), Momentum, RMSProp, and Adam optimization mechanics.
+- [x] **0.1 Linear Algebra for ML:** Matrix/vector operations, dot products, matrix factorizations, eigenvalues/eigenvectors, and PCA via SVD in `NumPy`.
+- [x] **0.2 Multivariate Calculus:** Partial derivatives, chain rule for computational graphs, gradients, and custom reverse-mode Autograd engine.
+- [x] **0.3 Probability & Statistics:** Random variables, probability distributions (Gaussian, Bernoulli), Bayes' Theorem, MLE, and vectorized evaluation metrics.
+- [x] **0.4 Optimization Theory:** Convex functions, SGD, Momentum, RMSProp, and Adam optimization mechanics with modular MLP implementations.
 
 ### Phase 1: Data Science & Big Data Engineering
 
-- [ ] **1.1 Structured Ingestion:** Query SQL databases and process large-scale CSVs using `pandas` and `Polars`.
-- [ ] **1.2 Semi-Structured Parsing:** Parse hierarchical API data (JSON/XML) into flat tabular structures.
-- [ ] **1.3 Unstructured Handling:** Load, normalize, and resize image datasets with `OpenCV` / `Pillow`, managing bounding box `.txt` and `.xml` labels.
-- [ ] **1.4 Feature Engineering:** Handle missing values, encode categorical variables, and apply statistical scaling.
-- [ ] **1.5 Pipeline Automation:** Build reusable end-to-end preprocessing pipelines using `scikit-learn` ColumnTransformers.
+- [x] **1.1 Structured Ingestion:** Query columnar Parquet datasets and execute analytical SQL using `DuckDB` and `Polars`.
+- [x] **1.2 Semi-Structured Parsing:** Streaming JSON telemetry parser with schema normalization, nested dictionary extraction, and missing-value handling.
+- [x] **1.3 Unstructured Handling:** Image processing pipeline with contrast normalization, data augmentation, and Pascal VOC / YOLO bounding box parsers.
+- [x] **1.4 Advanced Feature Engineering:** Out-of-fold smoothed target encoding, Yeo-Johnson transformations, and Point-in-Time temporal `ASOF` joins.
+- [x] **1.5 Data Quality & Validation:** Runtime data contracts enforcing column constraints and distribution bounds using `Pandera`.
 
 ### Phase 2: Core Machine Learning
 
-- [ ] **2.1 Supervised Regression:** Train and evaluate Linear Regression pipelines for continuous variable forecasting.
-- [ ] **2.2 Supervised Classification:** Implement Decision Trees, Random Forests, and XGBoost; evaluate using Precision, Recall, F1, and ROC-AUC.
-- [ ] **2.3 Unsupervised Clustering:** Apply K-Means and DBSCAN for pattern discovery and anomaly detection without labeled targets.
-- [ ] **2.4 Dimensionality Reduction:** Use PCA to reduce feature space complexity while retaining variance.
-- [ ] **2.5 Reinforcement Learning:** Train an autonomous Q-Learning / DQN agent in an OpenAI Gym simulation environment.
+- [x] **2.1 Supervised Linear & Margin Models:** Vectorized Linear Regression, Logistic Regression with L2 regularization, and Linear SVM with soft-margin subgradient descent.
+- [x] **2.2 Probabilistic & Tree Classification:** Gaussian Naive Bayes from first principles and Decision Tree Classifier with recursive Gini Impurity splitting.
+- [x] **2.3 Ensemble Benchmarking:** Head-to-head comparison harness evaluating Random Forest, Gradient Boosting, and XGBoost across accuracy, ROC-AUC, and inference latency.
+- [x] **2.4 Unsupervised Clustering:** Vectorized K-Means algorithm with Lloyd's heuristic, inertia computation, and cluster assignment.
+- [x] **2.5 Time Series Forecasting:** Temporal lag feature generation, rolling statistical aggregates, and Walk-Forward expanding-window cross-validation.
 
 ### Phase 3: Deep Learning & Vision/NLP Architectures
 
-- [ ] **3.1 Foundations:** Implement forward propagation, backpropagation, and optimization algorithms from scratch using pure Python/NumPy and PyTorch/TensorFlow.
-- [ ] **3.2 Vision (CNNs):** Train convolutional neural networks for image classification (ResNet / EfficientNet architectures).
-- [ ] **3.3 Object Detection:** Format datasets and train YOLO models for spatial bounding-box detection.
-- [ ] **3.4 NLP (Transformers):** Fine-tune pre-trained Transformer models (BERT) using Hugging Face for sequence classification.
+- [x] **3.1 Foundations & Training Loops:** Modular deep learning training harness featuring validation tracking, learning rate scheduling, and early stopping.
+- [x] **3.2 Vision Architectures & Object Detection:** Residual blocks with identity and projection skip connections (`F(x) + x`), vectorized IoU matrices, and Non-Maximum Suppression (NMS).
+- [x] **3.3 Attention Mechanisms:** Scaled Dot-Product Self-Attention and Multi-Head Attention (MHA) from scratch supporting causal decoding masks.
+- [x] **3.4 Transfer Learning:** Feature extractor backbone freezing, target classification head replacement, and two-stage fine-tuning with discriminative learning rates.
+- [x] **3.5 Vector Search & RAG:** Normalized dense embeddings, in-memory cosine vector store, semantic document chunking, and grounded prompt synthesis.
+- [x] **3.6 Parameter-Efficient Fine-Tuning (LoRA):** Low-Rank Adaptation ($\Delta W = \frac{\alpha}{r} A B$) with base weight freezing, adapter training, and zero-latency inference weight merging.
 
 ### Phase 4: Production APIs & MLOps
 
-- [ ] **4.1 REST API Serving:** Build a high-performance inference microservice using `FastAPI` and `Uvicorn`.
-- [ ] **4.2 Input Validation:** Ensure strict runtime data schemas using Pydantic models.
-- [ ] **4.3 Containerization:** Package the OS dependencies, Python runtime, and inference engine into a clean `Dockerfile`.
-- [ ] **4.4 Orchestration:** Configure `docker-compose.yml` for multi-service deployment.
-- [ ] **4.5 Lifecycle Management:** Implement experiment tracking and model artifact versioning (MLflow/CI-CD).
+- [x] **4.1 REST API Serving:** Asynchronous microservice using `FastAPI` and `Uvicorn` with single-sample and batch prediction endpoints.
+- [x] **4.2 Data Contracts & Schemas:** Strict input validation and sanitization using `Pydantic` models.
+- [x] **4.3 Containerization & Orchestration:** Production multi-stage `Dockerfile` and `docker-compose.yml` service configurations.
+- [x] **4.4 Hardware Acceleration & Model Compilation:** High-performance ONNX model export and multi-threaded `ONNXRuntime` inference with p50/p95/p99 latency benchmarking.
+- [x] **4.5 Lifecycle Management & Governance:** Standardized experiment tracking, metric and parameter logging, and automated best-run model selection with `MLflow`.
 
 ---
 
