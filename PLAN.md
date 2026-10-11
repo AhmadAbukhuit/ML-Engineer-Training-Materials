@@ -1,358 +1,207 @@
 # 📅 20-Week Machine Learning Engineering Curriculum Plan
 
-This curriculum provides a structured, rigorous, 20-week roadmap designed to take students from numerical and mathematical foundations to production-grade MLOps deployment.
+This curriculum provides a structured, rigorous, 20-week roadmap designed to take students from numerical and mathematical foundations to production-grade MLOps deployment across all modern learning paradigms.
 
 ---
 
 ## 🗺️ Curriculum Overview & Phase Timeline
 
 ```text
- Weeks 1-4    │ Phase 1: Mathematical Foundations & Numerical Computing
- Weeks 5-8    │ Phase 2: Big Data Engineering & Feature Store Pipelines
- Weeks 9-12   │ Phase 3: Classical Machine Learning & Statistical Modeling
- Weeks 13-16  │ Phase 4: Deep Learning Architectures, Transformers & Foundation Models
- Weeks 17-20  │ Phase 5: Production MLOps, High-Performance APIs & Deployment
+ Weeks 1-3    │ Phase 1: Mathematical Foundations & Numerical Computing (01_math_foundations)
+ Weeks 4-6    │ Phase 2: Big Data Engineering & Feature Store Pipelines (02_data_engineering)
+ Weeks 7-8    │ Phase 3: Supervised Learning & Tree Ensembles (03_supervised_learning)
+ Weeks 9-10   │ Phase 4: Unsupervised Learning & Dimensionality Reduction (04_unsupervised_learning)
+ Week 11      │ Phase 5: Self-Supervised Learning & Contrastive Dynamics (05_self_supervised_learning)
+ Week 12      │ Phase 6: Semi-Supervised Learning & Graph Propagation (06_semi_supervised_learning)
+ Weeks 13-14  │ Phase 7: Deep Learning Architectures & Attention Mechanisms (07_deep_learning)
+ Weeks 15-16  │ Phase 8: Reinforcement Learning & Decision Processes (08_reinforcement_learning)
+ Weeks 17-18  │ Phase 9: Transfer Learning, PEFT & Domain Adaptation (09_transfer_learning)
+ Weeks 19-20  │ Phase 10: Production MLOps, APIs & Deployment (10_mlops_production)
 ```
 
 ---
 
-## 📐 Phase 1: Mathematical Foundations & Numerical Computing (Weeks 1–4)
+## 📐 Phase 1: Mathematical Foundations & Numerical Computing (Weeks 1–3)
 
 ### Phase Description
-
 The objective of Phase 1 is to eliminate the "black box" mentality. Students master the mathematical machinery governing modern machine learning algorithms: vectorized linear algebra in NumPy, reverse-mode automatic differentiation, multivariate calculus, statistical estimation, and gradient-based optimization mechanics.
 
----
-
-### Week 1: Course Onboarding & Vectorized Linear Algebra
-
+### Week 1: Vectorized Linear Algebra & Matrix Decompositions
 * **Theory:**
   * Vector spaces, inner products, projections, matrix multiplication algorithms.
   * Matrix factorizations: Eigenvalues, Eigenvectors, and Singular Value Decomposition (SVD).
   * Principal Component Analysis (PCA) derivation via covariance matrix decomposition.
 * **Practice & Labs:**
   * Repo Directory: `01_math_foundations/`
-  * Implement PCA from scratch using SVD in [`src/pca.py`](01_math_foundations/src/pca.py).
-  * Reconstruct compressed data matrices and quantify explained variance ratios.
+  * Implement PCA from scratch using SVD in [`01_math_foundations/src/pca.py`](01_math_foundations/src/pca.py).
 * **Deliverable & Tests:**
-  * Run and pass [`tests/test_pca.py`](01_math_foundations/tests/test_pca.py).
-
----
+  * Pass [`01_math_foundations/tests/test_pca.py`](01_math_foundations/tests/test_pca.py).
 
 ### Week 2: Multivariate Calculus & Reverse-Mode Autograd Engine
-
 * **Theory:**
   * Partial derivatives, gradient vectors, Jacobians, and Hessians.
   * Directed Acyclic Graphs (DAG) for mathematical operations.
   * Reverse-mode automatic differentiation vs numerical differentiation.
 * **Practice & Labs:**
-  * Implement the scalar Autograd engine in [`src/autograd.py`](01_math_foundations/src/autograd.py).
-  * Build topological sort and backpropagation traversal through addition, multiplication, ReLU, and power nodes.
+  * Implement the scalar Autograd engine in [`01_math_foundations/src/autograd.py`](01_math_foundations/src/autograd.py).
 * **Deliverable & Tests:**
-  * Run and pass [`tests/test_autograd.py`](01_math_foundations/tests/test_autograd.py).
+  * Pass [`01_math_foundations/tests/test_autograd.py`](01_math_foundations/tests/test_autograd.py).
 
----
-
-### Week 3: Probability, Information Theory & Vectorized Metrics
-
+### Week 3: Probability Theory, Statistical Estimation & Gradient Optimizers
 * **Theory:**
   * Random variables, Bayes' Theorem, Maximum Likelihood Estimation (MLE).
-  * Information theory: Shannon Entropy, Cross-Entropy, Kullback-Leibler (KL) Divergence.
-  * Classification and regression metric mathematics: Precision, Recall, F1, ROC-AUC, Log-Loss, and MSE.
+  * Shannon Entropy, Cross-Entropy, Kullback-Leibler (KL) Divergence.
+  * SGD, Momentum, RMSProp, and Adam optimization updates.
 * **Practice & Labs:**
-  * Implement vectorized evaluation metrics in [`src/metrics.py`](01_math_foundations/src/metrics.py).
-  * Ensure numerically stable log-loss with epsilon clipping.
+  * Implement vectorized metrics in [`01_math_foundations/src/metrics.py`](01_math_foundations/src/metrics.py).
+  * Implement custom optimizers in [`01_math_foundations/src/optimizers.py`](01_math_foundations/src/optimizers.py).
 * **Deliverable & Tests:**
-  * Run and pass [`tests/test_metrics.py`](01_math_foundations/tests/test_metrics.py).
+  * Pass [`01_math_foundations/tests/test_metrics.py`](01_math_foundations/tests/test_metrics.py).
 
 ---
 
-### Week 4: Optimization Mechanics & Multi-Layer Perceptrons
-
-* **Theory:**
-  * Convex vs non-convex loss surfaces, saddle points, and ill-conditioned curvature.
-  * Optimization algorithms: Stochastic Gradient Descent (SGD), Momentum, RMSProp, and Adam.
-  * Weight initialization theory: Xavier/Glorot vs He/Kaiming normal distributions.
-* **Practice & Labs:**
-  * Implement modular `DenseLayer`, activation functions, and optimizers in [`src/mlp.py`](01_math_foundations/src/mlp.py).
-  * Train an MLP from scratch on synthetic non-linear classification datasets.
-* **Deliverable & Tests:**
-  * Verify convergence curves and loss minimization without framework abstractions.
-
----
-
-## 🗄️ Phase 2: Big Data Engineering & Feature Store Pipelines (Weeks 5–8)
+## 💾 Phase 2: Big Data Engineering & Feature Store Pipelines (Weeks 4–6)
 
 ### Phase Description
+Students learn production-grade data engineering: processing multi-modal datasets without memory exhaustion using Polars and DuckDB, preventing data leakage, and enforcing data contracts with Pandera.
 
-Real-world machine learning systems spend 80% of their operational lifecycle ingesting, cleaning, and validating data. Phase 2 equips students with high-throughput data processing skills: columnar storage with Parquet, in-process analytical SQL with DuckDB, lightning-fast transformations with Polars, multi-modal image pipelines, and point-in-time correctness.
+### Week 4: Columnar Data Ingestion & Analytical SQL Engines
+* **Theory:** Row-oriented vs columnar storage (Parquet), vectorized SIMD query execution in Polars and DuckDB.
+* **Practice & Labs:** Ingest datasets with `Polars` and `DuckDB` in [`02_data_engineering/src/`](02_data_engineering/src/).
+* **Deliverable & Tests:** Pass [`02_data_engineering/tests/test_duckdb_parquet.py`](02_data_engineering/tests/test_duckdb_parquet.py).
 
----
+### Week 5: Semi-Structured & Unstructured Multimodal Pipelines
+* **Theory:** Streaming JSON parsing, image color spaces, histogram normalization, YOLO bounding boxes.
+* **Practice & Labs:** Implement JSON parsing and image transforms in [`02_data_engineering/src/`](02_data_engineering/src/).
+* **Deliverable & Tests:** Pass [`02_data_engineering/tests/test_data_engineering.py`](02_data_engineering/tests/test_data_engineering.py).
 
-### Week 5: Columnar Storage & In-Process Analytical SQL (DuckDB & Parquet)
-
-* **Theory:**
-  * Columnar vs Row-oriented storage formats (Parquet vs CSV).
-  * Dictionary encoding, run-length encoding (RLE), and Snappy compression.
-  * Vectorized query execution engines and predicate pushdown.
-* **Practice & Labs:**
-  * Repo Directory: `02_data_engineering/`
-  * Complete [`notebooks/03_sql_and_parquet_benchmarks.ipynb`](02_data_engineering/notebooks/03_sql_and_parquet_benchmarks.ipynb).
-  * Implement analytical SQL aggregation and Parquet export in [`src/duckdb_parquet.py`](02_data_engineering/src/duckdb_parquet.py).
-* **Deliverable & Tests:**
-  * Run and pass [`tests/test_duckdb_parquet.py`](02_data_engineering/tests/test_duckdb_parquet.py).
-
----
-
-### Week 6: Exploratory Data Analysis & High-Performance Tabular ETL (NumPy, Pandas, Scikit-Learn)
-
-* **Theory:**
-  * NumPy vectorized broadcasting, memory buffers, and conditional masks (`np.where`).
-  * Pandas exploratory data analysis (EDA): missingness audits, summary statistics, grouping, and aggregation.
-  * Distribution outlier detection: Interquartile Range (IQR) boundary formulation.
-  * Zero-leakage preprocessing with Scikit-Learn: `ColumnTransformer`, `RobustScaler`, and `OneHotEncoder(handle_unknown='ignore')`.
-  * Streaming JSON parsing vs memory-exhaustive bulk loading.
-* **Practice & Labs:**
-  * Implement data profiling, IQR outlier detection, and pipeline builders in [`src/data_analysis.py`](02_data_engineering/src/data_analysis.py).
-  * Implement streaming JSON telemetry parser in [`src/telemetry_parser.py`](02_data_engineering/src/telemetry_parser.py).
-  * Complete Exploratory Data Analysis in [`notebooks/01_telemetry_eda.ipynb`](02_data_engineering/notebooks/01_telemetry_eda.ipynb).
-* **Deliverable & Tests:**
-  * Run and pass [`tests/test_data_analysis.py`](02_data_engineering/tests/test_data_analysis.py) and [`tests/test_data_engineering.py`](02_data_engineering/tests/test_data_engineering.py).
+### Week 6: Feature Engineering, Leakage Prevention & Data Contracts
+* **Theory:** Out-of-fold target encoding, Yeo-Johnson transforms, point-in-time temporal `ASOF` joins, Pandera schemas.
+* **Practice & Labs:** Build leak-free transforms and validation contracts in [`02_data_engineering/src/`](02_data_engineering/src/).
+* **Deliverable & Tests:** Pass [`02_data_engineering/tests/test_advanced_transforms.py`](02_data_engineering/tests/test_advanced_transforms.py), [`test_temporal_joins.py`](02_data_engineering/tests/test_temporal_joins.py), and [`test_data_validation.py`](02_data_engineering/tests/test_data_validation.py).
 
 ---
 
-### Week 7: Computer Vision Ingestion & Annotation Parsers
-
-* **Theory:**
-  * 2D image matrix representation, color spaces (RGB, BGR, Grayscale).
-  * Contrast stretching, histogram equalization, and spatial data augmentations.
-  * Spatial annotation formats: Pascal VOC XML vs YOLO normalized coordinates.
-* **Practice & Labs:**
-  * Implement OpenCV/Pillow image preprocessing in [`src/image_pipeline.py`](02_data_engineering/src/image_pipeline.py).
-  * Complete image exploration in [`notebooks/02_image_visualization.ipynb`](02_data_engineering/notebooks/02_image_visualization.ipynb).
-* **Deliverable & Tests:**
-  * Verify image augmentations and bounding box coordinate conversions.
-
----
-
-### Week 8: Advanced Feature Engineering, Leakage Prevention & Data Contracts
-
-* **Theory:**
-  * Target encoding pitfalls and out-of-fold smoothed empirical Bayes regularization.
-  * Non-linear variance stabilizing transforms (Yeo-Johnson power transform).
-  * Point-in-time correctness: eliminating lookahead bias using temporal `ASOF` joins.
-  * Data contracts and runtime schema validation with Pandera.
-* **Practice & Labs:**
-  * Implement smoothed target encoding and Yeo-Johnson in [`src/advanced_transforms.py`](02_data_engineering/src/advanced_transforms.py).
-  * Implement temporal point-in-time join in [`src/temporal_joins.py`](02_data_engineering/src/temporal_joins.py).
-  * Build Pandera validation schemas in [`src/data_validation.py`](02_data_engineering/src/data_validation.py).
-* **Deliverable & Tests (Milestone 1):**
-  * Pass [`tests/test_advanced_transforms.py`](02_data_engineering/tests/test_advanced_transforms.py), [`tests/test_temporal_joins.py`](02_data_engineering/tests/test_temporal_joins.py), [`tests/test_data_validation.py`](02_data_engineering/tests/test_data_validation.py), and [`tests/test_data_analysis.py`](02_data_engineering/tests/test_data_analysis.py).
-  * **Milestone 1 Defense:** Code review of an automated ETL pipeline with strict data contracts.
-
----
-
-## 🤖 Phase 3: Classical Machine Learning & Statistical Modeling (Weeks 9–12)
+## 🎯 Phase 3: Supervised Learning & Tree Ensembles (Weeks 7–8)
 
 ### Phase Description
+Covers linear models, maximum-margin classifiers, probabilistic models, decision trees, gradient boosting, and time-series forecasting.
 
-Students master fundamental supervised and unsupervised learning algorithms, formulating objective functions, optimization mechanics, bias-variance tradeoffs, tree ensembles, and temporal cross-validation.
+### Week 7: Linear Models, SVMs, Naive Bayes & k-NN
+* **Theory:** OLS, Ridge ($L_2$), Lasso ($L_1$), Soft-margin SVM hinge loss, Gaussian Naive Bayes, k-NN metrics.
+* **Practice & Labs:** Implement models in [`03_supervised_learning/src/`](03_supervised_learning/src/).
+* **Deliverable & Tests:** Pass [`03_supervised_learning/tests/test_linear_models.py`](03_supervised_learning/tests/test_linear_models.py), [`test_svm.py`](03_supervised_learning/tests/test_svm.py), [`test_naive_bayes.py`](03_supervised_learning/tests/test_naive_bayes.py), and [`test_knn.py`](03_supervised_learning/tests/test_knn.py).
 
----
-
-### Week 9: Supervised Linear & Maximum-Margin Classifiers
-
-* **Theory:**
-  * Ordinary Least Squares (OLS) normal equations vs Gradient Descent.
-  * Logistic Regression with L2 Ridge regularization and cross-entropy loss.
-  * Support Vector Machines (SVM): Maximum margin separation, Hinge loss, and soft-margin subgradient updates.
-* **Practice & Labs:**
-  * Repo Directory: `03_machine_learning/`
-  * Implement Linear & Logistic Regression in [`src/linear_models.py`](03_machine_learning/src/linear_models.py).
-  * Implement Linear SVM with subgradient descent in [`src/svm.py`](03_machine_learning/src/svm.py).
-* **Deliverable & Tests:**
-  * Pass [`tests/test_linear_models.py`](03_machine_learning/tests/test_linear_models.py) and [`tests/test_svm.py`](03_machine_learning/tests/test_svm.py).
+### Week 8: Decision Trees, Gradient Boosting & Time Series
+* **Theory:** CART trees (Gini impurity), Random Forest, XGBoost second-order Taylor expansion, lag features, Walk-Forward validation.
+* **Practice & Labs:** Build decision trees, ensemble benchmark harness, and time-series cross-validation.
+* **Deliverable & Tests:** Pass [`03_supervised_learning/tests/test_decision_tree.py`](03_supervised_learning/tests/test_decision_tree.py), [`test_ensemble_benchmark.py`](03_supervised_learning/tests/test_ensemble_benchmark.py), and [`test_time_series.py`](03_supervised_learning/tests/test_time_series.py).
 
 ---
 
-### Week 10: Probabilistic & Tree-Based Classifiers
-
-* **Theory:**
-  * Generative vs Discriminative modeling paradigms.
-  * Gaussian Naive Bayes: Class priors, feature Gaussian likelihoods, and log-space inference.
-  * Decision Trees: Recursive binary splitting, Gini Impurity vs Information Gain (Entropy), stopping criteria, and pruning.
-* **Practice & Labs:**
-  * Implement Gaussian Naive Bayes from scratch in [`src/naive_bayes.py`](03_machine_learning/src/naive_bayes.py).
-  * Implement Decision Tree Classifier from scratch in [`src/decision_tree.py`](03_machine_learning/src/decision_tree.py).
-* **Deliverable & Tests:**
-  * Pass [`tests/test_naive_bayes.py`](03_machine_learning/tests/test_naive_bayes.py) and [`tests/test_decision_tree.py`](03_machine_learning/tests/test_decision_tree.py).
-
----
-
-### Week 11: Tree Ensembles & Head-to-Head Benchmarking Harness
-
-* **Theory:**
-  * Bagging vs Boosting: Variance reduction (Random Forest) vs Bias reduction (Gradient Boosting).
-  * Extreme Gradient Boosting (XGBoost): Second-order Taylor expansion, shrinkage, column subsampling, and regularization.
-  * Evaluating model tradeoffs: Training duration, inference latency (p50/p95), ROC-AUC, and F1 score.
-* **Practice & Labs:**
-  * Build the comparative benchmarking engine in [`src/ensemble_benchmark.py`](03_machine_learning/src/ensemble_benchmark.py).
-  * Complete [`notebooks/01_classical_ml_models.ipynb`](03_machine_learning/notebooks/01_classical_ml_models.ipynb).
-* **Deliverable & Tests:**
-  * Pass [`tests/test_ensemble_benchmark.py`](03_machine_learning/tests/test_ensemble_benchmark.py).
-
----
-
-### Week 12: Unsupervised Pattern Mining & Time Series Forecasting
-
-* **Theory:**
-  * Partitioning clustering: Lloyd's K-Means algorithm, centroid updates, inertia metric.
-  * Time series dynamics: Stationarity, autocorrelation, lag features, and rolling statistical moments.
-  * Temporal validation: Why random K-Fold splits corrupt time series backtests; Walk-Forward Expanding-Window Validation.
-* **Practice & Labs:**
-  * Implement K-Means clustering from scratch in [`src/kmeans.py`](03_machine_learning/src/kmeans.py).
-  * Implement temporal lag extraction and Walk-Forward split engine in [`src/time_series.py`](03_machine_learning/src/time_series.py).
-* **Deliverable & Tests (Milestone 2):**
-  * Pass [`tests/test_kmeans.py`](03_machine_learning/tests/test_kmeans.py) and [`tests/test_time_series.py`](03_machine_learning/tests/test_time_series.py).
-  * **Milestone 2 Defense:** Present benchmark findings comparing classical models against tree ensembles.
-
----
-
-## 🧠 Phase 4: Deep Learning Architectures, Transformers & Foundation Models (Weeks 13–16)
+## 🔍 Phase 4: Unsupervised Learning & Dimensionality Reduction (Weeks 9–10)
 
 ### Phase Description
+Explores discovering latent structures without supervisory signals: centroid clustering, density-based clustering, probabilistic mixtures, and anomaly detection.
 
-Phase 4 transitions from classical statistical learning to deep representations. Students master deep residual networks, object detection spatial metrics, self-attention mechanisms in Transformers, transfer learning adaptation, and modern foundation model techniques (LoRA fine-tuning and RAG retrieval).
+### Week 9: K-Means++, DBSCAN & Gaussian Mixture Models (EM)
+* **Theory:** Lloyd's algorithm, K-Means++ probabilistic initialization, DBSCAN density reachability, GMM Expectation-Maximization.
+* **Practice & Labs:** Implement K-Means, DBSCAN, and GMM from scratch in [`04_unsupervised_learning/src/`](04_unsupervised_learning/src/).
+* **Deliverable & Tests:** Pass [`04_unsupervised_learning/tests/test_kmeans.py`](04_unsupervised_learning/tests/test_kmeans.py), [`test_dbscan.py`](04_unsupervised_learning/tests/test_dbscan.py), and [`test_gmm.py`](04_unsupervised_learning/tests/test_gmm.py).
 
----
-
-### Week 13: Deep Learning Dynamics & Residual Networks (ResNet)
-
-* **Theory:**
-  * Vanishing and exploding gradients in deep networks.
-  * Residual learning formulation: $\mathcal{F}(x) + x$, gradient highway preservation.
-  * Identity shortcuts vs 1x1 projection shortcuts.
-  * Modular training loops, learning rate schedules (Cosine Annealing), and early stopping.
-* **Practice & Labs:**
-  * Repo Directory: `04_deep_learning/`
-  * Implement Residual Block from scratch in [`src/resnet.py`](04_deep_learning/src/resnet.py).
-  * Implement Early Stopping and Training Engine in [`src/training_engine.py`](04_deep_learning/src/training_engine.py).
-* **Deliverable & Tests:**
-  * Pass [`tests/test_resnet.py`](04_deep_learning/tests/test_resnet.py).
+### Week 10: Dimensionality Reduction & Isolation Forests
+* **Theory:** PCA via SVD / Covariance eigendecomposition, reconstruction error, Isolation Forest random BST path length anomaly scoring.
+* **Practice & Labs:** Implement PCA and Isolation Forest in [`04_unsupervised_learning/src/`](04_unsupervised_learning/src/).
+* **Deliverable & Tests:** Pass [`04_unsupervised_learning/tests/test_pca.py`](04_unsupervised_learning/tests/test_pca.py) and [`test_isolation_forest.py`](04_unsupervised_learning/tests/test_isolation_forest.py).
 
 ---
 
-### Week 14: Computer Vision & Object Detection Mechanics (YOLO)
-
-* **Theory:**
-  * Object detection formulation: Simultaneous bounding box regression and classification.
-  * Spatial metrics: Intersection over Union (IoU) calculation.
-  * Candidate deduplication: Greedy Non-Maximum Suppression (NMS) algorithm.
-* **Practice & Labs:**
-  * Implement vectorized IoU matrix calculation in [`src/detection_metrics.py`](04_deep_learning/src/detection_metrics.py).
-  * Implement Non-Maximum Suppression (NMS) handling multi-box candidate clusters.
-* **Deliverable & Tests:**
-  * Pass [`tests/test_detection_metrics.py`](04_deep_learning/tests/test_detection_metrics.py).
-
----
-
-### Week 15: Transformers & Attention Mechanisms
-
-* **Theory:**
-  * Limitations of recurrence (RNN/LSTM) in long-range sequence modeling.
-  * Scaled Dot-Product Attention: Query, Key, Value routing and $\frac{1}{\sqrt{d_k}}$ temperature scaling.
-  * Multi-Head Attention (MHA): Splitting representations across parallel projection subspaces.
-  * Causal autoregressive decoding masks.
-* **Practice & Labs:**
-  * Implement scaled dot-product attention and `MultiHeadAttention` in [`src/attention.py`](04_deep_learning/src/attention.py).
-  * Complete [`notebooks/01_deep_learning_architectures.ipynb`](04_deep_learning/notebooks/01_deep_learning_architectures.ipynb).
-* **Deliverable & Tests:**
-  * Pass [`tests/test_attention.py`](04_deep_learning/tests/test_attention.py).
-
----
-
-### Week 16: Foundation Model Adaptation: LoRA & Vector Search RAG
-
-* **Theory:**
-  * Transfer Learning: Pretrained backbone feature extraction and classification head replacement.
-  * Parameter-Efficient Fine-Tuning (PEFT): Low-Rank Adaptation (LoRA) formulation ($\Delta W = \frac{\alpha}{r} A B$), weight merging for zero-latency deployment.
-  * Retrieval-Augmented Generation (RAG): Hallucination mitigation, document chunking, dense semantic vector search, and prompt augmentation.
-* **Practice & Labs:**
-  * Implement backbone freezing and fine-tuning in [`src/transfer_learning.py`](04_deep_learning/src/transfer_learning.py).
-  * Implement LoRA linear layer and weight merging in [`src/lora.py`](04_deep_learning/src/lora.py).
-  * Build dense vector index and RAG pipeline in [`src/rag_vector_search.py`](04_deep_learning/src/rag_vector_search.py).
-* **Deliverable & Tests (Milestone 3):**
-  * Pass [`tests/test_transfer_learning.py`](04_deep_learning/tests/test_transfer_learning.py), [`tests/test_lora.py`](04_deep_learning/tests/test_lora.py), and [`tests/test_rag.py`](04_deep_learning/tests/test_rag.py).
-  * **Milestone 3 Defense:** Demonstrate a working RAG retrieval pipeline and LoRA parameter efficiency calculations.
-
----
-
-## 🚀 Phase 5: Production MLOps, High-Performance APIs & Deployment (Weeks 17–20)
+## 🔄 Phase 5: Self-Supervised Learning & Contrastive Dynamics (Week 11)
 
 ### Phase Description
+Students learn representation learning from unlabeled data using pretext tasks, contrastive objectives, and autoencoders.
 
-The final phase prepares students for engineering in production environments. Students transition trained models into hardened, containerized, low-latency microservices with automated experiment tracking, hardware acceleration (ONNX), strict data contracts, and integration testing.
-
----
-
-### Week 17: Production Inference Microservices with FastAPI & Pydantic
-
-* **Theory:**
-  * Asynchronous request processing: ASGI, event loops, and Uvicorn workers.
-  * Strict data validation contracts: Pydantic schemas, physical range limits, NaN rejection.
-  * In-memory model caching: Eliminating disk I/O with lifespan managers (`@asynccontextmanager`).
-* **Practice & Labs:**
-  * Repo Directory: `05_mlops_production/`
-  * Define input/output contracts in [`app/schemas.py`](05_mlops_production/app/schemas.py).
-  * Implement thread-safe model manager in [`app/model_loader.py`](05_mlops_production/app/model_loader.py).
-  * Build `/health`, `/predict`, and `/batch_predict` endpoints in [`app/main.py`](05_mlops_production/app/main.py).
-* **Deliverable & Tests:**
-  * Pass [`tests/test_api.py`](05_mlops_production/tests/test_api.py).
+### Week 11: Contrastive InfoNCE Loss, SimCLR & Autoencoders
+* **Theory:** Contrastive representation learning, NT-Xent / InfoNCE loss, temperature scaling $\tau$, dimensional collapse prevention, Deep Autoencoders.
+* **Practice & Labs:** Implement `NTXentLoss`, `SimCLRFramework`, and `DeepAutoencoder` in [`05_self_supervised_learning/src/`](05_self_supervised_learning/src/).
+* **Deliverable & Tests:** Pass [`05_self_supervised_learning/tests/test_contrastive_loss.py`](05_self_supervised_learning/tests/test_contrastive_loss.py), [`test_autoencoder.py`](05_self_supervised_learning/tests/test_autoencoder.py), and [`test_simclr_framework.py`](05_self_supervised_learning/tests/test_simclr_framework.py).
 
 ---
 
-### Week 18: Model Compilation, Optimization & ONNX Runtime Acceleration
+## 🤝 Phase 6: Semi-Supervised Learning & Graph Propagation (Week 12)
 
-* **Theory:**
-  * Model optimization bottlenecks: Python GIL contention, framework overhead.
-  * Open Neural Network Exchange (ONNX) representation and protobuf graph format.
-  * Graph optimizations: Constant folding, node elimination, operator fusion.
-  * Quantization and execution providers (CPU vs CUDA vs TensorRT).
-* **Practice & Labs:**
-  * Implement model conversion in [`app/onnx_converter.py`](05_mlops_production/app/onnx_converter.py).
-  * Benchmark latency distributions (mean, p50, p95, p99) between Scikit-Learn and ONNX Runtime.
-* **Deliverable & Tests:**
-  * Pass [`tests/test_onnx.py`](05_mlops_production/tests/test_onnx.py).
+### Phase Description
+Combines small labeled datasets with massive unlabeled pools using pseudo-labeling, graph Markov walks, and consistency regularization.
+
+### Week 12: Self-Training, Label Propagation & Consistency Regularization
+* **Theory:** Smoothness, cluster, and manifold assumptions; self-training confidence thresholding; graph harmonic Dirichlet energy minimization; temperature sharpening.
+* **Practice & Labs:** Implement `SelfTrainingClassifier`, `LabelPropagation`, and consistency functions in [`06_semi_supervised_learning/src/`](06_semi_supervised_learning/src/).
+* **Deliverable & Tests:** Pass [`06_semi_supervised_learning/tests/test_pseudo_labeling.py`](06_semi_supervised_learning/tests/test_pseudo_labeling.py), [`test_label_propagation.py`](06_semi_supervised_learning/tests/test_label_propagation.py), and [`test_consistency_regularization.py`](06_semi_supervised_learning/tests/test_consistency_regularization.py).
 
 ---
 
-### Week 19: Experiment Tracking, Model Registry & Docker Containerization
+## 🧠 Phase 7: Deep Learning Architectures & Attention (Weeks 13–14)
 
-* **Theory:**
-  * Reproducibility crisis in ML: Hyperparameter tracking, run lineage, and artifact logging.
-  * MLflow architecture: Tracking Server, Model Artifacts, and Model Registry staging.
-  * Container virtualization: Multi-stage Docker builds, layer caching, non-root user execution, and orchestration with Docker Compose.
-* **Practice & Labs:**
-  * Implement experiment tracker and best-run query in [`app/mlflow_tracker.py`](05_mlops_production/app/mlflow_tracker.py).
-  * Build and test [`Dockerfile`](05_mlops_production/Dockerfile) and [`docker-compose.yml`](05_mlops_production/docker-compose.yml).
-* **Deliverable & Tests:**
-  * Pass [`tests/test_mlflow.py`](05_mlops_production/tests/test_mlflow.py).
-  * Successful container build and local healthcheck query via `curl`.
+### Phase Description
+Focuses on deep representations, residual gradient highways, spatial object detection metrics, and self-attention Transformer mechanisms.
+
+### Week 13: Residual Networks (ResNet) & Object Detection Metrics
+* **Theory:** Gradient highway preservation $\mathcal{F}(x) + x$, vectorized IoU calculation, Non-Maximum Suppression (NMS).
+* **Practice & Labs:** Implement ResNet blocks and detection metrics in [`07_deep_learning/src/`](07_deep_learning/src/).
+* **Deliverable & Tests:** Pass [`07_deep_learning/tests/test_resnet.py`](07_deep_learning/tests/test_resnet.py) and [`test_detection_metrics.py`](07_deep_learning/tests/test_detection_metrics.py).
+
+### Week 14: Transformers, Multi-Head Attention & RAG
+* **Theory:** Scaled Dot-Product Attention $\text{softmax}(QK^T / \sqrt{d_k})V$, causal decoding masks, dense vector indexing, RAG synthesis.
+* **Practice & Labs:** Implement `MultiHeadAttention` and vector search in [`07_deep_learning/src/`](07_deep_learning/src/).
+* **Deliverable & Tests:** Pass [`07_deep_learning/tests/test_attention.py`](07_deep_learning/tests/test_attention.py) and [`test_rag.py`](07_deep_learning/tests/test_rag.py).
 
 ---
 
-### Week 20: Capstone Project Defense & Automated Quality Gates (CI/CD)
+## 🎮 Phase 8: Reinforcement Learning & Decision Processes (Weeks 15–16)
 
-* **Theory:**
-  * Continuous Integration for ML: Pre-commit hooks, linting gates (`ruff`), automated test runners (`pytest`).
-  * Monitoring deployed models: Concept drift, covariate shift, latency degradation.
-* **Practice & Labs:**
-  * Assemble the full end-to-end pipeline:
-    1. Ingest raw data with DuckDB/Polars.
-    2. Validate with Pandera contracts.
-    3. Train and track models with MLflow.
-    4. Compile best model to ONNX.
-    5. Serve via FastAPI inside a Docker container.
-* **Deliverable & Assessment:**
-  * **Final Capstone Defense:** Comprehensive demonstration of the live microservice under concurrent load with complete test suite passing.
-  * Complete repository-wide verification: 100% test pass rate across all 58 tests.
+### Phase Description
+Covers sequential decision-making, Markov Decision Processes, value-based methods, deep Q-networks, and policy gradients.
+
+### Week 15: MDPs, GridWorlds & Tabular Q-Learning
+* **Theory:** Bellman expectation and optimality equations, exploration vs exploitation ($\epsilon$-greedy), off-policy Q-Learning updates.
+* **Practice & Labs:** Build GridWorld environment and Q-Learning agent in [`08_reinforcement_learning/src/`](08_reinforcement_learning/src/).
+* **Deliverable & Tests:** Pass [`08_reinforcement_learning/tests/test_q_learning.py`](08_reinforcement_learning/tests/test_q_learning.py).
+
+### Week 16: Deep Q-Networks (DQN) & Policy Gradient (REINFORCE)
+* **Theory:** Deadly triad, Experience Replay Buffer, Target Network synchronization, Policy Gradient Theorem, baseline variance reduction.
+* **Practice & Labs:** Implement `DQNAgent` and `REINFORCEAgent` in [`08_reinforcement_learning/src/`](08_reinforcement_learning/src/).
+* **Deliverable & Tests:** Pass [`08_reinforcement_learning/tests/test_dqn_agent.py`](08_reinforcement_learning/tests/test_dqn_agent.py) and [`test_policy_gradient.py`](08_reinforcement_learning/tests/test_policy_gradient.py).
+
+---
+
+## 🔀 Phase 9: Transfer Learning, PEFT & Domain Adaptation (Weeks 17–18)
+
+### Phase Description
+Addresses adapting foundation models to downstream domains efficiently: backbone freezing, parameter-efficient fine-tuning (LoRA), and domain alignment.
+
+### Week 17: Backbone Freezing, Fine-Tuning & LoRA Adaptation
+* **Theory:** Catastrophic forgetting, gradual unfreezing, Low-Rank Adaptation ($\Delta W = \frac{\alpha}{r}AB$), offline weight merging.
+* **Practice & Labs:** Implement `TransferLearningModel` and `LoRALinear` in [`09_transfer_learning/src/`](09_transfer_learning/src/).
+* **Deliverable & Tests:** Pass [`09_transfer_learning/tests/test_transfer_learning.py`](09_transfer_learning/tests/test_transfer_learning.py) and [`test_lora.py`](09_transfer_learning/tests/test_lora.py).
+
+### Week 18: Domain Adaptation & Maximum Mean Discrepancy (MMD)
+* **Theory:** Covariate shift $P(X_S) \ne P(X_T)$, RKHS embeddings, multi-kernel Gaussian RBF discrepancy.
+* **Practice & Labs:** Implement `MaximumMeanDiscrepancy` in [`09_transfer_learning/src/`](09_transfer_learning/src/).
+* **Deliverable & Tests:** Pass [`09_transfer_learning/tests/test_domain_adaptation.py`](09_transfer_learning/tests/test_domain_adaptation.py).
+
+---
+
+## 🚀 Phase 10: Production MLOps, APIs & Deployment (Weeks 19–20)
+
+### Phase Description
+Hardens models into production microservices with FastAPI, ONNXRuntime acceleration, MLflow lifecycle tracking, Docker, and CI/CD quality gates.
+
+### Week 19: REST APIs with FastAPI, Pydantic & ONNX Acceleration
+* **Theory:** ASGI concurrency, strict Pydantic data schemas, ONNX graph optimization, operator fusion.
+* **Practice & Labs:** Build inference endpoints and ONNX converter in [`10_mlops_production/`](10_mlops_production/).
+* **Deliverable & Tests:** Pass [`10_mlops_production/tests/test_api.py`](10_mlops_production/tests/test_api.py) and [`test_onnx.py`](10_mlops_production/tests/test_onnx.py).
+
+### Week 20: MLflow Lifecycle Governance, Docker & Capstone Defense
+* **Theory:** Run tracking, model staging, multi-stage Docker builds, automated test verification.
+* **Practice & Labs:** Build MLflow tracker, Dockerfile, docker-compose, and assemble full end-to-end pipeline.
+* **Deliverable & Assessment:** Pass [`10_mlops_production/tests/test_mlflow.py`](10_mlops_production/tests/test_mlflow.py), pass entire repository test suite (98/98 tests), and defend Capstone project.

@@ -14,10 +14,16 @@ minversion = "7.0"
 testpaths = [
     "01_math_foundations/tests",
     "02_data_engineering/tests",
-    "03_machine_learning/tests",
+    "03_supervised_learning/tests",
+    "04_unsupervised_learning/tests",
+    "05_self_supervised_learning/tests",
+    "06_semi_supervised_learning/tests",
     "07_deep_learning/tests",
+    "08_reinforcement_learning/tests",
+    "09_transfer_learning/tests",
     "10_mlops_production/tests",
 ]
+addopts = ["--import-mode=importlib"]
 pythonpath = ["."]
 python_files = ["test_*.py"]
 python_classes = ["Test*"]
