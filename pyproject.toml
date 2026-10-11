@@ -15,8 +15,8 @@ testpaths = [
     "01_math_foundations/tests",
     "02_data_engineering/tests",
     "03_machine_learning/tests",
-    "04_deep_learning/tests",
-    "05_mlops_production/tests",
+    "07_deep_learning/tests",
+    "10_mlops_production/tests",
 ]
 pythonpath = ["."]
 python_files = ["test_*.py"]

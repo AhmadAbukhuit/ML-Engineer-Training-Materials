@@ -36,6 +36,7 @@ Building real-world AI systems requires more than importing high-level framework
 - [x] **2.3 Unstructured Handling:** Image processing pipeline with contrast normalization, data augmentation, and Pascal VOC / YOLO bounding box parsers.
 - [x] **2.4 Advanced Feature Engineering:** Out-of-fold smoothed target encoding, Yeo-Johnson transformations, and Point-in-Time temporal `ASOF` joins.
 - [x] **2.5 Data Quality & Validation:** Runtime data contracts enforcing column constraints and distribution bounds using `Pandera`.
+- [x] **2.6 Exploratory Data Analysis & Preprocessing Pipelines:** NumPy vectorization, Pandas missingness audits, IQR outlier filtering, correlation matrices, and composable Scikit-Learn pipelines (`RobustScaler`, `ColumnTransformer`).
 
 ### Phase 3: Core Machine Learning
 

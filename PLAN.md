@@ -104,17 +104,20 @@ Real-world machine learning systems spend 80% of their operational lifecycle ing
 
 ---
 
-### Week 6: High-Performance Tabular & Semi-Structured ETL
+### Week 6: Exploratory Data Analysis & High-Performance Tabular ETL (NumPy, Pandas, Scikit-Learn)
 
 * **Theory:**
-  * Memory layouts in Apache Arrow and Polars.
-  * Lazy vs Eager execution frames and query plan optimization.
+  * NumPy vectorized broadcasting, memory buffers, and conditional masks (`np.where`).
+  * Pandas exploratory data analysis (EDA): missingness audits, summary statistics, grouping, and aggregation.
+  * Distribution outlier detection: Interquartile Range (IQR) boundary formulation.
+  * Zero-leakage preprocessing with Scikit-Learn: `ColumnTransformer`, `RobustScaler`, and `OneHotEncoder(handle_unknown='ignore')`.
   * Streaming JSON parsing vs memory-exhaustive bulk loading.
 * **Practice & Labs:**
+  * Implement data profiling, IQR outlier detection, and pipeline builders in [`src/data_analysis.py`](02_data_engineering/src/data_analysis.py).
   * Implement streaming JSON telemetry parser in [`src/telemetry_parser.py`](02_data_engineering/src/telemetry_parser.py).
   * Complete Exploratory Data Analysis in [`notebooks/01_telemetry_eda.ipynb`](02_data_engineering/notebooks/01_telemetry_eda.ipynb).
 * **Deliverable & Tests:**
-  * Run and pass [`tests/test_data_engineering.py`](02_data_engineering/tests/test_data_engineering.py).
+  * Run and pass [`tests/test_data_analysis.py`](02_data_engineering/tests/test_data_analysis.py) and [`tests/test_data_engineering.py`](02_data_engineering/tests/test_data_engineering.py).
 
 ---
 
@@ -144,7 +147,7 @@ Real-world machine learning systems spend 80% of their operational lifecycle ing
   * Implement temporal point-in-time join in [`src/temporal_joins.py`](02_data_engineering/src/temporal_joins.py).
   * Build Pandera validation schemas in [`src/data_validation.py`](02_data_engineering/src/data_validation.py).
 * **Deliverable & Tests (Milestone 1):**
-  * Pass [`tests/test_advanced_transforms.py`](02_data_engineering/tests/test_advanced_transforms.py), [`tests/test_temporal_joins.py`](02_data_engineering/tests/test_temporal_joins.py), and [`tests/test_data_validation.py`](02_data_engineering/tests/test_data_validation.py).
+  * Pass [`tests/test_advanced_transforms.py`](02_data_engineering/tests/test_advanced_transforms.py), [`tests/test_temporal_joins.py`](02_data_engineering/tests/test_temporal_joins.py), [`tests/test_data_validation.py`](02_data_engineering/tests/test_data_validation.py), and [`tests/test_data_analysis.py`](02_data_engineering/tests/test_data_analysis.py).
   * **Milestone 1 Defense:** Code review of an automated ETL pipeline with strict data contracts.
 
 ---

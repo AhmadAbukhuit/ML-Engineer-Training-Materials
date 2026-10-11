@@ -15,22 +15,26 @@ By the end of this phase, you will:
 5. **Point-in-Time Correctness (ASOF Joins):** Build temporal merge pipelines that join event observations with feature histories without lookahead data leakage.
 6. **Advanced Feature Transformations:** Implement Out-of-Fold (OOF) smoothed Target Encoding for high-cardinality categories and Yeo-Johnson power transforms for skewed distributions.
 7. **Computer Vision Pipelines:** Implement aspect-ratio preserving letterboxing and label format conversions (Pascal VOC to normalized YOLO TXT).
+8. **Exploratory Data Analysis (NumPy, Pandas, Scikit-Learn):** Profile feature missingness, detect IQR outliers, compute correlation matrices, and construct composable, zero-leakage preprocessing pipelines with `RobustScaler`.
 
 ---
 
 ## 📚 Curated Study Resources
 
 ### 📖 Documentation & Guides
+* **[Pandas User Guide](https://pandas.pydata.org/docs/user_guide/)**: DataFrames, grouping, pivoting, missing data, and temporal manipulation.
+* **[NumPy User Guide](https://numpy.org/doc/stable/user/)**: Vectorization, broadcasting rules, and multi-dimensional slicing.
+* **[Scikit-Learn: Preprocessing Data](https://scikit-learn.org/stable/modules/preprocessing.html)**: Transformers, scalers, encoders, and pipelines.
 * **[DuckDB Documentation](https://duckdb.org/docs/)**: Vectorized SQL query engine for fast Parquet analytics.
 * **[Polars User Guide](https://docs.pola.rs/user-guide/)**: Lazy evaluation and multithreaded Arrow execution in Rust.
 * **[Pandera Documentation](https://pandera.readthedocs.io/)**: Declarative statistical data validation for DataFrames.
 * **[Feast Feature Store Concepts](https://docs.feast.dev/)**: Point-in-time correctness, offline vs online feature serving.
-* **[Scikit-Learn: Preprocessing Data](https://scikit-learn.org/stable/modules/preprocessing.html)**: Transformers, scalers, and imputers.
 
 ### 📄 Included Deep-Dive Guides
 * [`01_columnar_storage_and_query_engines.md`](01_columnar_storage_and_query_engines.md): Parquet, Arrow, DuckDB, and Predicate Pushdown.
 * [`02_sql_for_feature_engineering.md`](02_sql_for_feature_engineering.md): Window functions, rolling spend, login intervals, and CTEs.
 * [`03_data_quality_and_feature_stores.md`](03_data_quality_and_feature_stores.md): Pandera contracts, temporal leakage, and Feature Store architecture.
+* [`04_data_analysis_with_numpy_pandas_sklearn.md`](04_data_analysis_with_numpy_pandas_sklearn.md): Vectorized NumPy, Pandas EDA profiling, and Scikit-Learn pipelines.
 
 ---
 
@@ -82,6 +86,17 @@ Complete these implementation tasks inside `02_data_engineering/src/` and verify
 
 ---
 
+### Task 2.8: Exploratory Data Analysis & Robust Preprocessing Pipelines
+* **File:** `src/data_analysis.py`
+* **Goal:** Implement reusable data analysis utilities:
+  1. `generate_missing_report`: Profile null counts and percentages across all columns.
+  2. `detect_outliers_iqr`: Identify distribution anomalies using the 1.5x IQR rule.
+  3. `summarize_numeric_features`: Compute multi-moment summary statistics (mean, std, IQR, skewness).
+  4. `compute_correlation_matrix`: Calculate pairwise numeric feature correlations.
+  5. `build_analysis_pipeline`: Build an isolated, zero-leakage Scikit-Learn `ColumnTransformer` with `RobustScaler`, median/most-frequent imputation, and unknown-category resilient `OneHotEncoder`.
+
+---
+
 ## 📁 Directory Structure for Phase 2
 
 ```text
@@ -90,24 +105,27 @@ Complete these implementation tasks inside `02_data_engineering/src/` and verify
 ├── 01_columnar_storage_and_query_engines.md
 ├── 02_sql_for_feature_engineering.md
 ├── 03_data_quality_and_feature_stores.md
+├── 04_data_analysis_with_numpy_pandas_sklearn.md
 ├── notebooks/
 │   ├── 01_telemetry_eda.ipynb              # Exploring raw JSON/XML telemetry
 │   ├── 02_image_visualization.ipynb         # Visualizing letterboxing & YOLO boxes
 │   └── 03_sql_and_parquet_benchmarks.ipynb  # Parquet vs CSV benchmarks & ASOF joins
 ├── src/
 │   ├── __init__.py
-│   ├── telemetry_parser.py                 # Task 1.1: Polars IoT parser
-│   ├── image_pipeline.py                   # Task 1.2: CV Letterboxing & VOC-to-YOLO
-│   ├── feature_engineering.py              # Task 1.3: Zero-leakage ColumnTransformer
-│   ├── duckdb_parquet.py                   # Task 1.4: Parquet export & DuckDB queries
-│   ├── data_validation.py                  # Task 1.5: Pandera data contracts
-│   ├── advanced_transforms.py              # Task 1.6: OOF Target Encoding & Yeo-Johnson
-│   └── temporal_joins.py                   # Task 1.7: Point-in-time ASOF merges
+│   ├── telemetry_parser.py                 # Task 2.1: Polars IoT parser
+│   ├── image_pipeline.py                   # Task 2.2: CV Letterboxing & VOC-to-YOLO
+│   ├── feature_engineering.py              # Task 2.3: Zero-leakage ColumnTransformer
+│   ├── duckdb_parquet.py                   # Task 2.4: Parquet export & DuckDB queries
+│   ├── data_validation.py                  # Task 2.5: Pandera data contracts
+│   ├── advanced_transforms.py              # Task 2.6: OOF Target Encoding & Yeo-Johnson
+│   ├── temporal_joins.py                   # Task 2.7: Point-in-time ASOF merges
+│   └── data_analysis.py                    # Task 2.8: EDA, IQR Outliers & Robust Pipelines
 └── tests/
     ├── __init__.py
     ├── test_data_engineering.py
     ├── test_duckdb_parquet.py
     ├── test_data_validation.py
     ├── test_advanced_transforms.py
-    └── test_temporal_joins.py
+    ├── test_temporal_joins.py
+    └── test_data_analysis.py
 ```

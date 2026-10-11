@@ -47,17 +47,20 @@ Enforce a strict anti-pattern rule: **No explicit Python `for`-loops over multid
   * **Numerical underflow:** Directly computing exponentiations in log-loss or softmax without max-shifting.
 * **Instructor Tip:** Have students inspect tensor shapes at every single layer (`print(tensor.shape)` or debugger breakpoints) during Autograd derivations.
 
-### Phase 2: Big Data Engineering & Feature Store Pipelines
+### Phase 2: Big Data Engineering, Feature Stores & Exploratory Data Analysis
 
-* **Focus:** High-throughput columnar formats (Parquet, Polars, DuckDB), streaming ETL, point-in-time correctness.
+* **Focus:** High-throughput columnar formats (Parquet, Polars, DuckDB), streaming ETL, point-in-time correctness, and Exploratory Data Analysis (EDA) with NumPy, Pandas, and Scikit-Learn.
 * **Key Derivations:**
   * Memory layouts: Row-oriented (CSV) vs Columnar (Parquet).
+  * Interquartile Range (IQR) outlier bounds: $[Q_1 - 1.5 \cdot \text{IQR}, Q_3 + 1.5 \cdot \text{IQR}]$.
+  * Robust scaling ($z_{\text{robust}} = \frac{x - Q_2}{\text{IQR}}$) vs Standard scaling under heavy-tailed distributions.
   * Out-of-fold smoothed target encoding: $\hat{x}_i = \frac{n \cdot \bar{y}_{\text{cat}} + m \cdot \bar{y}_{\text{global}}}{n + m}$.
   * Point-in-time temporal joins (`ASOF` merges) to eliminate lookahead data leakage.
 * **Common Student Misconceptions:**
+  * **Data Leakage in Preprocessing:** Fitting `StandardScaler` or `OneHotEncoder` on the combined dataset before splitting train and test sets. Emphasize that parameters ($\mu, \sigma$, categories) must be learned strictly from training folds.
   * **Lookahead Data Leakage:** Joining future feature snapshots onto historical target events. Teach students why standard SQL `JOIN` on customer ID produces unrealistic backtest metrics.
-  * **Memory Exhaustion:** Trying to parse massive JSON files with `json.load()` all at once instead of line-by-line generators or streaming parsers.
-* **Instructor Tip:** Run live benchmarks comparing DuckDB against Pandas on a 500MB Parquet query to visually demonstrate the 10x–50x speedup of columnar execution.
+  * **Memory Exhaustion:** Trying to parse massive files with `json.load()` all at once instead of line-by-line generators or Polars lazy frames.
+* **Instructor Tip:** Have students write a script that scales a dataset before vs after train/test split to demonstrate how evaluation scores are falsely inflated by pre-split fitting.
 
 ### Phase 3: Classical Machine Learning & Statistical Learning
 
