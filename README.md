@@ -47,6 +47,7 @@ Building real-world AI systems requires more than importing high-level framework
 - [x] **3.4 Non-Parametric & Metric Learning:** K-Nearest Neighbors (k-NN) classifier and regressor from first principles with Euclidean, Manhattan, and Minkowski distance metrics.
 - [x] **3.5 Tree & Ensemble Benchmarking:** CART Decision Tree from scratch (Gini impurity), alongside Random Forest, LightGBM, and XGBoost comparative benchmarks.
 - [x] **3.6 Time Series Forecasting:** Lag feature engineering, rolling window statistics, and Walk-Forward cross-validation without temporal lookahead leakage.
+- [x] **3.7 Evaluation Metrics & Diagnostic Trade-offs:** Vectorized Confusion Matrix, Accuracy Paradox, Precision, Recall, Specificity, F1, $F_\beta$, Balanced Accuracy, MCC, ROC-AUC, PR-AUC, Brier score, MAE, MSE, RMSE, MAPE, and $R^2$.
 
 ### Phase 4: Unsupervised Learning
 
@@ -132,9 +133,10 @@ ML-Engineer-Training-Materials/
 │   ├── src/
 │   └── tests/
 │
-├── 03_supervised_learning/      # Linear, SVM, Naive Bayes, k-NN, CART Trees, Ensembles & Time Series
+├── 03_supervised_learning/      # Linear, SVM, Naive Bayes, k-NN, CART Trees, Ensembles, Time Series & Metrics
 │   ├── README.md
 │   ├── 01_supervised_models_catalog.md
+│   ├── 02_evaluation_metrics_guide.md
 │   ├── notebooks/
 │   ├── src/
 │   └── tests/
