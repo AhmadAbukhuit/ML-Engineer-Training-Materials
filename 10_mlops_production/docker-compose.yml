@@ -3,8 +3,8 @@ version: "3.8"
 services:
   ml-inference-api:
     build:
-      context: ..
-      dockerfile: 05_mlops_production/Dockerfile
+      context: .
+      dockerfile: Dockerfile
     container_name: ml_inference_service
     ports:
       - "8000:8000"

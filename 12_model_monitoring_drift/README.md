@@ -6,14 +6,14 @@ Welcome to the **Model Monitoring & Drift Detection** phase of the Machine Learn
 
 ## 📚 Curriculum & Reference Guides
 
-- [`01_drift_monitoring_catalog.md`](file:///home/ahmad/ML-Engineer-Training-Materials/12_model_monitoring_drift/01_drift_monitoring_catalog.md): Comprehensive theoretical catalog covering Covariate Shift vs Concept Drift, Population Stability Index (PSI), Two-Sample Kolmogorov-Smirnov (K-S) Tests, Wasserstein Distance ($W_1$), Adaptive Windowing (ADWIN), and the Page-Hinkley cumulative sum test.
+- [`01_drift_monitoring_catalog.md`](./01_drift_monitoring_catalog.md): Comprehensive theoretical catalog covering Covariate Shift vs Concept Drift, Population Stability Index (PSI), Two-Sample Kolmogorov-Smirnov (K-S) Tests, Wasserstein Distance ($W_1$), Adaptive Windowing (ADWIN), and the Page-Hinkley cumulative sum test.
 
 ---
 
 ## 🛠️ Code Implementations (`src/`)
 
-- [`src/data_drift.py`](file:///home/ahmad/ML-Engineer-Training-Materials/12_model_monitoring_drift/src/data_drift.py): Vectorized implementations of `population_stability_index`, `ks_two_sample_test`, `wasserstein_distance_1d`, and `DataDriftDetector` multi-feature auditing engine.
-- [`src/concept_drift.py`](file:///home/ahmad/ML-Engineer-Training-Materials/12_model_monitoring_drift/src/concept_drift.py): Streaming change detectors featuring `ADWIN` (Adaptive Windowing with Hoeffding split bounds) and `PageHinkley` cumulative sum change detection.
+- [`src/data_drift.py`](./src/data_drift.py): Vectorized implementations of `population_stability_index`, `ks_two_sample_test`, `wasserstein_distance_1d`, and `DataDriftDetector` multi-feature auditing engine.
+- [`src/concept_drift.py`](./src/concept_drift.py): Streaming change detectors featuring `ADWIN` (Adaptive Windowing with Hoeffding split bounds) and `PageHinkley` cumulative sum change detection.
 
 ---
 

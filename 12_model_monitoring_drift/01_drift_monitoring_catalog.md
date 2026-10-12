@@ -19,6 +19,7 @@ Under the probabilistic framework of joint distribution $P(X, Y) = P(X) P(Y|X) =
 ## 2. Statistical Tests for Covariate Data Drift
 
 ### 2.1 Population Stability Index (PSI)
+
 - **Origin**: Credit scoring and enterprise risk management.
 - **Mathematical Formulation**:
   Binned into $K$ quantile buckets:
@@ -32,6 +33,7 @@ Under the probabilistic framework of joint distribution $P(X, Y) = P(X) P(Y|X) =
   - $\text{PSI} \ge 0.2$: Severe distribution drift; automated model retraining or fallback to heuristic baseline required.
 
 ### 2.2 Two-Sample Kolmogorov-Smirnov (K-S) Test
+
 - **Non-Parametric**: Requires zero parametric assumptions about underlying distribution families.
 - **Test Statistic**:
   $$D_{n_1, n_2} = \sup_x |F_1(x) - F_2(x)|$$
@@ -39,6 +41,7 @@ Under the probabilistic framework of joint distribution $P(X, Y) = P(X) P(Y|X) =
 - **Decision Rule**: Null hypothesis $H_0: F_1 = F_2$. If asymptotic $p$-value $< \alpha$ (e.g. 0.05), reject $H_0$ and declare statistically significant drift.
 
 ### 2.3 Wasserstein Distance (Earth Mover's Distance - $W_1$)
+
 - Evaluates the minimum work needed to transform one probability distribution into another:
   $$W_1(u, v) = \int_{-\infty}^\infty |U(x) - V(x)| \, dx$$
 - In contrast to KL divergence, Wasserstein distance remains well-defined, continuous, and non-infinite even when distributions have non-overlapping supports.
@@ -50,6 +53,7 @@ Under the probabilistic framework of joint distribution $P(X, Y) = P(X) P(Y|X) =
 Unlike data drift (which only requires unlabelled feature inputs $X$), concept drift monitoring tracks changes in model accuracy or residuals $(y, \hat{y})$ in real-time streaming environments.
 
 ### 3.1 Adaptive Windowing (ADWIN - Bifet & Gavaldà, 2007)
+
 - **Algorithm Mechanics**:
   1. Maintains an active window $W$ of recent sample observations.
   2. Dynamically evaluates all possible binary split partitions $W = W_0 \cdot W_1$.
@@ -60,6 +64,7 @@ Unlike data drift (which only requires unlabelled feature inputs $X$), concept d
 - **Guarantees**: Rigorous bounds on both false positive rate (at most $\delta$) and detection delay.
 
 ### 3.2 Page-Hinkley Test
+
 - Sequential cumulative sum test designed to detect abrupt jumps in streaming error metrics.
 - Updates running mean $\bar{x}_t$ and cumulative sum:
   $$U_t = \sum_{k=1}^t (x_k - \bar{x}_k - \alpha), \quad m_t = \min_{1 \le k \le t} U_k$$

@@ -6,7 +6,7 @@ This module covers foundational algorithms for estimating predictive confidence,
 
 ## Directory Structure
 
-```
+```text
 15_uncertainty_quantification/
 ├── 01_uncertainty_quantification_catalog.md  # Theoretical foundations and mathematical proofs
 ├── README.md                                 # Architecture and usage guide

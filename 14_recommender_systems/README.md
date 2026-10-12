@@ -22,7 +22,7 @@ graph LR
 
 ## Directory Structure
 
-```
+```text
 14_recommender_systems/
 ├── 01_recommender_systems_catalog.md  # Comprehensive theoretical guide & formulations
 ├── README.md                          # Architecture and usage guide

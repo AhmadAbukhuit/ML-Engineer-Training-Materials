@@ -20,6 +20,7 @@ $$\mathcal{M} = \langle \mathcal{S}, \mathcal{A}, \mathcal{P}, \mathcal{R}, \gam
   $$G_t = \sum_{k=0}^\infty \gamma^k R_{t+k+1}$$
 
 ### 1.1 Value Functions & Bellman Equations
+
 - **State-Value Function $V^\pi(s)$**: Expected return starting from state $s$ following policy $\pi$:
   $$V^\pi(s) = \mathbb{E}_\pi [G_t | S_t = s] = \sum_{a \in \mathcal{A}} \pi(a|s) \sum_{s', r} \mathcal{P}(s', r | s, a) \left[ r + \gamma V^\pi(s') \right]$$
 - **Action-Value Function $Q^\pi(s, a)$**: Expected return starting from state $s$, taking action $a$, and thereafter following $\pi$:
@@ -35,16 +36,19 @@ $$\mathcal{M} = \langle \mathcal{S}, \mathcal{A}, \mathcal{P}, \mathcal{R}, \gam
 Assumes full knowledge of environmental transition dynamics $\mathcal{P}$ and rewards $\mathcal{R}$.
 
 ### 2.1 Policy Evaluation
+
 - Computes $V^\pi$ for a fixed policy $\pi$ via iterative application of the Bellman expectation backup operator $T^\pi$:
   $$V_{k+1}(s) \leftarrow \sum_a \pi(a|s) \sum_{s', r} p(s', r | s, a) [r + \gamma V_k(s')]$$
   Guaranteed convergence by Banach Fixed Point Theorem (contraction mapping with factor $\gamma$).
 
 ### 2.2 Policy Iteration (Generalized Policy Iteration / GPI)
+
 - Alternates between complete Policy Evaluation ($V^{\pi_k}$) and Policy Improvement:
   $$\pi_{k+1}(s) = \arg\max_{a \in \mathcal{A}} \sum_{s', r} p(s', r | s, a) [r + \gamma V^{\pi_k}(s')]$$
   Terminates at strictly optimal policy $\pi^*$ in finite iterations.
 
 ### 2.3 Value Iteration
+
 - Collapses policy evaluation and greedy improvement into a single step via the Bellman optimality operator $T^*$:
   $$V_{k+1}(s) \leftarrow \max_{a \in \mathcal{A}} \sum_{s', r} p(s', r | s, a) [r + \gamma V_k(s')]$$
 
@@ -55,12 +59,14 @@ Assumes full knowledge of environmental transition dynamics $\mathcal{P}$ and re
 Learns directly from environmental experience without knowing $\mathcal{P}$ or $\mathcal{R}$.
 
 ### 3.1 Monte Carlo Methods
+
 - Updates value estimates using complete empirical episode returns:
   $$V(S_t) \leftarrow V(S_t) + \alpha [G_t - V(S_t)]$$
 - **First-Visit vs Every-Visit**: Considers only the first occurrence of state $s$ in an episode or every occurrence.
 - **Unbiased** ($ \mathbb{E}[G_t] = V^\pi(s)$) but exhibits high variance; strictly requires episodic environments.
 
 ### 3.2 Temporal Difference (TD) Learning
+
 - Bootstraps estimates using immediate reward plus current discounted value estimate of next state.
 - **TD(0) Prediction**:
   $$V(S_t) \leftarrow V(S_t) + \alpha \left[ R_{t+1} + \gamma V(S_{t+1}) - V(S_t) \right]$$
@@ -82,6 +88,7 @@ Learns directly from environmental experience without knowing $\mathcal{P}$ or $
 Replaces lookup tables with deep parameterized function approximators $Q(s, a; \boldsymbol{\theta})$.
 
 ### 4.1 The Deadly Triad & Deep Q-Networks (DQN)
+
 - **The Deadly Triad**: Instability/divergence occurs when combining:
   1. *Function approximation* (neural networks).
   2. *Bootstrapping* (using current estimates to update targets).
@@ -94,21 +101,25 @@ Replaces lookup tables with deep parameterized function approximators $Q(s, a; \
     Target network weights are frozen and synchronized every $C$ steps or via Polyak smoothing: $\boldsymbol{\theta}^- \leftarrow \tau \boldsymbol{\theta} + (1 - \tau) \boldsymbol{\theta}^-$.
 
 ### 4.2 Double DQN (DDQN)
+
 - **Maximization Bias**: Standard DQN suffers from severe overestimation bias because $\mathbb{E}[\max(X_1, X_2)] \ge \max(\mathbb{E}[X_1], \mathbb{E}[X_2])$.
 - **Decoupled Update**: Uses online network $\boldsymbol{\theta}$ to **select** the greedy action, and target network $\boldsymbol{\theta}^-$ to **evaluate** its value:
   $$y_i^{\text{DDQN}} = r_i + \gamma (1 - d_i) Q\left( s'_i, \arg\max_{a'} Q(s'_i, a'; \boldsymbol{\theta}); \boldsymbol{\theta}^- \right)$$
 
 ### 4.3 Dueling DQN
+
 - Decomposes $Q(s, a)$ into a state value function $V(s)$ and state-dependent action advantage function $A(s, a)$:
   $$Q(s, a; \boldsymbol{\theta}, \boldsymbol{\alpha}, \boldsymbol{\beta}) = V(s; \boldsymbol{\theta}, \boldsymbol{\beta}) + \left( A(s, a; \boldsymbol{\theta}, \boldsymbol{\alpha}) - \frac{1}{|\mathcal{A}|} \sum_{a'} A(s, a'; \boldsymbol{\theta}, \boldsymbol{\alpha}) \right)$$
 - The mean subtraction ensures unique identifiability: at the optimal action, $A^*(s, a^*) = 0$ and $Q^*(s, a^*) = V^*(s)$.
 
 ### 4.4 Prioritized Experience Replay (PER)
+
 - Samples transitions with probability proportional to absolute TD error $|\delta_i|^\alpha$:
   $$P(i) = \frac{p_i^\alpha}{\sum_k p_k^\alpha}, \quad p_i = |\delta_i| + \epsilon$$
 - Corrects sampling bias using Importance Sampling (IS) weights: $w_i = (N \cdot P(i))^{-\beta}$.
 
 ### 4.5 Rainbow DQN
+
 - Fuses 6 DQN advancements into a single architecture: Double Q-learning, Dueling Networks, Prioritized Replay, Multi-step learning ($n$-step returns), Distributional RL (Categorical C51), and Noisy Networks (parametric exploration noise).
 
 ---
@@ -118,15 +129,18 @@ Replaces lookup tables with deep parameterized function approximators $Q(s, a; \
 Directly parameterizes the policy $\pi_\theta(a|s)$ and optimizes performance objective $J(\theta)$ via gradient ascent.
 
 ### 5.1 The Policy Gradient Theorem
+
 $$\nabla_\theta J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta} \left[ \sum_{t=0}^T \nabla_\theta \log \pi_\theta(a_t | s_t) Q^{\pi_\theta}(s_t, a_t) \right]$$
 Remarkably, the gradient does *not* require computing derivatives of environmental state transition probabilities $\nabla_\theta \mathcal{P}(s'|s, a)$.
 
 ### 5.2 REINFORCE (Monte Carlo Policy Gradient)
+
 - Uses empirical sample return $G_t$ as an unbiased estimator of $Q(s_t, a_t)$:
   $$\theta \leftarrow \theta + \alpha \sum_{t=0}^T \nabla_\theta \log \pi_\theta(a_t | s_t) \left( G_t - b(s_t) \right)$$
 - Baseline $b(s_t)$ (e.g., learned state value $V(s_t)$) reduces variance without introducing bias.
 
 ### 5.3 Advantage Actor-Critic (A2C / A3C)
+
 - **Actor**: Parameterizes policy $\pi_\theta(a|s)$.
 - **Critic**: Parameterizes value function $V_\phi(s)$.
 - Replaces $G_t$ with the Advantage function $A(s, a) = Q(s, a) - V(s) \approx r + \gamma V_\phi(s') - V_\phi(s)$ (TD error).
@@ -134,11 +148,13 @@ Remarkably, the gradient does *not* require computing derivatives of environment
 - **A2C**: Synchronous, deterministic batched GPU execution replacing async locks.
 
 ### 5.4 Trust Region Policy Optimization (TRPO)
+
 - Solves policy degradation caused by large gradient steps. Maximizes surrogate objective subject to a KL-divergence constraint on policy shift:
   $$\max_\theta \hat{\mathbb{E}}_t \left[ \frac{\pi_\theta(a_t|s_t)}{\pi_{\theta_{\text{old}}}(a_t|s_t)} \hat{A}_t \right] \quad \text{s.t.} \quad \hat{\mathbb{E}}_t [D_{\text{KL}}(\pi_{\theta_{\text{old}}}(\cdot|s_t) \parallel \pi_\theta(\cdot|s_t))] \le \delta$$
 - Solved via Second-order Natural Policy Gradient (Fisher Information Matrix and Conjugate Gradient).
 
 ### 5.5 Proximal Policy Optimization (PPO)
+
 - Achieves TRPO's monotonic improvement guarantee using a first-order clipped surrogate objective:
   $$L^{\text{CLIP}}(\theta) = \hat{\mathbb{E}}_t \left[ \min\left( r_t(\theta) \hat{A}_t, \, \text{clip}(r_t(\theta), 1-\epsilon, 1+\epsilon) \hat{A}_t \right) \right]$$
   where probability ratio $r_t(\theta) = \frac{\pi_\theta(a_t|s_t)}{\pi_{\theta_{\text{old}}}(a_t|s_t)}$ and $\epsilon \approx 0.2$.
@@ -149,6 +165,7 @@ Remarkably, the gradient does *not* require computing derivatives of environment
 ## 6. Continuous Control & Maximum Entropy RL
 
 ### 6.1 DDPG & TD3
+
 - **DDPG (Deep Deterministic Policy Gradient)**:
   - Deterministic policy $\mu_\theta(s) \in \mathbb{R}^d$.
   - Continuous action space; uses replay buffer and target networks.
@@ -158,6 +175,7 @@ Remarkably, the gradient does *not* require computing derivatives of environment
   - Target policy smoothing (adds clipped noise to target actions).
 
 ### 6.2 SAC (Soft Actor-Critic)
+
 - Optimizes **Maximum Entropy RL**: agent maximizes both expected reward and policy entropy:
   $$J(\pi) = \sum_{t=0}^T \mathbb{E}_{(s_t, a_t)} [R(s_t, a_t) + \alpha \mathcal{H}(\pi(\cdot|s_t))]$$
   where temperature $\alpha$ controls exploration vs exploitation.
@@ -168,10 +186,12 @@ Remarkably, the gradient does *not* require computing derivatives of environment
 ## 7. Modern Frontiers: Model-Based DRL & LLM Alignment
 
 ### 7.1 Model-Based DRL (DreamerV3, MuZero)
+
 - **DreamerV3 (Hafner et al.)**: Learns a Recurrent State-Space World Model (RSSM) predicting latent transition dynamics, then trains an Actor-Critic completely in imagined world-model rollouts.
 - **MuZero (Silver et al.)**: Combines tree search (MCTS) with learned latent models without environmental rules.
 
 ### 7.2 RL from Human Feedback (RLHF) & Direct Preference Optimization (DPO)
+
 - **RLHF**:
   1. Train Reward Model $r_\psi(x, y)$ on pairwise human preferences using Bradley-Terry loss:
      $$\mathcal{L}_R = -\log \sigma(r_\psi(x, y_w) - r_\psi(x, y_l))$$

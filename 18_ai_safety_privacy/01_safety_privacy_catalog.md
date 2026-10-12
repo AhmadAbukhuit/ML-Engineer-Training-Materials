@@ -9,6 +9,7 @@ Deploying machine learning models in production exposes organizations to adversa
 Deep neural networks exhibit extreme sensitivity to small, worst-case input perturbations crafted to maximize loss while remaining imperceptible.
 
 ### 1.1 Fast Gradient Sign Method (FGSM - Goodfellow et al., 2014)
+
 Linearizing the cost function $\mathcal{L}(\theta, x, y)$ around $x$, the perturbation that maximizes loss under an $L_\infty$ constraint $\|\delta\|_\infty \le \epsilon$ is:
 
 $$x_{\text{adv}} = \text{clip}\left( x + \epsilon \cdot \text{sign}\left( \nabla_x \mathcal{L}(\theta, x, y) \right), \, x_{\min}, \, x_{\max} \right)$$
@@ -16,6 +17,7 @@ $$x_{\text{adv}} = \text{clip}\left( x + \epsilon \cdot \text{sign}\left( \nabla
 FGSM is a computationally cheap single-step attack, useful for adversarial training.
 
 ### 1.2 Projected Gradient Descent (PGD - Madry et al., 2018)
+
 PGD is the standard first-order adversary, treating attack generation as constrained non-convex optimization:
 
 $$x^{0} = x + \mathcal{U}(-\epsilon, \epsilon)$$
@@ -32,7 +34,9 @@ A randomized algorithm $\mathcal{M}$ satisfies $(\epsilon, \delta)$-differential
 $$\mathbb{P}(\mathcal{M}(D) \in S) \le e^\epsilon \cdot \mathbb{P}(\mathcal{M}(D') \in S) + \delta$$
 
 ### 2.1 Differentially Private Stochastic Gradient Descent
+
 To bound an individual's influence on model weights, standard SGD is modified:
+
 1. **Per-Sample Gradient Clipping:**
    $$\bar{g}(x_i) = \frac{g(x_i)}{\max\left(1, \, \frac{\|g(x_i)\|_2}{C}\right)}$$
    This guarantees that the $L_2$ sensitivity of the sum $\sum_i \bar{g}(x_i)$ is bounded by $C$.
@@ -49,6 +53,7 @@ Privacy budgets $(\epsilon, \delta)$ accumulate across training iterations and a
 Given sensitive / protected demographic attribute $A \in \{0, 1\}$, true label $Y \in \{0, 1\}$, and model prediction $\hat{Y} \in \{0, 1\}$:
 
 ### 3.1 Demographic Parity (Statistical Parity)
+
 The probability of a positive outcome must be identical across protected groups:
 
 $$\mathbb{P}(\hat{Y} = 1 \mid A = 0) = \mathbb{P}(\hat{Y} = 1 \mid A = 1)$$
@@ -58,6 +63,7 @@ $$\mathbb{P}(\hat{Y} = 1 \mid A = 0) = \mathbb{P}(\hat{Y} = 1 \mid A = 1)$$
   A ratio below $0.80$ violates the US EEOC Four-Fifths Rule.
 
 ### 3.2 Equal Opportunity (Hardt et al., 2016)
+
 The True Positive Rate (TPR) must be equal across protected groups:
 
 $$\mathbb{P}(\hat{Y} = 1 \mid A = 0, Y = 1) = \mathbb{P}(\hat{Y} = 1 \mid A = 1, Y = 1)$$
@@ -65,6 +71,7 @@ $$\mathbb{P}(\hat{Y} = 1 \mid A = 0, Y = 1) = \mathbb{P}(\hat{Y} = 1 \mid A = 1,
 Protects qualified individuals from discriminatory negative classifications.
 
 ### 3.3 Equalized Odds
+
 Requires both True Positive Rate (TPR) and False Positive Rate (FPR) parity across groups:
 
 $$\mathbb{P}(\hat{Y} = 1 \mid A = 0, Y = y) = \mathbb{P}(\hat{Y} = 1 \mid A = 1, Y = y), \quad \forall y \in \{0, 1\}$$

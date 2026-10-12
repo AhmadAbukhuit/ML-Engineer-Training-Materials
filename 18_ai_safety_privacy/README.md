@@ -6,7 +6,7 @@ This module provides tools for testing model vulnerability to adversarial pertur
 
 ## Directory Structure
 
-```
+```text
 18_ai_safety_privacy/
 ├── 01_safety_privacy_catalog.md  # Theoretical definitions & mathematical proofs
 ├── README.md                     # Usage and verification guide

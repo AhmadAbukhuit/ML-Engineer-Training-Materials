@@ -20,6 +20,7 @@ By the end of this phase, you will:
 ## 📚 Curated Study Resources
 
 ### 📖 Framework Documentation & Runbooks
+
 * **[FastAPI Official Documentation](https://fastapi.tiangolo.com/)**: Asynchronous route handling, dependency injection, and Pydantic integration.
 * **[Docker Documentation](https://docs.docker.com/get-started/)**: Container virtualization, multi-stage builds, and layer caching.
 * **[Full Stack Deep Learning](https://fullstackdeeplearning.com/)**: Production ML system design, deployment patterns, and monitoring.
@@ -50,10 +51,12 @@ By the end of this phase, you will:
 ```
 
 ### 2. In-Memory Weight Caching
+
 * **Bad Practice:** Loading the `.joblib` or `.pt` model file from disk inside the `/predict` route handler. This adds hundreds of milliseconds of disk I/O to every individual HTTP request.
 * **Production Best Practice:** Load model weights once during the FastAPI lifespan (`@asynccontextmanager`) and keep the weights resident in process memory.
 
 ### 3. Containerization Principles for ML
+
 * **Base Image:** Use slim Debian-based Python images (e.g., `python:3.11-slim`) rather than bloated default images.
 * **Layer Caching:** Copy `requirements.txt` and install dependencies *before* copying application code so Docker reuses cached dependency layers across code edits.
 * **Non-Root Execution:** Always create and run under a non-root system user inside the container for security isolation.
@@ -67,6 +70,7 @@ Complete these implementation tasks in `05_mlops_production/` and verify your AP
 ---
 
 ### Task 5.1: Pydantic Data Contracts & Schemas
+
 * **File:** `app/schemas.py`
 * **Requirements:**
   1. Define `TelemetryFeatures` representing the 10 numerical features expected by the trained baseline model.
@@ -77,6 +81,7 @@ Complete these implementation tasks in `05_mlops_production/` and verify your AP
 ---
 
 ### Task 5.2: Thread-Safe Model Manager
+
 * **File:** `app/model_loader.py`
 * **Requirements:**
   1. Implement a `ModelManager` singleton that caches the loaded model artifact in RAM.
@@ -86,6 +91,7 @@ Complete these implementation tasks in `05_mlops_production/` and verify your AP
 ---
 
 ### Task 5.3: High-Performance FastAPI Service
+
 * **File:** `app/main.py`
 * **Requirements:**
   1. Endpoint `GET /health`: Liveness and readiness probe reporting status and model load state.
@@ -96,6 +102,7 @@ Complete these implementation tasks in `05_mlops_production/` and verify your AP
 ---
 
 ### Task 5.4: Production Containerization & Orchestration
+
 * **Files:** `Dockerfile`, `docker-compose.yml`, `.dockerignore`
 * **Requirements:**
   1. Build a multi-stage or lean `Dockerfile` running Uvicorn workers.
@@ -104,6 +111,7 @@ Complete these implementation tasks in `05_mlops_production/` and verify your AP
 ---
 
 ### Task 5.5: Integration Test Suite
+
 * **File:** `tests/test_api.py`
 * **Requirements:**
   1. Use FastAPI `TestClient` to verify `/health` returns `200 OK`.
@@ -114,6 +122,7 @@ Complete these implementation tasks in `05_mlops_production/` and verify your AP
 ---
 
 ### Task 5.6: Model Compilation & Latency Optimization with ONNX
+
 * **File:** `app/onnx_converter.py`
 * **Requirements:**
   1. Implement `export_to_onnx` converting trained models to portable ONNX graphs.
@@ -124,6 +133,7 @@ Complete these implementation tasks in `05_mlops_production/` and verify your AP
 ---
 
 ### Task 5.7: Experiment Tracking & Governance with MLflow
+
 * **File:** `app/mlflow_tracker.py`
 * **Requirements:**
   1. Implement `MLflowTracker` encapsulating experiment setup, parameter logging, and metric tracking.
@@ -155,4 +165,3 @@ Complete these implementation tasks in `05_mlops_production/` and verify your AP
     ├── test_onnx.py
     └── test_mlflow.py
 ```
-

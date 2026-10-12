@@ -6,7 +6,7 @@ This module covers the core architectural and systems engineering principles req
 
 ## Directory Structure
 
-```
+```text
 17_distributed_training/
 ├── 01_distributed_training_catalog.md  # Detailed communication & memory sharding derivations
 ├── README.md                           # Usage and testing guide

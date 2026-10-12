@@ -19,12 +19,14 @@ $$\min_{\boldsymbol{\theta}} \mathbb{E}_{(\mathbf{x}, y) \sim \mathcal{D}_T} \le
 ## 2. Feature Extraction vs Full Fine-Tuning
 
 ### 2.1 Linear Probing (Feature Extraction)
+
 - **Mechanics**: The pretrained backbone weights $\boldsymbol{\theta}_{\text{backbone}}$ are completely frozen ($\nabla_{\boldsymbol{\theta}} \mathcal{L} = \mathbf{0}$).
 - A new task-specific classification head $g_\phi(\mathbf{h}) = \mathbf{W}_h \mathbf{h} + \mathbf{b}_h$ is attached and trained on target representations $\mathbf{h} = f(\mathbf{x})$.
 - **Advantages**: Minimal compute, zero risk of catastrophic forgetting of base representations, convex optimization when using linear/logistic models.
 - **Disadvantages**: Suboptimal when target domain distribution differs substantially from source domain.
 
 ### 2.2 End-to-End Fine-Tuning
+
 - The entire network (backbone + head) is updated with target gradients.
 - **Catastrophic Forgetting Risk**: High learning rates overwrite general semantic features learned during large-scale pretraining.
 - **Mitigations**:
@@ -42,6 +44,7 @@ $$\min_{\boldsymbol{\theta}} \mathbb{E}_{(\mathbf{x}, y) \sim \mathcal{D}_T} \le
 Full fine-tuning of modern multi-billion parameter foundation models (LLMs, Vision Transformers) requires prohibitive GPU memory and creates massive storage overhead per downstream task. PEFT methods freeze $\approx 99\%$ of pretrained weights and train a tiny fraction ($< 1\%$) of parameters.
 
 ### 3.1 Low-Rank Adaptation (LoRA - Hu et al., 2021)
+
 - **Core Hypothesis**: The weight updates $\Delta \mathbf{W}$ during task adaptation have a low "intrinsic rank" $r \ll \min(d_{\text{in}}, d_{\text{out}})$.
 - **Parameterization**:
   Decomposes the weight update into two low-rank matrices $\mathbf{A} \in \mathbb{R}^{d_{\text{in}} \times r}$ and $\mathbf{B} \in \mathbb{R}^{r \times d_{\text{out}}}$:
@@ -56,22 +59,26 @@ Full fine-tuning of modern multi-billion parameter foundation models (LLMs, Visi
   Zero extra inference latency or memory overhead compared to the original foundation model.
 
 ### 3.2 QLoRA (Quantized LoRA - Dettmers et al., 2023)
+
 - Backbones quantized to 4-bit NormalFloat (NF4), an information-theoretically optimal quantile distribution for normally distributed weights.
 - **Double Quantization (DQ)**: Quantizes the quantization constants, saving 0.37 bits per parameter.
 - **Paged Optimizers**: Manages CUDA memory spikes by paging optimizer states across CPU and GPU RAM.
 - Enables fine-tuning a 65B parameter LLM on a single consumer 48GB GPU without performance degradation.
 
 ### 3.3 Bottleneck Adapters (Houlsby et al. & Pfeiffer et al.)
+
 - Inserts tiny feed-forward bottleneck modules after multi-head attention and feed-forward layers:
   $$\text{Adapter}(\mathbf{h}) = \sigma(\mathbf{h} \mathbf{W}_{\text{down}}) \mathbf{W}_{\text{up}} + \mathbf{h}$$
   where $\mathbf{W}_{\text{down}} \in \mathbb{R}^{d \times m}$, $\mathbf{W}_{\text{up}} \in \mathbb{R}^{m \times d}$, $m \ll d$.
 
 ### 3.4 Prefix Tuning & Prompt Tuning
+
 - **Prompt Tuning (Lester et al.)**: Prepends $k$ learnable virtual token embeddings $\mathbf{P} \in \mathbb{R}^{k \times d}$ to the input sequence.
 - **Prefix Tuning (Li & Liang)**: Prepends learnable continuous vectors directly to Keys and Values in every Transformer attention layer:
   $$\text{Attention}(\mathbf{Q}, [\mathbf{P}_K; \mathbf{K}], [\mathbf{P}_V; \mathbf{V}])$$
 
 ### 3.5 $(IA)^3$ (Infused Adapter by Inhibiting and Amplifying Inner Activations)
+
 - Rescales inner activations with learned vectors: $\mathbf{l} \odot \mathbf{x}$. Requires under 0.02% trainable parameters.
 
 ---
@@ -81,6 +88,7 @@ Full fine-tuning of modern multi-billion parameter foundation models (LLMs, Visi
 Domain adaptation addresses covariate shift where input distributions differ between source and target ($P(X_S) \ne P(X_T)$) while the label space remains identical ($Y_S = Y_T$).
 
 ### 4.1 Maximum Mean Discrepancy (MMD)
+
 - Computes distribution divergence in a Reproducing Kernel Hilbert Space (RKHS) $\mathcal{H}_k$:
   $$\text{MMD}^2(\mathcal{D}_S, \mathcal{D}_T) = \left\| \frac{1}{N_S}\sum_{i=1}^{N_S} \phi(\mathbf{x}_i^S) - \frac{1}{N_T}\sum_{j=1}^{N_T} \phi(\mathbf{x}_j^T) \right\|_{\mathcal{H}}^2$$
 - Unbiased kernel expansion:
@@ -88,6 +96,7 @@ Domain adaptation addresses covariate shift where input distributions differ bet
 - Joint objective: $\mathcal{L} = \mathcal{L}_{\text{supervised}}(X_S, Y_S) + \lambda \text{MMD}^2(f(X_S), f(X_T))$.
 
 ### 4.2 Adversarial Domain Adaptation (DANN - Ganin et al.)
+
 - **Architecture**:
   - Feature Extractor $G_f(\mathbf{x}; \theta_f)$.
   - Label Predictor $G_y(\mathbf{f}; \theta_y)$.

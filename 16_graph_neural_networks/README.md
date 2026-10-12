@@ -6,7 +6,7 @@ This module implements spatial and spectral graph neural network architectures f
 
 ## Directory Structure
 
-```
+```text
 16_graph_neural_networks/
 ├── 01_gnn_catalog.md         # Comprehensive mathematical theory & spectral derivations
 ├── README.md                 # Usage documentation & examples
