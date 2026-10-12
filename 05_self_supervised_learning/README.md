@@ -6,15 +6,15 @@ Welcome to the **Self-Supervised Learning** phase of the Machine Learning Engine
 
 ## 📚 Curriculum & Reference Guides
 
-- [`01_self_supervised_models_catalog.md`](file:///home/ahmad/ML-Engineer-Training-Materials/05_self_supervised_learning/01_self_supervised_models_catalog.md): Comprehensive theoretical catalog of all self-supervised learning models (SimCLR, MoCo, CPC, BYOL, SimSiam, SwAV, Barlow Twins, VICReg, Masked Autoencoders MAE, BEiT, BERT/RoBERTa MLM, GPT CLM, ELECTRA, Denoising Autoencoders, and VAEs).
+- [`01_self_supervised_models_catalog.md`](./01_self_supervised_models_catalog.md): Comprehensive theoretical catalog of all self-supervised learning models (SimCLR, MoCo, CPC, BYOL, SimSiam, SwAV, Barlow Twins, VICReg, Masked Autoencoders MAE, BEiT, BERT/RoBERTa MLM, GPT CLM, ELECTRA, Denoising Autoencoders, and VAEs).
 
 ---
 
 ## 🛠️ Code Implementations (`src/`)
 
-- [`src/contrastive_loss.py`](file:///home/ahmad/ML-Engineer-Training-Materials/05_self_supervised_learning/src/contrastive_loss.py): Normalized Temperature-scaled Cross Entropy (NT-Xent / InfoNCE) loss from first principles with temperature scaling $\tau$, numerical stability, and representation alignment/uniformity metrics.
-- [`src/autoencoder.py`](file:///home/ahmad/ML-Engineer-Training-Materials/05_self_supervised_learning/src/autoencoder.py): Deep Bottleneck Autoencoder with analytical backpropagation, reconstruction MSE loss, gradient clipping, and Denoising Autoencoder (DAE) Gaussian corruption.
-- [`src/simclr_framework.py`](file:///home/ahmad/ML-Engineer-Training-Materials/05_self_supervised_learning/src/simclr_framework.py): SimCLR self-supervised pipeline integrating data augmentation, base encoder $f(x)$, non-linear projection head $g(h)$, and downstream feature extraction.
+- [`src/contrastive_loss.py`](./src/contrastive_loss.py): Normalized Temperature-scaled Cross Entropy (NT-Xent / InfoNCE) loss from first principles with temperature scaling $\tau$, numerical stability, and representation alignment/uniformity metrics.
+- [`src/autoencoder.py`](./src/autoencoder.py): Deep Bottleneck Autoencoder with analytical backpropagation, reconstruction MSE loss, gradient clipping, and Denoising Autoencoder (DAE) Gaussian corruption.
+- [`src/simclr_framework.py`](./src/simclr_framework.py): SimCLR self-supervised pipeline integrating data augmentation, base encoder $f(x)$, non-linear projection head $g(h)$, and downstream feature extraction.
 
 ---
 

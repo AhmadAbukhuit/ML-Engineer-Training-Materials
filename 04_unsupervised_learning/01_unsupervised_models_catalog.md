@@ -9,6 +9,7 @@ $$\max_{\boldsymbol{\theta}} \sum_{i=1}^N \log p(\mathbf{x}_i; \boldsymbol{\thet
 ## 1. Centroid-Based & Partitioning Clustering
 
 ### 1.1 K-Means Clustering
+
 - **Optimization Objective (Inertia / WCSS)**:
   $$J(\mathcal{C}, \boldsymbol{\mu}) = \sum_{k=1}^K \sum_{\mathbf{x}_i \in \mathcal{C}_k} \|\mathbf{x}_i - \boldsymbol{\mu}_k\|_2^2$$
 - **Lloyd's Algorithm (Alternating Minimization)**:
@@ -19,6 +20,7 @@ $$\max_{\boldsymbol{\theta}} \sum_{i=1}^N \log p(\mathbf{x}_i; \boldsymbol{\thet
 - **Convergence**: Guaranteed to converge to a local minimum since each step monotonically decreases $J$; NP-hard in general.
 
 ### 1.2 K-Means++ Initialization
+
 - **Problem**: Random centroid initialization frequently converges to suboptimal local minima.
 - **Algorithm (Arthur & Vassilvitskii, 2007)**:
   1. Choose first center $\boldsymbol{\mu}_1$ uniformly at random from $\mathcal{D}$.
@@ -28,10 +30,12 @@ $$\max_{\boldsymbol{\theta}} \sum_{i=1}^N \log p(\mathbf{x}_i; \boldsymbol{\thet
 - **Theoretical Bound**: Provides an $O(\log K)$-competitive approximation to the optimal clustering.
 
 ### 1.3 Mini-Batch K-Means
+
 - Samples mini-batches of size $b \ll N$ at each iteration.
 - Computes convex combination updates: $\boldsymbol{\mu}_k \leftarrow (1 - \eta) \boldsymbol{\mu}_k + \eta \mathbf{x}_i$, enabling $O(b)$ complexity per step and scaling to billions of data points.
 
 ### 1.4 K-Medoids (PAM - Partitioning Around Medoids)
+
 - Centroids are restricted to actual observed data points (medoids).
 - Minimizes arbitrary distance metrics (e.g., Manhattan $L_1$ or custom dissimilarity matrices), offering extreme robustness to outliers compared to K-Means.
 
@@ -40,6 +44,7 @@ $$\max_{\boldsymbol{\theta}} \sum_{i=1}^N \log p(\mathbf{x}_i; \boldsymbol{\thet
 ## 2. Density-Based Clustering
 
 ### 2.1 DBSCAN (Density-Based Spatial Clustering of Applications with Noise)
+
 - **Core Definitions**:
   - $\epsilon$-Neighborhood: $N_\epsilon(\mathbf{x}) = \{\mathbf{z} \in \mathcal{D} : \|\mathbf{x} - \mathbf{z}\| \le \epsilon\}$.
   - **Core Point**: Point $\mathbf{x}$ such that $|N_\epsilon(\mathbf{x})| \ge \text{MinPts}$.
@@ -51,11 +56,13 @@ $$\max_{\boldsymbol{\theta}} \sum_{i=1}^N \log p(\mathbf{x}_i; \boldsymbol{\thet
 - **Weaknesses**: Sensitive to choice of $\epsilon$ and $\text{MinPts}$; struggles when clusters have varying densities.
 
 ### 2.2 HDBSCAN (Hierarchical DBSCAN)
+
 - Replaces fixed $\epsilon$ by constructing a cluster tree across all possible $\epsilon$ scales using mutual reachability distance:
   $$d_{\text{mreach}-k}(\mathbf{a}, \mathbf{b}) = \max(\text{core}_k(\mathbf{a}), \text{core}_k(\mathbf{b}), d(\mathbf{a}, \mathbf{b}))$$
 - Condenses the hierarchy and selects flat clusters based on cluster lifetime and stability ($\int (\lambda_{\text{death}} - \lambda_{\text{birth}}) \, d\lambda$).
 
 ### 2.3 OPTICS (Ordering Points To Identify the Clustering Structure)
+
 - Generates an augmented ordering of the dataset representing its density-based clustering structure via core distance and reachability distance.
 
 ---
@@ -63,6 +70,7 @@ $$\max_{\boldsymbol{\theta}} \sum_{i=1}^N \log p(\mathbf{x}_i; \boldsymbol{\thet
 ## 3. Distribution-Based / Probabilistic Clustering
 
 ### 3.1 Gaussian Mixture Models (GMM)
+
 - **Generative Process**: Assumes data generated from a mixture of $K$ multivariate Gaussian distributions:
   $$p(\mathbf{x}) = \sum_{k=1}^K \pi_k \mathcal{N}(\mathbf{x} | \boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k), \quad \sum_{k=1}^K \pi_k = 1, \; \pi_k \ge 0$$
 - **Expectation-Maximization (EM) Algorithm**:
@@ -80,6 +88,7 @@ $$\max_{\boldsymbol{\theta}} \sum_{i=1}^N \log p(\mathbf{x}_i; \boldsymbol{\thet
 ## 4. Hierarchical & Graph Clustering
 
 ### 4.1 Agglomerative Hierarchical Clustering
+
 - Bottom-up paradigm: Begins with $N$ singleton clusters and iteratively merges the closest pair according to a linkage criterion:
   - **Single Linkage (Minimum)**: $d(A, B) = \min_{\mathbf{a} \in A, \mathbf{b} \in B} d(\mathbf{a}, \mathbf{b})$ (prone to chaining).
   - **Complete Linkage (Maximum)**: $d(A, B) = \max_{\mathbf{a} \in A, \mathbf{b} \in B} d(\mathbf{a}, \mathbf{b})$ (favors compact clusters).
@@ -89,6 +98,7 @@ $$\max_{\boldsymbol{\theta}} \sum_{i=1}^N \log p(\mathbf{x}_i; \boldsymbol{\thet
 - Visualized as a **Dendrogram**.
 
 ### 4.2 Spectral Clustering
+
 - Constructs an affinity graph $W$ with adjacency/Gaussian edge weights $W_{ij} = \exp(-\gamma \|\mathbf{x}_i - \mathbf{x}_j\|^2)$.
 - Computes the unnormalized graph Laplacian $L = D - W$ or normalized Laplacian $L_{\text{sym}} = D^{-1/2} L D^{-1/2}$.
 - Computes eigenvectors corresponding to the $K$ smallest eigenvalues of $L$.
@@ -100,6 +110,7 @@ $$\max_{\boldsymbol{\theta}} \sum_{i=1}^N \log p(\mathbf{x}_i; \boldsymbol{\thet
 ## 5. Dimensionality Reduction & Manifold Learning
 
 ### 5.1 Principal Component Analysis (PCA)
+
 - Orthogonal linear transformation projecting data onto directions of maximal variance:
   $$\max_{\mathbf{w}} \mathbf{w}^T \boldsymbol{\Sigma} \mathbf{w} \quad \text{s.t.} \quad \|\mathbf{w}\|_2 = 1$$
 - **SVD Formulation**:
@@ -112,13 +123,16 @@ $$\max_{\boldsymbol{\theta}} \sum_{i=1}^N \log p(\mathbf{x}_i; \boldsymbol{\thet
   - **Incremental PCA**: Mini-batch SVD for memory-constrained out-of-core data.
 
 ### 5.2 Singular Value Decomposition (SVD) & Truncated SVD
+
 - Directly applicable to sparse matrices (e.g., TF-IDF document-term matrices in Latent Semantic Analysis / LSA) without explicit mean-centering.
 
 ### 5.3 Independent Component Analysis (ICA)
+
 - Assumes observed signals $\mathbf{x} = \mathbf{A}\mathbf{s}$ are linear combinations of statistically independent, non-Gaussian source components $\mathbf{s}$.
 - Maximizes non-Gaussianity (negentropy, kurtosis) via FastICA.
 
 ### 5.4 Manifold Learning (Non-Linear Dimensionality Reduction)
+
 - **t-SNE (t-Distributed Stochastic Neighbor Embedding)**:
   - Models pairwise similarities in high-dimensional space as Gaussian probabilities $p_{j|i}$.
   - Models low-dimensional similarities using Student-t distribution $q_{ij} = (1 + \|\mathbf{y}_i - \mathbf{y}_j\|^2)^{-1} / Z$.
@@ -135,6 +149,7 @@ $$\max_{\boldsymbol{\theta}} \sum_{i=1}^N \log p(\mathbf{x}_i; \boldsymbol{\thet
 ## 6. Unsupervised Anomaly & Outlier Detection
 
 ### 6.1 Isolation Forest
+
 - **Hypothesis**: Anomalies are "few and different"; they require fewer random partition splits to isolate than normal points.
 - **Average Path Length in BST**:
   $$c(n) = 2 \left( \ln(n - 1) + 0.5772156649 \right) - \frac{2(n - 1)}{n}$$
@@ -145,16 +160,19 @@ $$\max_{\boldsymbol{\theta}} \sum_{i=1}^N \log p(\mathbf{x}_i; \boldsymbol{\thet
 - **Computational Complexity**: $O(t \cdot \psi \log \psi)$ where $\psi$ is subsample size (e.g., 256) and $t$ is number of trees. Linear time complexity.
 
 ### 6.2 Local Outlier Factor (LOF)
+
 - Measures local density deviation of an object relative to its $k$-nearest neighbors.
 - Reachability distance: $\text{reach-dist}_k(\mathbf{p}, \mathbf{o}) = \max(k\text{-distance}(\mathbf{o}), d(\mathbf{p}, \mathbf{o}))$.
 - Outlier score $\text{LOF}_k(\mathbf{p}) \gg 1$ indicates lower local density than neighbors.
 
 ### 6.3 One-Class Support Vector Machine (OC-SVM)
+
 - Fits a hyperplane separating all training data from the origin in feature space with maximum margin:
   $$\min_{\mathbf{w}, \boldsymbol{\xi}, \rho} \frac{1}{2} \|\mathbf{w}\|^2 + \frac{1}{\nu N} \sum_{i=1}^N \xi_i - \rho \quad \text{s.t.} \quad \langle \mathbf{w}, \Phi(\mathbf{x}_i) \rangle \ge \rho - \xi_i$$
 - Parameter $\nu \in (0, 1]$ bounds the fraction of outliers.
 
 ### 6.4 Minimum Covariance Determinant (Elliptic Envelope)
+
 - Assumes inlier data follows Gaussian distribution; robustly estimates covariance matrix by finding subset of $h$ observations whose covariance has minimum determinant.
 - Anomaly score via Mahalanobis distance: $D_M(\mathbf{x}) = \sqrt{(\mathbf{x} - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu})}$.
 
@@ -163,11 +181,13 @@ $$\max_{\boldsymbol{\theta}} \sum_{i=1}^N \log p(\mathbf{x}_i; \boldsymbol{\thet
 ## 7. Association Rule Mining
 
 ### 7.1 Key Metrics
+
 - **Support**: $\text{supp}(X \to Y) = P(X \cup Y) = \frac{\text{count}(X \cup Y)}{N}$.
 - **Confidence**: $\text{conf}(X \to Y) = P(Y | X) = \frac{\text{supp}(X \cup Y)}{\text{supp}(X)}$.
 - **Lift**: $\text{lift}(X \to Y) = \frac{P(X \cup Y)}{P(X)P(Y)} = \frac{\text{conf}(X \to Y)}{\text{supp}(Y)}$. Lift $> 1$ indicates positive dependency.
 
 ### 7.2 Algorithms
+
 - **Apriori**: Exploits downward-closure property (all subsets of a frequent itemset must be frequent) for level-wise candidate generation and pruning.
 - **FP-Growth (Frequent Pattern Growth)**: Compresses transactions into a compact Frequent Pattern Tree (FP-Tree), eliminating candidate generation and mining frequent itemsets directly via recursive conditional FP-Trees.
 - **Eclat (Equivalence Class Clustering and Transformation)**: Uses vertical transaction ID (TID) sets; determines support by set intersections.

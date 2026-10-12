@@ -7,6 +7,7 @@ The Transformer architecture eliminated sequential recurrence (RNNs/LSTMs) in fa
 ## 1. Information Retrieval Analogy: Queries, Keys, and Values
 
 The core attention mechanism is modeled after information retrieval systems:
+
 * **Query ($Q$):** What the current token is looking for (e.g., "I need the subject of this verb").
 * **Key ($K$):** What each token contains or advertises (e.g., "I am a noun phrase").
 * **Value ($V$):** The actual informational content passed forward if the query matches the key.
@@ -20,7 +21,8 @@ Given matrices $Q \in \mathbb{R}^{T \times d_k}$, $K \in \mathbb{R}^{T \times d_
 $$\text{Attention}(Q, K, V) = \text{softmax}\left( \frac{Q K^T}{\sqrt{d_k}} + M \right) V$$
 
 ### Why the Scaling Factor $\frac{1}{\sqrt{d_k}}$?
-For large key dimensions $d_k$, the dot products $q \cdot k = \sum_{i=1}^{d_k} q_i k_i$ grow large in magnitude. 
+
+For large key dimensions $d_k$, the dot products $q \cdot k = \sum_{i=1}^{d_k} q_i k_i$ grow large in magnitude.
 Assuming components of $q$ and $k$ are independent random variables with zero mean and unit variance:
 
 $$\mathbb{E}[q \cdot k] = 0, \quad \text{Var}[q \cdot k] = d_k$$
@@ -37,6 +39,7 @@ $$\text{MultiHead}(Q, K, V) = \text{Concat}(\text{head}_1, \dots, \text{head}_h)
 $$\text{head}_i = \text{Attention}(Q W_i^Q, K W_i^K, V W_i^V)$$
 
 ### Why Multi-Head?
+
 A single attention head tends to average out multiple semantic relationships. Multi-Head Attention allows the model to simultaneously attend to information from different representation subspaces at different positions (e.g., one head tracks syntactic agreement, another tracks semantic coreference).
 
 ---

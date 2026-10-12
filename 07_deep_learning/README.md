@@ -19,12 +19,14 @@ By the end of this phase, you will:
 ## 📚 Curated Study Resources
 
 ### 📖 Essential Papers & Guides
+
 * **[Deep Learning Book](https://www.deeplearningbook.org/)** (Goodfellow, Bengio, Courville) — Chapters 6–10 cover MLPs, Optimization, CNNs, and Sequence Modeling.
 * **[Deep Residual Learning for Image Recognition (ResNet)](https://arxiv.org/abs/1512.03385)** (He et al., 2015) — Foundational paper introducing skip connections.
 * **[Attention Is All You Need (Transformers)](https://arxiv.org/abs/1706.03762)** (Vaswani et al., 2017) — The landmark paper replacing recurrence with self-attention.
 * **[You Only Look Once (YOLO)](https://arxiv.org/abs/1506.02640)** (Redmon et al., 2016) — Real-time unified object detection framework.
 
 ### 🎥 Video Lectures
+
 * **Andrej Karpathy - Neural Networks: Zero to Hero:** Deep dive into backpropagation, language modeling (Makemore), and building GPT from scratch.
 * **Stanford CS231n - Convolutional Neural Networks for Visual Recognition:** The gold standard university curriculum for computer vision.
 
@@ -73,6 +75,7 @@ Complete these implementation tasks in `04_deep_learning/src/` and verify your s
 ---
 
 ### Task 4.1: Vectorized IoU & Non-Maximum Suppression (NMS)
+
 * **File:** `src/detection_metrics.py`
 * **Requirements:**
   1. Implement `compute_iou_matrix(boxes_a, boxes_b)` for batch pairwise IoU calculation between $N$ and $M$ boxes in pure NumPy.
@@ -82,6 +85,7 @@ Complete these implementation tasks in `04_deep_learning/src/` and verify your s
 ---
 
 ### Task 4.2: Scaled Dot-Product & Multi-Head Self-Attention
+
 * **File:** `src/attention.py`
 * **Requirements:**
   1. Implement `scaled_dot_product_attention(Q, K, V, mask=None)` with $\frac{1}{\sqrt{d_k}}$ scaling and numerically stable softmax.
@@ -92,6 +96,7 @@ Complete these implementation tasks in `04_deep_learning/src/` and verify your s
 ---
 
 ### Task 4.3: Residual Block Architecture
+
 * **File:** `src/resnet.py`
 * **Requirements:**
   1. Implement `ResidualBlock` featuring two convolutional/linear transformations, batch/layer normalization, and an additive skip connection.
@@ -101,6 +106,7 @@ Complete these implementation tasks in `04_deep_learning/src/` and verify your s
 ---
 
 ### Task 4.4: Reusable Deep Learning Training Engine
+
 * **File:** `src/training_engine.py`
 * **Requirements:**
   1. Create a `TrainingEngine` class encapsulating train step, validation step, and epoch progression.
@@ -111,6 +117,7 @@ Complete these implementation tasks in `04_deep_learning/src/` and verify your s
 ---
 
 ### Task 4.5: Transfer Learning & Backbone Freezing
+
 * **File:** `src/transfer_learning.py`
 * **Requirements:**
   1. Implement `PretrainedBackbone` feature extractor with layer-wise freezing and unfreezing mechanics.
@@ -120,6 +127,7 @@ Complete these implementation tasks in `04_deep_learning/src/` and verify your s
 ---
 
 ### Task 4.6: Dense Vector Search & RAG Pipeline
+
 * **File:** `src/rag_vector_search.py`
 * **Requirements:**
   1. Implement `SimpleDenseEmbedder` mapping texts to normalized latent dense vectors via deterministic hashing and random projection.
@@ -130,6 +138,7 @@ Complete these implementation tasks in `04_deep_learning/src/` and verify your s
 ---
 
 ### Task 4.7: Parameter-Efficient Fine-Tuning (LoRA)
+
 * **File:** `src/lora.py`
 * **Requirements:**
   1. Implement `LoRALinear` decomposing weight updates into $\Delta W = \frac{\alpha}{r} (A \cdot B)$ while keeping base weights $W_0$ frozen.
@@ -169,4 +178,3 @@ Complete these implementation tasks in `04_deep_learning/src/` and verify your s
     ├── test_rag.py
     └── test_lora.py
 ```
-

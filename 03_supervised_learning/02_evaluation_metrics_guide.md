@@ -29,6 +29,7 @@ This guide provides an exhaustive theoretical and practical reference for all pr
 ## 1. Classification Metrics
 
 ### 1.1 The Confusion Matrix
+
 The foundation of all discrete classification evaluation:
 
 $$\begin{array}{c|cc}

@@ -9,6 +9,7 @@ Self-Supervised Learning (SSL) is the machine learning paradigm where supervised
 Contrastive methods optimize an objective that pulls representations of augmented views of the same instance (positives) together in latent space while pushing representations of different instances (negatives) apart.
 
 ### 1.1 SimCLR (Simple Framework for Contrastive Learning of Visual Representations)
+
 - **Key Components**:
   1. **Stochastic Data Augmentations**: Random cropping & resizing, color jittering, Gaussian blur, random flipping.
   2. **Base Encoder**: Deep neural network $f(\cdot)$ mapping input $\mathbf{x}$ to representation $\mathbf{h} = f(\mathbf{x}) \in \mathbb{R}^{d_h}$.
@@ -20,6 +21,7 @@ Contrastive methods optimize an objective that pulls representations of augmente
 - **Critical Insight**: The projection head $g(\cdot)$ discards nuisance information (e.g., color, crop location); using $\mathbf{h}$ directly for downstream tasks significantly outperforms using $\mathbf{z}$.
 
 ### 1.2 MoCo (Momentum Contrast)
+
 - **Problem in SimCLR**: SimCLR requires immense batch sizes ($N = 4096$) to supply sufficient negative samples in GPU memory.
 - **MoCo Innovation (He et al.)**:
   - Treats contrastive learning as dynamic dictionary look-up.
@@ -30,6 +32,7 @@ Contrastive methods optimize an objective that pulls representations of augmente
 - **MoCo v2 & v3**: Incorporates cosine decay learning rates, MLP projection heads, and Vision Transformer (ViT) backbones.
 
 ### 1.3 CPC (Contrastive Predictive Coding)
+
 - Self-supervised learning on sequential/temporal signals (audio, text, video).
 - Uses an autoregressive model $g_{\text{ar}}$ to summarize past latents $\mathbf{z}_{\le t}$ into context $\mathbf{c}_t$.
 - Predicts future latents $\mathbf{z}_{t+k}$ via InfoNCE loss:
@@ -43,6 +46,7 @@ Contrastive methods optimize an objective that pulls representations of augmente
 These methods eliminate the requirement for negative pairs entirely, utilizing architectural asymmetries or information-theoretic regularizations to prevent **dimensional collapse** (where the network outputs a constant trivial embedding $\mathbf{z} = \mathbf{c}$).
 
 ### 2.1 BYOL (Bootstrap Your Own Latent)
+
 - **Architecture**:
   - **Online Network**: Parameterized by $\theta$; consists of encoder $f_\theta$, projector $g_\theta$, and an additional **predictor** $q_\theta$.
   - **Target Network**: Parameterized by $\xi$; consists of encoder $f_\xi$ and projector $g_\xi$. Updates via EMA: $\xi \leftarrow \tau \xi + (1 - \tau) \theta$.
@@ -51,11 +55,13 @@ These methods eliminate the requirement for negative pairs entirely, utilizing a
 - **Asymmetry**: Online network has gradients backpropagated; target network has **stop-gradient** ($\text{sg}$). The predictor + EMA target acts as an optimal Wiener filter, preventing representational collapse without negatives.
 
 ### 2.2 SimSiam (Simple Siamese)
+
 - Proves that the EMA target network in BYOL is not strictly mandatory; the key collapse-preventing mechanism is the **stop-gradient operation** coupled with a predictor MLP:
   $$\mathcal{L}(p_1, z_2) = -\frac{p_1}{\|p_1\|_2} \cdot \text{stop\_gradient}\left(\frac{z_2}{\|z_2\|_2}\right)$$
 - Interpreted mathematically as an Expectation-Maximization-like alternating optimization between representation coordinates and cluster centers.
 
 ### 2.3 SwAV (Swapped Assignments between Views)
+
 - Blends contrastive learning with online clustering.
 - Projects embeddings onto a set of $K$ trainable prototype vectors $\mathbf{C} = [\mathbf{c}_1, \dots, \mathbf{c}_K]$.
 - Assigns features to prototypes using the **Sinkhorn-Knopp algorithm** (solving an optimal transport problem under equipartition constraints to avoid cluster collapse).
@@ -63,6 +69,7 @@ These methods eliminate the requirement for negative pairs entirely, utilizing a
   $$\mathcal{L}_{\text{SwAV}} = \ell(\mathbf{z}_1, \mathbf{q}_2) + \ell(\mathbf{z}_2, \mathbf{q}_1)$$
 
 ### 2.4 Barlow Twins & VICReg (Information-Theoretic Regularization)
+
 - **Barlow Twins**:
   - Evaluates the cross-correlation matrix $\mathcal{C} \in \mathbb{R}^{d \times d}$ between normalized outputs of two identical sub-networks:
     $$\mathcal{C}_{jk} = \frac{\sum_b z_{b, j}^A z_{b, k}^B}{\sqrt{\sum_b (z_{b, j}^A)^2} \sqrt{\sum_b (z_{b, k}^B)^2}}$$
@@ -80,6 +87,7 @@ These methods eliminate the requirement for negative pairs entirely, utilizing a
 ## 3. Masked Modeling & Reconstruction
 
 ### 3.1 MAE (Masked Autoencoders - Vision)
+
 - **Paradigm (He et al., 2022)**:
   - Divides an input image into non-overlapping patches (e.g., $16 \times 16$).
   - Randomly masks a high fraction (e.g., 75% to 80%) of patches.
@@ -90,19 +98,23 @@ These methods eliminate the requirement for negative pairs entirely, utilizing a
   - Asymmetric design achieves up to $4\times$ to $10\times$ faster pretraining while learning dense spatial representations.
 
 ### 3.2 BEiT (BERT Pre-training of Image Transformers)
+
 - Tokenizes image patches into discrete visual tokens using a pretrained discrete VQ-VAE codebook.
 - Masks image patches and trains the Vision Transformer to predict the discrete token IDs (Masked Image Modeling / MIM).
 
 ### 3.3 Masked Language Modeling (BERT, RoBERTa)
+
 - Corrupts 15% of input tokens (80% replaced with `[MASK]`, 10% random token, 10% kept unchanged).
 - Predicts original vocabulary token ID via cross-entropy:
   $$\mathcal{L}_{\text{MLM}}(\theta) = -\sum_{i \in \mathcal{M}} \log P(x_i | \mathbf{x}_{\backslash \mathcal{M}}; \theta)$$
 
 ### 3.4 Causal Auto-regressive Modeling (GPT Series)
+
 - Pretrains on sequence $\mathbf{x} = (x_1, \dots, x_T)$ by maximizing forward autoregressive log-likelihood:
   $$\mathcal{L}_{\text{CLM}}(\theta) = -\sum_{t=1}^T \log P(x_t | x_1, \dots, x_{t-1}; \theta)$$
 
 ### 3.5 ELECTRA (Replaced Token Detection)
+
 - Replaces MLM with a Generator-Discriminator setup:
   - Generator predicts masked tokens.
   - Discriminator solves binary classification: was token $x_t$ original or replaced by the generator?
@@ -113,19 +125,23 @@ These methods eliminate the requirement for negative pairs entirely, utilizing a
 ## 4. Autoencoders & Heuristic Pretext Tasks
 
 ### 4.1 Vanilla Autoencoder
+
 - Minimizes reconstruction error: $\min_{\theta, \phi} \frac{1}{N} \sum_{i=1}^N \|\mathbf{x}_i - g_\phi(f_\theta(\mathbf{x}_i))\|^2$.
 - Bottleneck latent dimension $d_z \ll D$ forces network to learn principal non-linear manifold.
 
 ### 4.2 Denoising Autoencoder (DAE)
+
 - Corrupts inputs $\tilde{\mathbf{x}} \sim q(\tilde{\mathbf{x}} | \mathbf{x})$ via additive Gaussian noise or masking dropout.
 - Network learns score matching: the reconstruction vector $g_\phi(f_\theta(\tilde{\mathbf{x}})) - \tilde{\mathbf{x}}$ points in the direction of the score function $\nabla_{\mathbf{x}} \log p(\mathbf{x})$.
 
 ### 4.3 Variational Autoencoder (VAE)
+
 - Probabilistic latent variable model optimizing Evidence Lower Bound (ELBO):
   $$\mathcal{L}_{\text{ELBO}}(\theta, \phi; \mathbf{x}) = \mathbb{E}_{q_\phi(\mathbf{z}|\mathbf{x})}[\log p_\theta(\mathbf{x}|\mathbf{z})] - D_{\text{KL}}(q_\phi(\mathbf{z}|\mathbf{x}) \parallel p(\mathbf{z}))$$
 - Uses reparameterization trick $\mathbf{z} = \boldsymbol{\mu} + \boldsymbol{\sigma} \odot \boldsymbol{\epsilon}$, $\boldsymbol{\epsilon} \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$ for end-to-end backpropagation.
 
 ### 4.4 Heuristic Pretext Tasks
+
 - **Rotation Prediction (RotNet)**: Rotates images by $0^\circ, 90^\circ, 180^\circ, 270^\circ$; model classifies angle.
 - **Jigsaw Puzzles**: Splits image into $3 \times 3$ grid, permutes patches; model predicts permutation index.
 - **Colorization**: Converts RGB to Lab space; given L channel, model predicts $a, b$ color channels.

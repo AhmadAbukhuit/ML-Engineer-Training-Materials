@@ -9,6 +9,7 @@ $$\min_{\boldsymbol{\theta}} \frac{1}{N} \sum_{i=1}^N \mathcal{L}(f(\mathbf{x}_i
 ## 1. Linear & Generalized Linear Models
 
 ### 1.1 Ordinary Least Squares (OLS) Linear Regression
+
 - **Mathematical Formulation**: $\hat{y} = \mathbf{w}^T \mathbf{x} + b$.
 - **Objective Function**: Mean Squared Error (MSE):
   $$J(\mathbf{w}, b) = \frac{1}{2N} \sum_{i=1}^N (\mathbf{w}^T \mathbf{x}_i + b - y_i)^2 = \frac{1}{2N} \|\mathbf{X}\mathbf{w} - \mathbf{y}\|_2^2$$
@@ -18,22 +19,26 @@ $$\min_{\boldsymbol{\theta}} \frac{1}{N} \sum_{i=1}^N \mathcal{L}(f(\mathbf{x}_i
 - **Assumptions**: Linearity, homoscedasticity, normality of residuals, independence of observations, no multicollinearity.
 
 ### 1.2 Ridge Regression ($L_2$ Regularization)
+
 - **Objective Function**:
   $$J(\mathbf{w}) = \frac{1}{2N} \|\mathbf{X}\mathbf{w} - \mathbf{y}\|_2^2 + \frac{\lambda}{2} \|\mathbf{w}\|_2^2$$
 - **Closed-Form**: $\mathbf{w}^* = (\mathbf{X}^T \mathbf{X} + \lambda \mathbf{I})^{-1} \mathbf{X}^T \mathbf{y}$.
 - **Properties**: Prevents multicollinearity instability; shrinks weights towards zero without making them exactly zero; convex and strictly differentiable everywhere.
 
 ### 1.3 Lasso Regression ($L_1$ Regularization)
+
 - **Objective Function**:
   $$J(\mathbf{w}) = \frac{1}{2N} \|\mathbf{X}\mathbf{w} - \mathbf{y}\|_2^2 + \lambda \|\mathbf{w}\|_1$$
 - **Properties**: Non-smooth at $w_j = 0$; diamond-shaped constraint geometry produces exact sparsity (feature selection); solved via Subgradient Descent, Coordinate Descent, or Proximal Gradient Methods (ISTA/FISTA).
 
 ### 1.4 ElasticNet
+
 - **Objective Function**: Linear combination of $L_1$ and $L_2$ penalties:
   $$J(\mathbf{w}) = \frac{1}{2N} \|\mathbf{X}\mathbf{w} - \mathbf{y}\|_2^2 + \alpha \rho \|\mathbf{w}\|_1 + \frac{\alpha(1-\rho)}{2} \|\mathbf{w}\|_2^2$$
 - **Properties**: Overcomes Lasso's limitation when $p > n$ and groups correlated features together rather than arbitrarily picking one.
 
 ### 1.5 Logistic Regression (Binary & Multinomial)
+
 - **Binary Formulation**:
   $$P(y=1|\mathbf{x}) = \sigma(\mathbf{w}^T \mathbf{x} + b) = \frac{1}{1 + e^{-(\mathbf{w}^T \mathbf{x} + b)}}$$
 - **Objective Function**: Binary Cross-Entropy (Negative Log-Likelihood):
@@ -47,16 +52,19 @@ $$\min_{\boldsymbol{\theta}} \frac{1}{N} \sum_{i=1}^N \mathcal{L}(f(\mathbf{x}_i
 ## 2. Support Vector Machines (SVM)
 
 ### 2.1 Hard-Margin SVM
+
 - Maximizes the margin $\frac{2}{\|\mathbf{w}\|_2}$ subject to perfect linear separation:
   $$\min_{\mathbf{w}, b} \frac{1}{2} \|\mathbf{w}\|_2^2 \quad \text{s.t.} \quad y_i(\mathbf{w}^T \mathbf{x}_i + b) \ge 1, \; \forall i$$
 
 ### 2.2 Soft-Margin SVM (C-SVM)
+
 - Introduces slack variables $\xi_i \ge 0$ for non-linearly separable data:
   $$\min_{\mathbf{w}, b, \boldsymbol{\xi}} \frac{1}{2} \|\mathbf{w}\|_2^2 + C \sum_{i=1}^N \xi_i \quad \text{s.t.} \quad y_i(\mathbf{w}^T \mathbf{x}_i + b) \ge 1 - \xi_i, \; \xi_i \ge 0$$
 - **Unconstrained Hinge Loss Formulation**:
   $$\min_{\mathbf{w}} \frac{\lambda}{2} \|\mathbf{w}\|_2^2 + \frac{1}{N} \sum_{i=1}^N \max(0, 1 - y_i(\mathbf{w}^T \mathbf{x}_i + b))$$
 
 ### 2.3 Kernel SVM & Dual Formulation
+
 - Via Lagrangian duality:
   $$\max_{\boldsymbol{\alpha}} \sum_{i=1}^N \alpha_i - \frac{1}{2} \sum_{i,j=1}^N \alpha_i \alpha_j y_i y_j K(\mathbf{x}_i, \mathbf{x}_j) \quad \text{s.t.} \quad 0 \le \alpha_i \le C, \; \sum_{i=1}^N \alpha_i y_i = 0$$
 - **Common Kernels**:
@@ -66,6 +74,7 @@ $$\min_{\boldsymbol{\theta}} \frac{1}{N} \sum_{i=1}^N \mathcal{L}(f(\mathbf{x}_i
   - Sigmoid: $K(\mathbf{x}, \mathbf{z}) = \tanh(\gamma \mathbf{x}^T \mathbf{z} + c)$
 
 ### 2.4 Support Vector Regression (SVR)
+
 - Uses $\epsilon$-insensitive loss function: points within $|y - \hat{y}| \le \epsilon$ incur zero penalty.
 
 ---
@@ -126,6 +135,7 @@ $$\min_{\boldsymbol{\theta}} \frac{1}{N} \sum_{i=1}^N \mathcal{L}(f(\mathbf{x}_i
 Ensemble methods combine multiple base estimators to reduce variance (Bagging) or bias (Boosting).
 
 ### 6.1 Bagging & Random Forests
+
 - **Bootstrap Aggregating (Bagging)**: Train $B$ models on independent bootstrap samples $\mathcal{D}_b$ drawn with replacement from $\mathcal{D}$.
 - **Random Forest (Breiman)**:
   - Bootstrap sampling of data instances.
@@ -135,6 +145,7 @@ Ensemble methods combine multiple base estimators to reduce variance (Bagging) o
 - **Out-of-Bag (OOB) Estimation**: Samples not included in a tree's bootstrap sample serve as a built-in validation set.
 
 ### 6.2 Boosting Algorithms
+
 Boosting sequentially trains weak learners $h_t(\mathbf{x})$, each correcting the residual mistakes of its predecessor.
 
 - **AdaBoost (Adaptive Boosting)**:
@@ -162,6 +173,7 @@ Boosting sequentially trains weak learners $h_t(\mathbf{x})$, each correcting th
   - Symmetric / oblivious decision trees for ultra-fast GPU/CPU inference.
 
 ### 6.3 Stacking & Voting Classifiers
+
 - **Voting Classifier**:
   - Hard voting: majority rule over predicted class labels.
   - Soft voting: argmax over averaged predicted probabilities $\frac{1}{M}\sum_{m=1}^M \hat{P}_m(y=c|\mathbf{x})$.
@@ -174,6 +186,7 @@ Boosting sequentially trains weak learners $h_t(\mathbf{x})$, each correcting th
 ## 7. Time Series Forecasting
 
 ### 7.1 Statistical Classical Models
+
 - **Autoregressive (AR($p$))**: $y_t = c + \sum_{i=1}^p \phi_i y_{t-i} + \epsilon_t$.
 - **Moving Average (MA($q$))**: $y_t = \mu + \epsilon_t + \sum_{j=1}^q \theta_j \epsilon_{t-j}$.
 - **ARMA($p, q$)**: Combines AR and MA processes for stationary series.
@@ -181,6 +194,7 @@ Boosting sequentially trains weak learners $h_t(\mathbf{x})$, each correcting th
 - **SARIMA($p, d, q$)$\times$($P, D, Q$)$_s$**: Incorporates seasonal differencing and seasonal lag terms.
 
 ### 7.2 Machine Learning Formulations for Time Series
+
 - **Feature Engineering**:
   - Lag features ($y_{t-1}, y_{t-2}, \dots$).
   - Rolling window statistics (mean, std, min, max, skew over window $w$).

@@ -14,11 +14,13 @@ Unlike fully-connected layers where every input unit connects to every output un
    $$f(g(x)) = g(f(x))$$
 
 ### The 2D Convolution Formula
+
 For an input image $I$ and kernel $K$ of height $2m+1$ and width $2n+1$:
 
 $$S(i, j) = (I * K)(i, j) = \sum_{u=-m}^m \sum_{v=-n}^n I(i - u, j - v) K(u, v)$$
 
 ### Output Spatial Dimension Calculation
+
 Given input dimension $W_{\text{in}}$, kernel size $K$, padding $P$, and stride $S$:
 
 $$W_{\text{out}} = \left\lfloor \frac{W_{\text{in}} - K + 2P}{S} \right\rfloor + 1$$
@@ -38,11 +40,13 @@ $$W_{\text{out}} = \left\lfloor \frac{W_{\text{in}} - K + 2P}{S} \right\rfloor +
 Before ResNets, adding more layers to a deep neural network caused accuracy to saturate and then degrade rapidly—not due to overfitting (since training error also increased), but due to optimization difficulty and vanishing gradients.
 
 ### The Residual Learning Solution
+
 Instead of forcing layers to directly fit an underlying mapping $\mathcal{H}(\mathbf{x})$, ResNet parameterizes the layers to fit a residual mapping $\mathcal{F}(\mathbf{x}) = \mathcal{H}(\mathbf{x}) - \mathbf{x}$:
 
 $$\mathbf{y} = \mathcal{F}(\mathbf{x}) + \mathbf{x}$$
 
 ### Mathematical Advantage During Backpropagation
+
 Consider the gradient with respect to input $\mathbf{x}$ across $L$ residual blocks:
 
 $$\frac{\partial \mathcal{E}}{\partial \mathbf{x}} = \frac{\partial \mathcal{E}}{\partial \mathbf{x}_L} \frac{\partial \mathbf{x}_L}{\partial \mathbf{x}} = \frac{\partial \mathcal{E}}{\partial \mathbf{x}_L} \left( I + \sum_{l=1}^{L-1} \frac{\partial \mathcal{F}_l}{\partial \mathbf{x}_l} \right)$$
