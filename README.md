@@ -98,6 +98,54 @@ Building real-world AI systems requires more than importing high-level framework
 - [x] **10.4 Hardware Acceleration & Model Compilation:** High-performance ONNX model export and multi-threaded `ONNXRuntime` inference with latency benchmarking.
 - [x] **10.5 Lifecycle Management & Governance:** Standardized experiment tracking, metric and parameter logging, and automated best-run model selection with `MLflow`.
 
+### Phase 11: Explainable AI (XAI) & Model Interpretability
+
+- [x] **11.1 Shapley Value Axiomatics:** Vectorized coalitional game theory, Efficiency, Symmetry, Dummy, and Additivity axioms, Exact and Sampling Shapley explainers.
+- [x] **11.2 Local Interpretable Model-agnostic Explanations (LIME):** Exponential similarity kernel perturbations, weighted ridge regression surrogate models.
+- [x] **11.3 Global Interpretability:** Vectorized Permutation Feature Importance with empirical score degradation, Partial Dependence Plots (PDP) with marginalization over nuisance features.
+
+### Phase 12: Production Observability & Drift Detection
+
+- [x] **12.1 Covariate Shift Detection:** Population Stability Index (PSI) with dynamic quantile binning, two-sample Kolmogorov-Smirnov (KS) test, Wasserstein Earth Mover's Distance.
+- [x] **12.2 Streaming Concept Drift:** Adaptive Windowing (ADWIN) statistical sub-window comparison, Page-Hinkley cumulative mean deviation test for real-time drift detection.
+
+### Phase 13: Generative AI & LLM Systems Engineering
+
+- [x] **13.1 Inference Bottlenecks & KV-Cache:** Prefill compute-bound GEMM vs decoding memory-bandwidth-bound GEMV, dynamic Key-Value tensor cache buffer.
+- [x] **13.2 Post-Training Quantization (PTQ):** Symmetric and Asymmetric INT8 scale and zero-point calibration, NormalFloat4 (NF4) optimal quantile codebook.
+- [x] **13.3 Preference Alignment:** Direct Preference Optimization (DPO) closed-form Bradley-Terry log-ratio loss without auxiliary reward models.
+- [x] **13.4 Hybrid Retrieval:** Reciprocal Rank Fusion (RRF) unifying dense semantic cosine retrieval and sparse BM25 keyword rankings.
+
+### Phase 14: Recommendation Systems & Collaborative Filtering
+
+- [x] **14.1 Implicit Alternating Least Squares (ALS):** Hu-Koren-Volinsky implicit feedback formulation, confidence-weighted matrix factorization with sparse interaction acceleration.
+- [x] **14.2 Deep Dual-Encoder Retrieval:** Two-Tower candidate retrieval model with normalized embedding metric spaces and in-batch softmax contrastive learning.
+- [x] **14.3 Second-Order Ranking:** Factorization Machines (FM) computing pairwise feature interactions in linear $O(kd)$ time for CTR prediction.
+
+### Phase 15: Uncertainty Quantification & Conformal Prediction
+
+- [x] **15.1 Distribution-Free Conformal Prediction:** Split Conformal Regressor with finite-sample $1 - \alpha$ marginal coverage guarantee, Conformal Classifier prediction sets.
+- [x] **15.2 Analytical Bayesian Regression:** Conjugate Gaussian prior and posterior, epistemic vs aleatoric variance decomposition.
+- [x] **15.3 Gaussian Process Regression:** RBF kernel covariance, Cholesky decomposition inference, out-of-distribution uncertainty estimation.
+
+### Phase 16: Graph Machine Learning & Graph Neural Networks
+
+- [x] **16.1 Message Passing Framework (MPNN):** Permutation-invariant message aggregation (sum, mean, max) and node state updating.
+- [x] **16.2 Graph Convolutional Networks (GCN):** Kipf & Welling normalized symmetric Laplacian with self-loops, semi-supervised node classification.
+- [x] **16.3 Graph Attention Networks (GAT):** Multi-head anisotropic edge attention with LeakyReLU scoring and neighbor aggregation.
+
+### Phase 17: Distributed Deep Learning & Parallelism
+
+- [x] **17.1 Ring All-Reduce Primitive:** Logical ring topology communication simulation with Scatter-Reduce and All-Gather phases, proving $2 \frac{P-1}{P} N$ communication volume invariance.
+- [x] **17.2 ZeRO Memory Sharding:** Exact byte-level memory accounting engine for DDP, ZeRO-1 ($P_{os}$), ZeRO-2 ($P_{os+g}$), and ZeRO-3 ($P_{os+g+p}$).
+- [x] **17.3 Mixed Precision Stability:** Dynamic Loss Scaler with numerical overflow detection, adaptive backoff, and scale expansion.
+
+### Phase 18: AI Safety, Privacy & Algorithmic Fairness
+
+- [x] **18.1 Adversarial Perturbations:** Fast Gradient Sign Method (FGSM) and Projected Gradient Descent (PGD) with $L_\infty$ projection balls.
+- [x] **18.2 Differential Privacy (DP-SGD):** Per-sample gradient clipping at sensitivity threshold $C$ and calibrated Gaussian mechanism noise injection.
+- [x] **18.3 Algorithmic Fairness Audits:** Demographic Parity, Disparate Impact (EEOC 80% rule), Equal Opportunity (TPR parity), and Equalized Odds metrics.
+
 ---
 
 ## 📂 Repository Structure
@@ -182,12 +230,60 @@ ML-Engineer-Training-Materials/
 │   ├── src/
 │   └── tests/
 │
-└── 10_mlops_production/         # FastAPI, Pydantic, ONNXRuntime, MLflow, Docker & CI/CD
+├── 10_mlops_production/         # FastAPI, Pydantic, ONNXRuntime, MLflow, Docker & CI/CD
+│   ├── README.md
+│   ├── app/
+│   ├── tests/
+│   ├── Dockerfile
+│   └── docker-compose.yml
+│
+├── 11_explainable_ai/           # Shapley values, LIME, Permutation Importance, PDP/ICE
+│   ├── README.md
+│   ├── 01_explainable_ai_catalog.md
+│   ├── src/
+│   └── tests/
+│
+├── 12_model_monitoring_drift/   # Covariate shift, PSI, KS-test, Wasserstein, ADWIN, Page-Hinkley
+│   ├── README.md
+│   ├── 01_drift_monitoring_catalog.md
+│   ├── src/
+│   └── tests/
+│
+├── 13_llm_systems/              # KV-Cache, INT8/NF4 Quantization, DPO Loss, RRF Hybrid Search
+│   ├── README.md
+│   ├── 01_llm_systems_catalog.md
+│   ├── src/
+│   └── tests/
+│
+├── 14_recommender_systems/      # Implicit ALS, Two-Tower Dual Encoder, Factorization Machines
+│   ├── README.md
+│   ├── 01_recommender_systems_catalog.md
+│   ├── src/
+│   └── tests/
+│
+├── 15_uncertainty_quantification/ # Split Conformal Prediction, Bayesian Regression, Gaussian Processes
+│   ├── README.md
+│   ├── 01_uncertainty_quantification_catalog.md
+│   ├── src/
+│   └── tests/
+│
+├── 16_graph_neural_networks/    # Message Passing MPNN, Graph Convolution GCN, Graph Attention GAT
+│   ├── README.md
+│   ├── 01_gnn_catalog.md
+│   ├── src/
+│   └── tests/
+│
+├── 17_distributed_training/     # Ring All-Reduce, ZeRO-1/2/3 Memory Estimator, Dynamic Loss Scaler
+│   ├── README.md
+│   ├── 01_distributed_training_catalog.md
+│   ├── src/
+│   └── tests/
+│
+└── 18_ai_safety_privacy/        # FGSM & PGD Attacks, DP-SGD Privacy, Algorithmic Fairness Auditing
     ├── README.md
-    ├── app/
-    ├── tests/
-    ├── Dockerfile
-    └── docker-compose.yml
+    ├── 01_safety_privacy_catalog.md
+    ├── src/
+    └── tests/
 ```
 
 ## 🛠️ Environment Setup

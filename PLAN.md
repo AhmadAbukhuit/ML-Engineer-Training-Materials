@@ -204,4 +204,50 @@ Hardens models into production microservices with FastAPI, ONNXRuntime accelerat
 ### Week 20: MLflow Lifecycle Governance, Docker & Capstone Defense
 * **Theory:** Run tracking, model staging, multi-stage Docker builds, automated test verification.
 * **Practice & Labs:** Build MLflow tracker, Dockerfile, docker-compose, and assemble full end-to-end pipeline.
-* **Deliverable & Assessment:** Pass [`10_mlops_production/tests/test_mlflow.py`](10_mlops_production/tests/test_mlflow.py), pass entire repository test suite (98/98 tests), and defend Capstone project.
+* **Deliverable & Assessment:** Pass [`10_mlops_production/tests/test_mlflow.py`](10_mlops_production/tests/test_mlflow.py), pass core test suite, and defend Capstone project.
+
+---
+
+## ⚡ Advanced Engineering Modules & Electives (Modules 11–18)
+
+These advanced modules can be integrated as specialized intensive workshops or elective deep dives following the core 20-week program.
+
+### Module 11: Explainable AI (XAI) & Model Interpretability
+* **Theory:** Axiomatic coalitional game theory, KernelSHAP, LIME local surrogate models, Permutation Importance, and Partial Dependence Plots (PDP).
+* **Practice & Labs:** Implement Shapley explainers and surrogate models in [`11_explainable_ai/src/`](11_explainable_ai/src/).
+* **Deliverable & Tests:** Pass all tests in [`11_explainable_ai/tests/`](11_explainable_ai/tests/).
+
+### Module 12: Production Observability & Drift Detection
+* **Theory:** Covariate shift vs concept drift, Population Stability Index (PSI), Kolmogorov-Smirnov test, Wasserstein distance, streaming ADWIN and Page-Hinkley algorithms.
+* **Practice & Labs:** Implement drift detectors in [`12_model_monitoring_drift/src/`](12_model_monitoring_drift/src/).
+* **Deliverable & Tests:** Pass all tests in [`12_model_monitoring_drift/tests/`](12_model_monitoring_drift/tests/).
+
+### Module 13: Generative AI & LLM Systems Engineering
+* **Theory:** Autoregressive decoding bottlenecks, KV-Cache memory footprint, Uniform INT8 and NormalFloat4 (NF4) quantization, Direct Preference Optimization (DPO), and Reciprocal Rank Fusion (RRF).
+* **Practice & Labs:** Implement KV cache, quantization, and DPO in [`13_llm_systems/src/`](13_llm_systems/src/).
+* **Deliverable & Tests:** Pass all tests in [`13_llm_systems/tests/`](13_llm_systems/tests/).
+
+### Module 14: Recommendation Systems & Collaborative Filtering
+* **Theory:** Hu-Koren-Volinsky implicit ALS matrix factorization, Two-Tower dual-encoder retrieval, and Factorization Machine $O(kd)$ linear CTR scoring.
+* **Practice & Labs:** Implement ALS, Two-Tower, and FM models in [`14_recommender_systems/src/`](14_recommender_systems/src/).
+* **Deliverable & Tests:** Pass all tests in [`14_recommender_systems/tests/`](14_recommender_systems/tests/).
+
+### Module 15: Uncertainty Quantification & Conformal Prediction
+* **Theory:** Inductive split conformal prediction with exact $1 - \alpha$ marginal coverage guarantees, conjugate Bayesian linear regression, Gaussian process regression with RBF kernels.
+* **Practice & Labs:** Implement conformal predictors and GPs in [`15_uncertainty_quantification/src/`](15_uncertainty_quantification/src/).
+* **Deliverable & Tests:** Pass all tests in [`15_uncertainty_quantification/tests/`](15_uncertainty_quantification/tests/).
+
+### Module 16: Graph Machine Learning & Graph Neural Networks
+* **Theory:** Gilmer MPNN message-passing framework, Kipf & Welling GCN normalized Laplacian, and multi-head Graph Attention Networks (GAT).
+* **Practice & Labs:** Implement GCN, GAT, and MPNN layers in [`16_graph_neural_networks/src/`](16_graph_neural_networks/src/).
+* **Deliverable & Tests:** Pass all tests in [`16_graph_neural_networks/tests/`](16_graph_neural_networks/tests/).
+
+### Module 17: Distributed Deep Learning & Parallelism
+* **Theory:** Ring All-Reduce communication volume invariance, ZeRO Stage 1/2/3 memory partitioning, and mixed-precision dynamic loss scaling.
+* **Practice & Labs:** Implement Ring All-Reduce, ZeRO memory estimator, and loss scaler in [`17_distributed_training/src/`](17_distributed_training/src/).
+* **Deliverable & Tests:** Pass all tests in [`17_distributed_training/tests/`](17_distributed_training/tests/).
+
+### Module 18: AI Safety, Privacy & Algorithmic Fairness
+* **Theory:** FGSM and PGD adversarial attacks, DP-SGD differential privacy mechanism with gradient clipping, and algorithmic fairness metrics (Demographic Parity, Equalized Odds, Disparate Impact).
+* **Practice & Labs:** Implement attacks, DP-SGD, and fairness auditor in [`18_ai_safety_privacy/src/`](18_ai_safety_privacy/src/).
+* **Deliverable & Tests:** Pass all tests in [`18_ai_safety_privacy/tests/`](18_ai_safety_privacy/tests/).

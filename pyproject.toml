@@ -22,6 +22,14 @@ testpaths = [
     "08_reinforcement_learning/tests",
     "09_transfer_learning/tests",
     "10_mlops_production/tests",
+    "11_explainable_ai/tests",
+    "12_model_monitoring_drift/tests",
+    "13_llm_systems/tests",
+    "14_recommender_systems/tests",
+    "15_uncertainty_quantification/tests",
+    "16_graph_neural_networks/tests",
+    "17_distributed_training/tests",
+    "18_ai_safety_privacy/tests",
 ]
 addopts = ["--import-mode=importlib"]
 pythonpath = ["."]

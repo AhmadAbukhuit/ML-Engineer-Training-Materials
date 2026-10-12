@@ -107,6 +107,64 @@ Enforce a strict anti-pattern rule: **No explicit Python `for`-loops over multid
   * *Container Bloat:* Copying development caches and virtualenvs into production Docker images.
 * **Instructor Tip:** Run a benchmark comparing naive disk loading (500ms) against cached ONNX runtime inference (2ms).
 
+### Phase 11: Explainable AI (XAI) & Model Interpretability
+* **Focus:** Coalitional game theory, local surrogate linear modeling, marginal feature permutations, and partial dependence.
+* **Key Derivations:** Shapley axiomatic uniqueness proof (Efficiency, Symmetry, Dummy, Additivity), KernelSHAP regression weights, LIME exponential kernel $\exp(-d^2 / \sigma^2)$, ICE individual conditional curves.
+* **Common Student Misconceptions:**
+  * *Interpreting feature importance as causal effects:* Permutation importance reveals model reliance, not real-world causal mechanisms.
+  * *Correlated features in Shapley/PDP:* Unrealistic out-of-distribution feature combinations when permuting collinear variables.
+* **Instructor Tip:** Have students sum up exact Shapley values on a linear model to verify the Efficiency axiom $f(x) - \mathbb{E}[f(x)] = \sum_i \phi_i$.
+
+### Phase 12: Production Observability & Drift Detection
+* **Focus:** Detecting distribution shifts in serving data before silent model degradation impacts business KPIs.
+* **Key Derivations:** Population Stability Index (PSI) bins: $\sum (P_i - Q_i) \ln(P_i / Q_i)$, Kolmogorov-Smirnov supremum test statistic $D = \sup_x |F_1(x) - F_2(x)|$, Wasserstein-1 Earth Mover's Distance, ADWIN dynamic window cutoffs.
+* **Common Student Misconceptions:**
+  * *Covariate Shift vs Concept Drift:* Assuming feature drift ($P(X)$ change) always causes concept drift ($P(Y|X)$ change); clarify when models maintain accuracy despite covariate shift.
+* **Instructor Tip:** Simulate a sudden sensor failure stream and show Page-Hinkley and ADWIN triggering alarm thresholds within milliseconds.
+
+### Phase 13: Generative AI & LLM Systems Engineering
+* **Focus:** Overcoming the memory bandwidth wall during transformer decoding, lossy parameter compression, and preference alignment.
+* **Key Derivations:** Memory-bound GEMV arithmetic intensity, KV-Cache memory formula $2 \cdot 2 \cdot n_{\text{layers}} \cdot d_{\text{model}} \cdot T$, Symmetric vs Asymmetric INT8 scale/zero-point, DPO closed-form Bradley-Terry log-ratio loss.
+* **Common Student Misconceptions:**
+  * *Assuming decoding is compute-bound:* Explain why autoregressive generation is strictly bounded by HBM bandwidth, not Tensor Core TFLOPs.
+  * *Quantization Zero-Point in Symmetric mode:* Forgetting that symmetric quantization requires $Z=0$ to eliminate subtractive terms in GEMM kernels.
+* **Instructor Tip:** Calculate the exact VRAM consumption of a 70B parameter model with and without KV-cache for a 4K sequence context.
+
+### Phase 14: Recommendation Systems & Collaborative Filtering
+* **Focus:** Two-stage retrieval and ranking architectures handling millions of candidate items under tight sub-10ms SLAs.
+* **Key Derivations:** Implicit ALS confidence matrix $C = 1 + \alpha R$, sparse update speedup $Y^TY + Y_{\text{active}}^T(C-I)Y_{\text{active}}$, Two-Tower in-batch softmax cross-entropy, Factorization Machine $O(kd)$ linear interaction trick.
+* **Common Student Misconceptions:**
+  * *Treating missing interactions as negative:* In implicit feedback, unobserved interactions indicate lack of exposure, not active disapproval.
+* **Instructor Tip:** Profile the runtime of brute-force $O(k d^2)$ interaction calculation vs the $O(kd)$ Factorization Machine algebraic identity.
+
+### Phase 15: Uncertainty Quantification & Conformal Prediction
+* **Focus:** Rigorous, mathematically guaranteed prediction intervals without unwarranted parametric assumptions.
+* **Key Derivations:** Split Conformal finite-sample marginal coverage proof $1 - \alpha \le \mathbb{P}(Y \in C(X)) \le 1 - \alpha + \frac{1}{n+1}$, Bayesian Linear Regression posterior precision $S_N^{-1} = \alpha I + \beta X^TX$, GP Cholesky solve $L L^T = K + \sigma_n^2 I$.
+* **Common Student Misconceptions:**
+  * *Conformal coverage is per-instance:* Emphasize that standard split conformal guarantees marginal coverage over the data distribution, not conditional coverage for every individual subgroup.
+* **Instructor Tip:** Plot Gaussian Process confidence bands with observations far outside the training distribution to show epistemic uncertainty exploding as expected.
+
+### Phase 16: Graph Machine Learning & Graph Neural Networks
+* **Focus:** Relational deep learning over non-Euclidean topologies and irregular connectivity graphs.
+* **Key Derivations:** Gilmer MPNN message-aggregation-update cycle, Kipf & Welling renormalization trick $\tilde{D}^{-1/2}\tilde{A}\tilde{D}^{-1/2}$, Graph Attention Network (GAT) masked softmax over edge neighborhoods.
+* **Common Student Misconceptions:**
+  * *Over-smoothing:* Stacking too many GCN layers causes all node representations to converge to identical harmonic mean vectors.
+* **Instructor Tip:** Demonstrate semi-supervised node classification where only 5% of nodes are labeled and GCN propagates supervision across the graph.
+
+### Phase 17: Distributed Deep Learning & Parallelism
+* **Focus:** Cluster-scale collective communication, multi-GPU memory sharding, and numerical precision stability.
+* **Key Derivations:** Ring All-Reduce communication volume $2 \frac{P-1}{P} N$, ZeRO Stages 1, 2, and 3 memory formulas, Dynamic Loss Scaler exponential backoff and growth intervals.
+* **Common Student Misconceptions:**
+  * *Parameter Server Scaling:* Thinking a master node works for large clusters; contrast with the ring topology's size-invariant communication per rank.
+* **Instructor Tip:** Walk through a byte-level breakdown showing how ZeRO-3 allows a 175B model to fit on 16 GPUs that would otherwise run out of memory on DDP.
+
+### Phase 18: AI Safety, Privacy & Algorithmic Fairness
+* **Focus:** Hardening models against adversarial manipulation, protecting individual data privacy, and auditing societal demographic bias.
+* **Key Derivations:** FGSM $L_\infty$ first-order linearization, PGD multi-step projection, DP-SGD sensitivity-bounded gradient clipping and Gaussian mechanism noise, Demographic Parity difference, Equalized Odds TPR/FPR equality.
+* **Common Student Misconceptions:**
+  * *Fairness through Unawareness:* Removing protected attributes (e.g., race, gender) does not eliminate bias due to proxy correlations in other features.
+* **Instructor Tip:** Run an algorithmic fairness audit on an imbalanced dataset and show how standard accuracy can look high (90%) while the disparate impact ratio severely fails the EEOC 80% rule.
+
 ---
 
 ## 🛠️ Classroom Delivery & Session Structure
